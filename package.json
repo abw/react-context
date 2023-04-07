@@ -1,0 +1,57 @@
+{
+  "name": "@abw/react-context",
+  "version": "1.0.0",
+  "description": "Utilities for working with React contexts",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/react-context.umd.cjs",
+  "module": "./dist/react-context.js",
+  "exports": {
+    ".": {
+      "import": "./dist/react-context.js",
+      "require": "./dist/react-context.umd.cjs"
+    }
+  },
+  "author": "Andy Wardley",
+  "licence": "ISC",
+  "keywords": [
+    "react"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "test": "vitest",
+    "build": "vite build",
+    "build:docs": "vite build --outDir docs --config vite.docs.js",
+    "preview": "vite preview --outDir docs --config vite.docs.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abw/react-context.git"
+  },
+  "bugs": {
+    "url": "https://github.com/abw/react-context/issues"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@abw/badger-timestamp": "^1.0.4",
+    "@abw/badger-utils": "^1.0.19",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^14.0.0",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "@vitejs/plugin-react": "^3.1.0",
+    "eslint": "^8.37.0",
+    "eslint-plugin-react": "^7.32.2",
+    "jsdom": "^21.1.1",
+    "react-router-dom": "^6.10.0",
+    "react-syntax-highlighter": "^15.5.0",
+    "sass": "^1.60.0",
+    "vite": "^4.2.0",
+    "vitest": "^0.29.8"
+  }
+}
