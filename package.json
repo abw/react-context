@@ -17,7 +17,8 @@
   "author": "Andy Wardley",
   "licence": "ISC",
   "keywords": [
-    "react"
+    "react",
+    "context"
   ],
   "scripts": {
     "dev": "vite",

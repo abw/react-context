@@ -4,6 +4,7 @@ import define from  './vite.defs.js'
 
 export default defineConfig({
   plugins: [react()],
+  publicDir: false,
   define,
   test: {
     environment: 'jsdom',
@@ -16,21 +17,21 @@ export default defineConfig({
     minify: true,
     sourcemap: false,
     lib: {
-      entry: "lib/index.js",
+      entry: 'lib/index.js',
       name: '@abw/react-context',
       fileName: 'react-context',
     },
     rollupOptions: {
       external: [
-        "react",
-        "react-dom",
-        "react/jsx-runtime"
+        'react',
+        'react-dom',
+        'react/jsx-runtime'
       ],
       output: {
         globals: {
-          "react": "react",
-          "react-dom": "ReactDOM",
-          "react/jsx-runtime": "react/jsx-runtime"
+          'react': 'react',
+          'react-dom': 'ReactDOM',
+          'react/jsx-runtime': 'react/jsx-runtime'
         },
       },
     },
