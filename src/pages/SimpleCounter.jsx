@@ -139,11 +139,10 @@ const CounterDemo = () =>
 
     <h2>useCounter.jsx</h2>
     <p>
-      The <code>useCounter.js</code> component is a simple function which
-      simply re-exports the <code>Use</code> function for the sake of
-      convention.  It allows us to use the <code>useCounter()</code> function
-      to access the context which is a little less clunky
-      than <code>Counter.Use()</code>.
+      The <code>useCounter.js</code> file simply re-exports the{' '}
+      <code>Use</code> function for the sake of convention.  It allows us
+      to use the <code>useCounter()</code> function to access the context
+      which is a little less clunky than <code>Counter.Use()</code>.
     </p>
     <CodeBlock language="jsx" source={UseCounterSrc}/>
     <p>

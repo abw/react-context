@@ -123,7 +123,7 @@ const CounterDemo = () =>
     </p>
     <p>
       Using the class is exactly the same as in the previous example, and all
-      of the component that access this state remain unchanged.
+      of the components that access this state remain unchanged.
     </p>
 
     <h2>Count.jsx</h2>
