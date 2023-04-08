@@ -6,11 +6,14 @@ This is a small and simple module that provides some syntactic sugar to
 streamline the use of React Context to maintain state in your React
 applications.
 
-It simple and small (less than 1kB compressed) and has no external
+It is simple and small (less than 1kB compressed) and has no external
 dependencies other than React.
 
 If you're not already familiar with React Context then you should start by
 reading the React Context documentation: https://reactjs.org/docs/context.html
+
+Note that this module supercedes its predecessor
+[@abw/react-context-generator](https://www.npmjs.com/package/@abw/react-context-generator).
 
 ## Getting Started
 
