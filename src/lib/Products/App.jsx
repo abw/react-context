@@ -1,5 +1,5 @@
 import React    from 'react'
-import Products from './Products.jsx'
+import Products from './Products.js'
 import Layout   from './Layout.jsx'
 import Info     from './Info.jsx'
 import List     from './List.jsx'

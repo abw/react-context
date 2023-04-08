@@ -1,5 +1,5 @@
-import React from 'react'
-import Products from './Products.jsx'
+import React    from 'react'
+import Products from './Products.js'
 
 const Layout = ({Products, children}) =>
   <div className="box">

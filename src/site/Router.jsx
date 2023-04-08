@@ -4,7 +4,8 @@ import Home from '../pages/Home.jsx'
 import GettingStarted from '../pages/GettingStarted.jsx'
 import { createBrowserRouter } from 'react-router-dom'
 import ProductsDemo from '../pages/Products.jsx'
-import CounterDemo from '../pages/Counters.jsx'
+import CounterClass from '../pages/CounterClass.jsx'
+import SimpleCounter from '../pages/SimpleCounter.jsx'
 
 export const Router = createBrowserRouter(
   [
@@ -14,7 +15,8 @@ export const Router = createBrowserRouter(
       children: [
         { path: '/',               element: <Home/> },
         { path: 'getting-started', element: <GettingStarted/> },
-        { path: 'counter-demo',    element: <CounterDemo/> },
+        { path: 'simple-counter',  element: <SimpleCounter/> },
+        { path: 'counter-class',   element: <CounterClass/> },
         { path: 'products-demo',   element: <ProductsDemo/> },
       ]
     },

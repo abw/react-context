@@ -1,17 +1,17 @@
 import React from 'react'
-import App   from '../lib/Counter/App.jsx'
-import AppSrc from '../lib/Counter/App.jsx?raw'
-import CountSrc from '../lib/Counter/Count.jsx?raw'
-import CounterSrc from '../lib/Counter/Counter.js?raw'
-import ControlsSrc from '../lib/Counter/Controls.jsx?raw'
-import BignumSrc from '../lib/Counter/Bignum.jsx?raw'
-import Bignum2Src from '../lib/Counter/Bignum2.jsx?raw'
-import UseCounterSrc from '../lib/Counter/useCounter.jsx?raw'
+import App   from '../lib/Counter1/App.jsx'
+import AppSrc from '../lib/Counter1/App.jsx?raw'
+import CountSrc from '../lib/Counter1/Count.jsx?raw'
+import CounterSrc from '../lib/Counter1/Counter.js?raw'
+import ControlsSrc from '../lib/Counter1/Controls.jsx?raw'
+import BignumSrc from '../lib/Counter1/Bignum.jsx?raw'
+import Bignum2Src from '../lib/Counter1/Bignum2.jsx?raw'
+import UseCounterSrc from '../lib/Counter1/useCounter.jsx?raw'
 import CodeBlock from '../site/CodeBlock.jsx'
 
 const CounterDemo = () =>
   <div>
-    <h1>Counter Demo</h1>
+    <h1>Simple Counter Demo</h1>
     <p>
       This is a simple example showing how a context can be defined and used.
       First, let&apos;s see it in action.  Click on the buttons to change the
@@ -22,11 +22,9 @@ const CounterDemo = () =>
       <App/>
     </div>
     <p>
-      Here&apos;s another version with the count initially set to 100 and
-      debugging enabled.  Watch the Javascript console for messages as you
-      click on the buttons.
+      Here&apos;s another version with the count initially set to 100.
     </p>
-    <CodeBlock language="jsx" source="<App initialCount={100} debug={true}/>"/>
+    <CodeBlock language="jsx" source="<App initialCount={100}/>"/>
     <div className="box">
       <App initialCount={100} debug={true}/>
     </div>
@@ -34,6 +32,10 @@ const CounterDemo = () =>
       This is what our application code <code>App.jsx</code> looks like.
     </p>
     <CodeBlock language="jsx" source={AppSrc}/>
+    <p>
+      Between lines 8 and 16 we define a <code>Counter.Provider</code> which
+      provides the shared state for any components contained within it.
+    </p>
     <p>
       Let&apos;s look at each component in turn.
     </p>
@@ -45,51 +47,42 @@ const CounterDemo = () =>
     </p>
     <CodeBlock language="jsx" source={CounterSrc}/>
     <p>
-      The <code>Counter</code> class extends the <code>Context</code> class
-      imported from <code>@abw/react-context</code>.
+      In line 5 the <code>Counter</code> component uses the <code>useState</code> hook
+      to define a <code>count</code> state variable and <code>setCount</code>{' '}
+      function to update it.
     </p>
     <p>
-      The <code>initialState</code> defines the initial state of the object,
-      with the <code>count</code> being set to <code>0</code>.
+      The <code>initialCount</code> property can be passed to the component
+      to set the initial value for <code>count</code>.  Otherwise it defaults
+      to <code>0</code>.
     </p>
     <p>
-      The <code>initialProps</code> defines the properties that can be passed
-      to the object to set the state.  In this case, the{' '}
-      <code>initialCount</code> property can be used to set the{' '}
-      <code>count</code> to a value other than <code>0</code>, as demonstrated
-      in the second example above.
+      We then define two handler functions <code>inc()</code> and{' '}
+      <code>dec()</code> on lines 6 and 7 to increment and decrement the{' '}
+      <code>count</code>, respectively.  They can be passed a number{' '}
+      <code>n</code> which defaults to <code>1</code>.
     </p>
     <p>
-      The <code>actions</code> is a list of methods that should be exposed as
-      actions in the context.  These can be specified as an array of method
-      names, e.g <code>[&apos;inc&apos;, &apos;dec&apos;]</code>, or using the short-hand form
-      shown here where they&apos;re specified using a single whitespace
-      delimited string, e.g. <code>&apos;inc dec&apos;</code>
+      So far this is all standard React code.  Where it gets interesting is
+      the <code>return</code> value from the component between lines 9 and 11.
+      We return the result of calling the <code>render()</code> function that
+      has been passed to the component as a property on line 4.
     </p>
     <p>
-      The remaining three <code>static</code> values control debugging.
-      The <code>debug</code> flag can be set here or as a property to enable
-      or disable debugging.  The <code>debugPrefix</code> and{' '}
-      <code>debugColor</code> are applied to messages sent to the Javascript
-      console to help make them stand out.
+      We pass an object to the <code>render()</code> function containing
+      the <code>count</code> state variable and the <code>inc()</code> and{' '}
+      <code>dec()</code> functions.  We could also forward the{' '}
+      <code>setState()</code> function if we wanted to allow other components
+      direct access to modify the <code>count</code> variable.
     </p>
     <p>
-      When debugging is enabled (i.e. <code>debug</code> is <code>true</code>) any
-      calls to <code>this.debug()</code> (see the <code>inc()</code> and{' '}
-      <code>dec()</code> methods for examples) will be formatted appropriately
-      and sent to the Javascript console.  Otherwise they are ignored.
-    </p>
-    <p>
-      The <code>inc()</code> and <code>dec()</code> methods should be
-      fairly self-explanatory.  They update the <code>count</code> in the
-      state, respectively adding or subtracting the number passed as the
-      argument, <code>n</code>, which defaults to <code>1</code>.
-    </p>
-    <p>
-      The final line is the important bit.  The default export is the{' '}
-      <code>Counter</code> class wrapped by a call to the{' '}
-      <code>Generator</code> function,
-      also imported from <code>@abw/react-context</code>.
+      So where does the <code>render</code> property come from?
+      The final line is the important bit.  The default export on line 14
+      is the <code>Counter</code> component wrapped by a call to the{' '}
+      <code>Generator</code> function, imported from{' '}
+      <code>@abw/react-context</code> in line 2.  This turns our simple
+      component that maintains its own state into a context object that
+      can be used to share that state with any number of other components.
     </p>
     <p>
       The <code>Generator</code> function returns an object containing{' '}
@@ -102,15 +95,9 @@ const CounterDemo = () =>
     </p>
     <p>
       We&apos;ve already seen the <code>Provider</code> in use in our{' '}
-      <code>App.jsx</code>.  This should be used to provide access to the
-      context for any components contained within it.
+      <code>App.jsx</code>.  This is how we provide access to the context for
+      any components contained within it.
     </p>
-    <CodeBlock language="jsx" source={`import Counter from './Counter.jsx'
-
-export const App = (props) =>
-  <Counter.Provider {...props}>
-    ...
-  </Counter.Provider>`}/>
     <p>
       The other components in our application demonstrate how the{' '}
       <code>Consumer</code> and <code>Use</code> items can be used.
@@ -154,7 +141,9 @@ export const App = (props) =>
     <p>
       The <code>useCounter.js</code> component is a simple function which
       simply re-exports the <code>Use</code> function for the sake of
-      convention.
+      convention.  It allows us to use the <code>useCounter()</code> function
+      to access the context which is a little less clunky
+      than <code>Counter.Use()</code>.
     </p>
     <CodeBlock language="jsx" source={UseCounterSrc}/>
     <p>

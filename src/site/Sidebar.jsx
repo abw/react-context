@@ -9,8 +9,9 @@ const Sidebar = () =>
       <ul className="menu">
         <li><Link to="/" end text="Home"/></li>
         <li><Link to="getting-started" text="Getting Started"/></li>
-        <li><Link to="counter-demo" text="Counter Demo"/></li>
-        <li><Link to="products-demo" text="Products Demo"/></li>
+        <li><Link to="simple-counter"  text="Simple Counter"/></li>
+        <li><Link to="counter-class"   text="Counter Class"/></li>
+        <li><Link to="products-demo"   text="Products and Basket"/></li>
       </ul>
     </div>
     <footer>

@@ -1,2 +1,2 @@
-import Products from './Products.jsx'
+import Products from './Products.js'
 export default Products.Use

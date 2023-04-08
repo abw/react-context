@@ -1,16 +1,19 @@
-import React  from 'react'
-import useProducts from './useProducts.jsx'
+import React    from 'react'
+import Basket   from './Basket.jsx'
+import Products from './Products.js'
 
-const Info = () => {
-  const { product } = useProducts()
-  return product
-    ? <div className="product">
-        <h3>{product.name}</h3>
-        <div className="large price">£{product.price}</div>
-      </div>
-    : <div className="prompt">
-        Click on a button to select a product.
-      </div>
-}
+const Info = ({ product }) =>
+  <div>
+    { product
+      ? <div className="product">
+          <h3>{product.name}</h3>
+          <div className="large price">£{product.price}</div>
+          <Basket/>
+        </div>
+      : <div className="prompt">
+          Click on a button to select a product.
+        </div>
+    }
+  </div>
 
-export default Info
+export default Products.Consumer(Info)

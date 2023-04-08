@@ -14,11 +14,18 @@ class Products extends Context {
     ready:    false,
     loading:  false,
     products: [ ],
+    basket:   { },
   }
-  static actions     = 'selectProduct'
   static debug       = false
   static debugPrefix = 'Products > '
   static debugColor  = 'rebeccapurple'
+  static actions     = [
+    'selectProduct',
+    'addProductToBasket',
+    'removeProductFromBasket',
+    'quantityInBasket',
+    'emptyBasket'
+  ]
 
   componentDidMount() {
     this.loadProducts()
@@ -29,7 +36,7 @@ class Products extends Context {
     this.setState({ loading: 'Loading...' })
 
     // pretend we're loading the products index from an API call...
-    sleep(2000).then(
+    sleep(1000).then(
       () => this.setState({
         ready:   true,
         loading: false,
@@ -52,16 +59,50 @@ class Products extends Context {
     this.setState({ product })
   }
 
+  addProductToBasket(id) {
+    this.debug(`addProductToBasket(${id})`)
+    const { productById, basket } = this.state
+    const product = productById[id]
+    const count   = (basket[id]?.count || 0) + 1
+    const state   = {
+      basket: {
+        ...basket,
+        [product.id]: { product, count }
+      }
+    }
+    this.debug('Setting new state:', state)
+    this.setState(state)
+  }
+
+  removeProductFromBasket(id) {
+    this.debug(`removeProductFromBasket(${id})`)
+    const basket = { ...this.state.basket }
+    delete basket[id]
+    this.setState({ basket })
+  }
+
+  emptyBasket() {
+    this.debug('emptyBasket()')
+    this.setState({ basket: { } })
+  }
+
+  quantityInBasket(id) {
+    const item = this.state.basket[id]
+    return item
+      ? item.count
+      : 0
+  }
+
   //-----------------------------------------------------------------------------
   // Render
   //-----------------------------------------------------------------------------
   getRenderProps() {
     const context = this.getContext()
+    const { products, product, basket } = context
 
     return {
       Products: context,
-      products: context.products,
-      product:  context.product,
+      products, product, basket
     }
   }
 }

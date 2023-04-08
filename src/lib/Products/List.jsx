@@ -1,18 +1,19 @@
-import React  from 'react'
-import Products from './Products.jsx'
+import React    from 'react'
+import Products from './Products.js'
 
-const List = ({ Products, products }) =>
+const List = ({ Products, products, product }) =>
   <>
     <p>
       We have {products?.length} awesome products!
     </p>
     { products.map(
-      product =>
+      p =>
         <button
-          key={product.id}
-          onClick={() => Products.selectProduct(product.id)}
+          key={p.id}
+          onClick={() => Products.selectProduct(p.id)}
+          className={p.id === product?.id ? 'green' : 'blue'}
         >
-          {product.name}
+          {p.name} ({Products.quantityInBasket(p.id)})
         </button>
     )}
   </>

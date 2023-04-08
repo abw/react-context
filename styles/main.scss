@@ -65,6 +65,8 @@ body {
     padding-bottom: 200px;
     background-color: rgba(#fff, 0.9);
     border: 1px solid hsl($brand-hue, 20%, 80%);
+    height: calc(100vh - 2rem);
+    overflow-y: scroll;
     h1:first-child {
       line-height: 1;
       margin: 0 0 0.5em 0;
@@ -161,6 +163,24 @@ button {
   &:hover {
     background-color: darken($blue, 5%);
   }
+  &.orange {
+    background-color: $orange;
+    &:hover {
+      background-color: darken($orange, 5%);
+    }
+  }
+  &.red {
+    background-color: $red;
+    &:hover {
+      background-color: darken($red, 5%);
+    }
+  }
+  &.green {
+    background-color: $green;
+    &:hover {
+      background-color: darken($green, 5%);
+    }
+  }
 }
 button + button {
   margin-left: 0.5rem;
@@ -186,11 +206,24 @@ div.flex {
   display: flex;
   &.space {
     justify-content: space-between;
+    align-items: flex-end;
   }
+}
+div.wide {
+  width: 100%;
 }
 div.prompt {
   margin-top: 1rem;
 }
 .bignum {
   font-size: 3rem;
+}
+p.link {
+  font-size: $size-largish;
+  padding: 0.5rem 1rem;
+  border-left: 4px solid $brand-color;
+  background-color: hsl($brand-hue, 50%, 95%);
+}
+.mar-t-1 {
+  margin-top: 0.5rem;
 }
