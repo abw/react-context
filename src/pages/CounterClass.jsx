@@ -13,7 +13,7 @@ const CounterDemo = () =>
     <h1>Counter Class Demo</h1>
     <p>
       Before <code>useState</code> was a thing we used to write classes derived
-      from <code>React.Element</code> and call <code>this.setState()</code> to
+      from <code>React.Component</code> and call <code>this.setState()</code> to
       set state variables.
     </p>
     <p>

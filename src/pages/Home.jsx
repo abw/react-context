@@ -52,7 +52,7 @@ const Home = () =>
     </p>
     <p>
       It wasn&apos;t that long ago when we had to write classes derived from{' '}
-      <code>React.Element</code> to maintain state, and call{' '}
+      <code>React.Component</code> to maintain state, and call{' '}
       <code>this.setState()</code> to update the state.
     </p>
     <p>
