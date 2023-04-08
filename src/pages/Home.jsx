@@ -12,7 +12,7 @@ const Home = () =>
       />
     </a>
     <div className="pic-side">
-      <img src={imgUrl('badger.svg')}/>
+      <img src={imgUrl('react-context.svg')}/>
       <div className="blurb">
         <p className="intro">
           <code className="code">@abw/react-context</code> is a React library

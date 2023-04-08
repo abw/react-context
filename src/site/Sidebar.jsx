@@ -5,7 +5,7 @@ import { date, version } from './Utils.jsx'
 const Sidebar = () =>
   <>
     <div className="menu">
-      <h4>react-context</h4>
+      <h4>@abw/react-context</h4>
       <ul className="menu">
         <li><Link to="/" end text="Home"/></li>
         <li><Link to="getting-started" text="Getting Started"/></li>
