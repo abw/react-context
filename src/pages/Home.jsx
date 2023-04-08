@@ -30,8 +30,9 @@ const Home = () =>
       There are plenty of other excellent tools available for managing state
       in React.  This isn&apos;t supposed to be any better or worse, just
       different.  If anything, its simplicity is perhaps the best feature and
-      what perhaps sets it apart.  There&apos;s very little that you need to
-      know to get started using it.
+      what sets it apart.  If you already know how to use React contexts
+      then there&apos;s not much else that you need to know to get started
+      using it.
     </p>
     <p className="link">
       See the <Link to="getting-started">Getting Started</Link> page for
