@@ -10,7 +10,7 @@ It is simple and small (less than 1kB compressed) and has no external
 dependencies other than React.
 
 If you're not already familiar with React Context then you should start by
-reading the React Context documentation: https://reactjs.org/docs/context.html
+reading the React Context documentation: https://react.dev/reference/react/useContext
 
 Note that this module supercedes its predecessor
 [@abw/react-context-generator](https://www.npmjs.com/package/@abw/react-context-generator).
