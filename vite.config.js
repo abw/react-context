@@ -1,13 +1,11 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import define from  './vite.defs.js'
-
-console.log('node.env', process.enc);
-
+import svgr from 'vite-plugin-svgr'
 
 export default defineConfig(
   ({ command }) => ({
-    plugins: [react()],
+    plugins: [react(), svgr()],
     publicDir: command === 'build' ? false : true,
     define,
     test: {

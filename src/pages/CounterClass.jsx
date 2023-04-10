@@ -52,13 +52,15 @@ const CounterDemo = () =>
       This is what our application code <code>App.jsx</code> looks like.
       It&apos;s identical to the previous example.
     </p>
+    <h3 className="filename">App.jsx</h3>
     <CodeBlock language="jsx" source={AppSrc}/>
 
-    <h2>Counter.js</h2>
     <p>
       The only thing that has changed is the <code>Counter.js</code> where
       the application state is stored.
     </p>
+
+    <h3 className="filename">Counter.js</h3>
     <CodeBlock language="jsx" source={CounterSrc}/>
     <p>
       We&apos;re now defining a <code>Counter</code> class to store the state.
@@ -126,16 +128,16 @@ const CounterDemo = () =>
       of the components that access this state remain unchanged.
     </p>
 
-    <h2>Count.jsx</h2>
+    <h3 className="filename">Count.jsx</h3>
     <CodeBlock language="jsx" source={CountSrc}/>
 
-    <h2>Controls.jsx</h2>
+    <h3 className="filename">Controls.jsx</h3>
     <CodeBlock language="jsx" source={ControlsSrc}/>
 
-    <h2>Bignum.jsx</h2>
+    <h3 className="filename">Bignum.jsx</h3>
     <CodeBlock language="jsx" source={BignumSrc}/>
 
-    <h2>useCounter.jsx</h2>
+    <h3 className="filename">useCounter.jsx</h3>
     <CodeBlock language="jsx" source={UseCounterSrc}/>
   </div>
 

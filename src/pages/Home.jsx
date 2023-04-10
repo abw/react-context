@@ -1,15 +1,13 @@
 import React      from 'react'
 import Link       from '../site/Link.jsx'
 import { imgUrl } from '../site/Utils.jsx'
+import { ReactComponent as Github } from '../svg/github.svg'
 
 const Home = () =>
   <div className="">
     <h1>@abw/react-context</h1>
     <a href="https://github.com/abw/react-context" className="github">
-      <img
-        src="https://github.githubassets.com/favicons/favicon.svg"
-        alt="Github repository"
-      />
+      <Github/>
     </a>
     <div className="pic-side">
       <img src={imgUrl('react-context.svg')}/>
@@ -48,7 +46,7 @@ const Home = () =>
     </p>
     <p className="link">
       See the <Link to="simple-counter">Simple Counter</Link> page for a
-      demonstration and detailed explanation of the code.
+      demonstration and detailed explanation of the code
     </p>
     <p>
       It wasn&apos;t that long ago when we had to write classes derived from{' '}
@@ -70,12 +68,26 @@ const Home = () =>
       demonstration and explanation of context classes
     </p>
     <p>
-      The final example shows a slightly more complex case where we have a
+      The third example shows a slightly more complex case where we have a
       product catalogue and a basket that a user can add products to.
     </p>
     <p className="link">
       See the <Link to="products-demo">Products and Basket</Link> page for the
       more complex example
+    </p>
+    <p>
+      There are some tips on how to streamline your exports.
+    </p>
+    <p className="link">
+      See the <Link to="streamlining">Streamlining Exports</Link> page for
+      enlightenment
+    </p>
+    <p>
+      And if you&apos;re wonder about the different between using{' '}
+      <code>Consumer</code> and <code>Use</code> then wonder no more.
+    </p>
+    <p className="link">
+      See the <Link to="consumer-use">Consumer vs Use</Link> page for advice
     </p>
     <div className="badger">
       <img src={imgUrl('badger.svg')} alt="badger"/>

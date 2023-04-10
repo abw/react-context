@@ -22,22 +22,26 @@ const Demo = () =>
     </p>
     <App/>
 
-    <h2>App.jsx</h2>
     <p>
       This is what our <code>App.jsx</code> application code looks like.
     </p>
+
+    <h3 className="filename">App.jsx</h3>
     <CodeBlock language="jsx" source={AppSrc}/>
+
     <p>
       We&apos;re defining a context in <code>Products.js</code> and
       setting up the <code>Products.Provider</code> around a number of
       other components.
     </p>
 
-    <h2>Products.js</h2>
     <p>
       The <code>Products.js</code> is where all the fun happens.
     </p>
+
+    <h3 className="filename">Products.js</h3>
     <CodeBlock language="jsx" source={ProductsSrc}/>
+
     <p>
       In line 11 we define an <code>initialState</code> which includes the {' '}
       <code>ready</code> flag which is initially set <code>false</code>.
@@ -100,7 +104,6 @@ const Demo = () =>
       that might be currently selected, and the <code>basket</code>.
     </p>
 
-    <h2>Layout.jsx</h2>
     <p>
       The <code>Layout.jsx</code> component uses the{' '}
       <code>Products.Consumer</code> (on line 13) to subscribe to all those items that
@@ -113,9 +116,10 @@ const Demo = () =>
       all of its child component.  Otherwise it displays a
       &quot;Loading...&quot; message.
     </p>
+
+    <h3 className="filename">Layout.jsx</h3>
     <CodeBlock language="jsx" source={LayoutSrc}/>
 
-    <h2>List.jsx</h2>
     <p>
       The <code>List.jsx</code> component is one of those children.
       It also uses the <code>Products.consumer</code> and receives the
@@ -134,9 +138,10 @@ const Demo = () =>
       add the current count of each product in the basket by calling the{' '}
       <code>Products.quantityInBasket()</code> method.
     </p>
+
+    <h3 className="filename">List.jsx</h3>
     <CodeBlock language="jsx" source={ListSrc}/>
 
-    <h2>Info.jsx</h2>
     <p>
       The <code>Info.jsx</code> component consumes the context data but it
       is only interested in the currently selected <code>product</code>.
@@ -144,9 +149,10 @@ const Demo = () =>
       and renders the <code>Basket</code> component.  Otherwise it prompts
       the user to select a product.
     </p>
+
+    <h3 className="filename">Info.jsx</h3>
     <CodeBlock language="jsx" source={InfoSrc}/>
 
-    <h2>Basket.jsx</h2>
     <p>
       The <code>Basket.jsx</code> component also needs access to the context
       data.  To demonstrate the other way of accessing this data, it uses
@@ -163,9 +169,10 @@ const Demo = () =>
       empty the basket (lines 16 to 21).  Otherwise it displays a message
       saying that the basket is empty, on line 22.
     </p>
+
+    <h3 className="filename">Basket.jsx</h3>
     <CodeBlock language="jsx" source={BasketSrc}/>
 
-    <h2>InBasket.jsx</h2>
     <p>
       The <code>InBasket.jsx</code> component displays a message telling
       the user how many of the currently select product they have in their
@@ -173,22 +180,26 @@ const Demo = () =>
       basket (lines 10 to 14) or to remove it from the basket altogether
       (lines 15 to 20).
     </p>
+
+    <h3 className="filename">InBasket.jsx</h3>
     <CodeBlock language="jsx" source={InBasketSrc}/>
 
-    <h2>NotInBasket.jsx</h2>
     <p>
       The <code>NotInBasket.jsx</code> component displays a message telling
       the user that they don&apos;t have any in their basket (line 7) along
       with a button for them to add it to the basket (lines 10 to 14).
     </p>
+
+    <h3 className="filename">NotInBasket.jsx</h3>
     <CodeBlock language="jsx" source={NotInBasketSrc}/>
 
-    <h2>useProducts.jsx</h2>
     <p>
       For completeness, here&apos;s the trivially simple{' '}
       <code>useProducts.jsx</code> component that simply re-exports the{' '}
       <code>Products.Use</code> function.
     </p>
+
+    <h3 className="filename">useProducts.jsx</h3>
     <CodeBlock language="jsx" source={UseSrc}/>
   </div>
 

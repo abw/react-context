@@ -26,10 +26,25 @@ body {
     flex-direction: column;
     footer {
       margin-top: auto;
-      font-size: 0.8rem;
-      color: $brand-light;
-      display: flex;
-      justify-content: space-between;
+      a {
+        font-size: 0;
+        width: 6rem;
+        // color: $brand-light;
+        transition: color 300ms;
+        &:hover {
+          color: $brand-darkish;
+        }
+      }
+      img {
+        height: 2rem;
+      }
+      .notes {
+        font-size: 0.8rem;
+        color: $brand-light;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+      }
     }
     h4 {
       margin-top: 0;
@@ -61,8 +76,8 @@ body {
     position: relative;
     flex-basis: 0;
     flex-grow: 999;
+    min-width: 80ch;
     padding: 2rem;
-    padding-bottom: 200px;
     background-color: rgba(#fff, 0.9);
     border: 1px solid hsl($brand-hue, 20%, 80%);
     height: calc(100vh - 2rem);
@@ -83,22 +98,6 @@ body {
   }
   & > div.blurb {
     padding-right: 2rem;
-  }
-}
-.badger {
-  position: absolute;
-  bottom: 1rem;
-  left: 0;
-  width: 100%;
-  padding-top: 2rem;
-  text-align: center;
-  img {
-    width: 80px;
-  }
-  .caption {
-    padding: 0.5rem 0 0 0;
-    color: $brand-light;
-    font-size: 0.8rem;
   }
 }
 code.code {
@@ -148,6 +147,10 @@ a.github {
   right: 1rem;
   width: 2rem;
   height: 2rem;
+  transition: color 300ms;
+  &:hover {
+    color: $brand-darkish;
+  }
 }
 
 button {
@@ -226,4 +229,29 @@ p.link {
 }
 .mar-t-1 {
   margin-top: 0.5rem;
+}
+input.volume-slider {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+h3.filename {
+  color: $brand-light;
+  font-size: 1rem;
+  text-align: right;
+  margin-top: 2rem;
+  margin-bottom: -2.5rem;
+  margin-right: 1rem;
+}
+.badger {
+  width: 100%;
+  margin-top: 3rem;
+  text-align: center;
+  img {
+    width: 80px;
+  }
+  .caption {
+    padding: 0.5rem 0 0 0;
+    color: $brand-light;
+    font-size: 0.8rem;
+  }
 }

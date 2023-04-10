@@ -45,7 +45,7 @@ $ pnpm add @abw/react-context
       call, passing any state and actions that you want to expose.  Return the
       result of calling that function.
     </p>
-    <h3>Counter.js</h3>
+    <h3 className="filename">Counter.js</h3>
     <CodeBlock language="jsx" source={CounterSrc}/>
 
     <p>
@@ -53,7 +53,7 @@ $ pnpm add @abw/react-context
       to define a context provider around the part of your application
       that needs access to the context data.
     </p>
-    <h3>App.jsx</h3>
+    <h3 className="filename">App.jsx</h3>
     <CodeBlock language="jsx" source={AppSrc}/>
 
     <p>
@@ -61,10 +61,10 @@ $ pnpm add @abw/react-context
       the context data.  One way is to use the <code>.Consumer()</code> function
       to wrap the component.  It will be passed all the context data as properties.
     </p>
-    <h3>Count.jsx</h3>
+    <h3 className="filename">Count.jsx</h3>
     <CodeBlock language="jsx" source={CountSrc}/>
 
-    <h3>Controls.jsx</h3>
+    <h3 className="filename">Controls.jsx</h3>
     <CodeBlock language="jsx" source={ControlsSrc}/>
 
     <p>
@@ -73,13 +73,13 @@ $ pnpm add @abw/react-context
       expose it with a name like <code>useCounter()</code>
     </p>
 
-    <h3>useCounter.jsx</h3>
+    <h3 className="filename">useCounter.jsx</h3>
     <CodeBlock language="jsx" source={UseCounterSrc}/>
 
     <p>
       Here&apos;s a component using that function to access the context.
     </p>
-    <h3>Bignum.jsx</h3>
+    <h3 className="filename">Bignum.jsx</h3>
     <CodeBlock language="jsx" source={Bignum2Src}/>
   </div>
 

@@ -2,10 +2,12 @@ import React from 'react'
 import Layout from './Layout.jsx'
 import Home from '../pages/Home.jsx'
 import GettingStarted from '../pages/GettingStarted.jsx'
-import { createBrowserRouter } from 'react-router-dom'
 import ProductsDemo from '../pages/Products.jsx'
 import CounterClass from '../pages/CounterClass.jsx'
 import SimpleCounter from '../pages/SimpleCounter.jsx'
+import Streamlining from '../pages/Streamlining.jsx'
+import ConsumerUse from '../pages/ConsumerUse.jsx'
+import { createBrowserRouter } from 'react-router-dom'
 
 export const Router = createBrowserRouter(
   [
@@ -18,6 +20,8 @@ export const Router = createBrowserRouter(
         { path: 'simple-counter',  element: <SimpleCounter/> },
         { path: 'counter-class',   element: <CounterClass/> },
         { path: 'products-demo',   element: <ProductsDemo/> },
+        { path: 'streamlining',    element: <Streamlining/> },
+        { path: 'consumer-use',    element: <ConsumerUse/> },
       ]
     },
   ],
