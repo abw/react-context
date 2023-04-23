@@ -26,8 +26,7 @@ const Demo = () =>
       This is what our <code>App.jsx</code> application code looks like.
     </p>
 
-    <h3 className="filename">App.jsx</h3>
-    <CodeBlock language="jsx" source={AppSrc}/>
+    <CodeBlock language="jsx" source={AppSrc} caption="App.jsx"/>
 
     <p>
       We&apos;re defining a context in <code>Products.js</code> and
@@ -39,8 +38,7 @@ const Demo = () =>
       The <code>Products.js</code> is where all the fun happens.
     </p>
 
-    <h3 className="filename">Products.js</h3>
-    <CodeBlock language="jsx" source={ProductsSrc}/>
+    <CodeBlock language="jsx" source={ProductsSrc} caption="Products.js"/>
 
     <p>
       In line 11 we define an <code>initialState</code> which includes the {' '}
@@ -117,8 +115,7 @@ const Demo = () =>
       &quot;Loading...&quot; message.
     </p>
 
-    <h3 className="filename">Layout.jsx</h3>
-    <CodeBlock language="jsx" source={LayoutSrc}/>
+    <CodeBlock language="jsx" source={LayoutSrc} caption="Layout.jsx"/>
 
     <p>
       The <code>List.jsx</code> component is one of those children.
@@ -139,8 +136,7 @@ const Demo = () =>
       <code>Products.quantityInBasket()</code> method.
     </p>
 
-    <h3 className="filename">List.jsx</h3>
-    <CodeBlock language="jsx" source={ListSrc}/>
+    <CodeBlock language="jsx" source={ListSrc} caption="List.jsx"/>
 
     <p>
       The <code>Info.jsx</code> component consumes the context data but it
@@ -150,8 +146,7 @@ const Demo = () =>
       the user to select a product.
     </p>
 
-    <h3 className="filename">Info.jsx</h3>
-    <CodeBlock language="jsx" source={InfoSrc}/>
+    <CodeBlock language="jsx" source={InfoSrc} caption="Info.jsx"/>
 
     <p>
       The <code>Basket.jsx</code> component also needs access to the context
@@ -170,8 +165,7 @@ const Demo = () =>
       saying that the basket is empty, on line 22.
     </p>
 
-    <h3 className="filename">Basket.jsx</h3>
-    <CodeBlock language="jsx" source={BasketSrc}/>
+    <CodeBlock language="jsx" source={BasketSrc} caption="Basket.jsx"/>
 
     <p>
       The <code>InBasket.jsx</code> component displays a message telling
@@ -181,8 +175,7 @@ const Demo = () =>
       (lines 15 to 20).
     </p>
 
-    <h3 className="filename">InBasket.jsx</h3>
-    <CodeBlock language="jsx" source={InBasketSrc}/>
+    <CodeBlock language="jsx" source={InBasketSrc} caption="InBasket.jsx"/>
 
     <p>
       The <code>NotInBasket.jsx</code> component displays a message telling
@@ -190,8 +183,7 @@ const Demo = () =>
       with a button for them to add it to the basket (lines 10 to 14).
     </p>
 
-    <h3 className="filename">NotInBasket.jsx</h3>
-    <CodeBlock language="jsx" source={NotInBasketSrc}/>
+    <CodeBlock language="jsx" source={NotInBasketSrc} caption="NotInBasket.jsx"/>
 
     <p>
       For completeness, here&apos;s the trivially simple{' '}
@@ -199,8 +191,7 @@ const Demo = () =>
       <code>Products.Use</code> function.
     </p>
 
-    <h3 className="filename">useProducts.jsx</h3>
-    <CodeBlock language="jsx" source={UseSrc}/>
+    <CodeBlock language="jsx" source={UseSrc} caption="useProducts.jsx"/>
   </div>
 
 export default Demo

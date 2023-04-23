@@ -31,8 +31,7 @@ const CounterDemo = () =>
     <p>
       This is what our application code <code>App.jsx</code> looks like.
     </p>
-    <h3 className="filename">App.jsx</h3>
-    <CodeBlock language="jsx" source={AppSrc}/>
+    <CodeBlock language="jsx" source={AppSrc} caption="App.jsx"/>
     <p>
       Between lines 8 and 16 we define a <code>Counter.Provider</code> which
       provides the shared state for any components contained within it.
@@ -45,8 +44,7 @@ const CounterDemo = () =>
       This is the <code>Counter.js</code> where the application state is
       stored.
     </p>
-    <h3 className="filename">Counter.js</h3>
-    <CodeBlock language="jsx" source={CounterSrc}/>
+    <CodeBlock language="jsx" source={CounterSrc} caption="Counter.js"/>
     <p>
       In line 5 the <code>Counter</code> component uses the <code>useState</code> hook
       to define a <code>count</code> state variable and <code>setCount</code>{' '}
@@ -108,8 +106,7 @@ const CounterDemo = () =>
       The <code>Count.jsx</code> shows how the <code>Consumer</code> can be
       used to get access to the context.
     </p>
-    <h3 className="filename">Count.jsx</h3>
-    <CodeBlock language="jsx" source={CountSrc}/>
+    <CodeBlock language="jsx" source={CountSrc} caption="Count.jsx"/>
     <p>
       The default export of the <code>Count</code> component is wrapped in a
       call to <code>Counter.Consumer</code>.  This ensures that all the context
@@ -123,15 +120,13 @@ const CounterDemo = () =>
       <code>Counter.Consumer</code> to get access to the{' '}
       <code>inc()</code> and <code>dec()</code> actions.
     </p>
-    <h3 className="filename">Controls.jsx</h3>
-    <CodeBlock language="jsx" source={ControlsSrc}/>
+    <CodeBlock language="jsx" source={ControlsSrc} caption="Controls.jsx"/>
 
     <p>
       The <code>Bignum.jsx</code> component takes a different approach which
       tends to be preferred these days.
     </p>
-    <h3 className="filename">Bignum.jsx</h3>
-    <CodeBlock language="jsx" source={BignumSrc}/>
+    <CodeBlock language="jsx" source={BignumSrc} caption="Bignum.jsx"/>
     <p>
       Instead of wrapping the exported component in a call to{' '}
       <code>Counter.Consumer</code>, it calls the <code>Counter.Use()</code>{' '}
@@ -144,13 +139,11 @@ const CounterDemo = () =>
       to use the <code>useCounter()</code> function to access the context
       which is a little less clunky than <code>Counter.Use()</code>.
     </p>
-    <h3 className="filename">useCounter.jsx</h3>
-    <CodeBlock language="jsx" source={UseCounterSrc}/>
+    <CodeBlock language="jsx" source={UseCounterSrc} caption="useCounter.jsx"/>
     <p>
       The <code>Bignum.jsx</code> module could then be written as:
     </p>
-    <h3 className="filename">Bignum.jsx</h3>
-    <CodeBlock language="jsx" source={Bignum2Src}/>
+    <CodeBlock language="jsx" source={Bignum2Src} caption="Bignum.jsx"/>
   </div>
 
 

@@ -27,8 +27,7 @@ const ConsumerUse = () =>
       <Link to="../streamlining" text="previous example"/> to demonstrate.
     </p>
 
-    <h3 className="filename">Slider.jsx</h3>
-    <CodeBlock language="jsx" source={SliderSrc}/>
+    <CodeBlock language="jsx" source={SliderSrc} caption="Slider.jsx"/>
 
     <p>
       The <code>Use</code> approach requires you to call the function from
@@ -38,8 +37,7 @@ const ConsumerUse = () =>
       add them.
     </p>
 
-    <h3 className="filename">Display.jsx</h3>
-    <CodeBlock language="jsx" source={DisplaySrc}/>
+    <CodeBlock language="jsx" source={DisplaySrc} caption="Display.jsx"/>
 
     <p>
       If a component needs to access multiple contexts then you can do this
@@ -49,8 +47,7 @@ const ConsumerUse = () =>
       do this:
     </p>
 
-    <h3 className="filename">ExampleComponent.jsx</h3>
-    <CodeBlock language="jsx" source={ConsumerSrc}/>
+    <CodeBlock language="jsx" source={ConsumerSrc} caption="ExampleComponent.jsx"/>
 
     <p>
       It&apos;s a bit clunky isn&apos;t it?  In these cases it&apos;s usually
@@ -60,8 +57,7 @@ const ConsumerUse = () =>
       from within the component.
     </p>
 
-    <h3 className="filename">ExampleComponent.jsx</h3>
-    <CodeBlock language="jsx" source={UseSrc}/>
+    <CodeBlock language="jsx" source={UseSrc} caption="ExampleComponent.jsx"/>
   </div>
 
 export default ConsumerUse

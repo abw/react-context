@@ -1,6 +1,10 @@
 @import "config/all.scss";
 @import "components/all.scss";
 
+
+$note-hue: 210;
+$codeblock-radius: 5px;
+
 html {
   font-family: $font-sans;
 }
@@ -30,9 +34,9 @@ body {
         font-size: 0;
         width: 6rem;
         // color: $brand-light;
-        transition: color 300ms;
+        // transition: color 300ms;
         &:hover {
-          color: $brand-darkish;
+          // color: $brand-darkish;
         }
       }
       img {
@@ -61,12 +65,17 @@ body {
           display: block;
           background-color: rgba(#fff, 0.6);
           padding: 0.25rem 0.5rem;
-          margin-bottom: 0.25rem;
+          margin-bottom: 0.5rem;
+          border-left: 5px solid white;
           &:hover {
+            color: hsl($hover-hue, 40%, 60%);
             background-color: rgba(#fff, 0.8);
+            border-color: hsl($hover-hue, 40%, 80%);
           }
           &.active {
+            color: hsl($brand-hue, 90%, 30%);
             background-color: rgba(#fff, 1);
+            border-color: hsl($brand-hue, 60%, 60%);
           }
         }
       }
@@ -111,21 +120,9 @@ img.logo {
   width: 200px;
 }
 div.example {
-  h4 {
-    font-size: 0.8rem;
-    margin: 0;
-    text-align: right;
-    color: white;
-    position: absolute;
-    top: 0.5rem;
-    right: 1rem;
-  }
   .explanation {
     margin-top: 2rem;
     margin-bottom: 1rem;
-  }
-  .code {
-    position: relative;
   }
   .output {
     position: relative;
@@ -133,6 +130,52 @@ div.example {
     color: hsl($brand-hue, 10%, 90%);
     padding: 1rem 2rem;
     font-size: 1.2em;
+  }
+}
+div.codeblock {
+  font-size: 0.9rem;
+  position: relative;
+  padding: 0;
+  margin-top: 1rem;
+  h4.caption {
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    font-size: 0.8rem;
+    margin: 0;
+    text-align: right;
+    font-weight: normal;
+    color: rgba(255, 255, 255, 0.9);
+  }
+  pre {
+    border-radius: $codeblock-radius;
+    margin: 0 !important;
+  }
+  .code {
+    position: relative;
+  }
+  .clipboard {
+    position: absolute;
+    bottom: 0rem;
+    right: 0rem;
+    margin: 0;
+    padding: 0.25em 0.5em;
+    min-width: 8ch;
+    text-align: center;
+    color: white;
+    background-color: hsl($brand-hue, 90%, 30%);
+    border-radius: $codeblock-radius 0 $codeblock-radius 0;
+    font-size: 0.8rem;
+    transition: all 1s;
+    &:hover {
+      transition: all 0.2s;
+      background-color: hsl($hover-hue, 90%, 40%);
+      cursor: pointer;
+    }
+    &.copied {
+      background-color: hsl(120, 70%, 30%);
+      cursor: pointer;
+    }
   }
 }
 a.read-on {
@@ -149,7 +192,7 @@ a.github {
   height: 2rem;
   transition: color 300ms;
   &:hover {
-    color: $brand-darkish;
+    // color: $brand-darkish;
   }
 }
 

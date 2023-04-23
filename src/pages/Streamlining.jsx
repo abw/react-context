@@ -32,33 +32,28 @@ const Streamlining = () =>
       usual.
     </p>
 
-    <h3 className="filename">Volume.js</h3>
-    <CodeBlock language="jsx" source={VolumeSrc}/>
+    <CodeBlock language="jsx" source={VolumeSrc} caption="Volume.js"/>
 
     <p>
       Now our application code can import <code>Provider</code> as a named
       import.
     </p>
 
-    <h3 className="filename">App.jsx</h3>
-    <CodeBlock language="jsx" source={AppSrc}/>
+    <CodeBlock language="jsx" source={AppSrc} caption="App.jsx"/>
 
     <p>
       Our other components can import <code>Consumer</code> as a named import.
     </p>
 
-    <h3 className="filename">Slider.jsx</h3>
-    <CodeBlock language="jsx" source={SliderSrc}/>
+    <CodeBlock language="jsx" source={SliderSrc} caption="Slider.jsx"/>
 
-    <h3 className="filename">Buttons.jsx</h3>
-    <CodeBlock language="jsx" source={ButtonsSrc}/>
+    <CodeBlock language="jsx" source={ButtonsSrc} caption="Buttons.jsx"/>
 
     <p>
       Or we can access the context using the <code>useVolume</code> named import.
     </p>
 
-    <h3 className="filename">Display.jsx</h3>
-    <CodeBlock language="jsx" source={DisplaySrc}/>
+    <CodeBlock language="jsx" source={DisplaySrc} caption="Display.jsx"/>
 
   </div>
 

@@ -52,16 +52,14 @@ const CounterDemo = () =>
       This is what our application code <code>App.jsx</code> looks like.
       It&apos;s identical to the previous example.
     </p>
-    <h3 className="filename">App.jsx</h3>
-    <CodeBlock language="jsx" source={AppSrc}/>
+    <CodeBlock language="jsx" source={AppSrc} caption="App.jsx"/>
 
     <p>
       The only thing that has changed is the <code>Counter.js</code> where
       the application state is stored.
     </p>
 
-    <h3 className="filename">Counter.js</h3>
-    <CodeBlock language="jsx" source={CounterSrc}/>
+    <CodeBlock language="jsx" source={CounterSrc} caption="Counter.js"/>
     <p>
       We&apos;re now defining a <code>Counter</code> class to store the state.
       This extends the <code>Context</code> class imported from{' '}
@@ -128,17 +126,13 @@ const CounterDemo = () =>
       of the components that access this state remain unchanged.
     </p>
 
-    <h3 className="filename">Count.jsx</h3>
-    <CodeBlock language="jsx" source={CountSrc}/>
+    <CodeBlock language="jsx" source={CountSrc} caption="Count.jsx"/>
 
-    <h3 className="filename">Controls.jsx</h3>
-    <CodeBlock language="jsx" source={ControlsSrc}/>
+    <CodeBlock language="jsx" source={ControlsSrc} caption="Controls.jsx"/>
 
-    <h3 className="filename">Bignum.jsx</h3>
-    <CodeBlock language="jsx" source={BignumSrc}/>
+    <CodeBlock language="jsx" source={BignumSrc} caption="Bignum.jsx"/>
 
-    <h3 className="filename">useCounter.jsx</h3>
-    <CodeBlock language="jsx" source={UseCounterSrc}/>
+    <CodeBlock language="jsx" source={UseCounterSrc} caption="useCounter.jsx"/>
   </div>
 
 

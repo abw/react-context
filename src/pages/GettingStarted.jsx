@@ -23,8 +23,7 @@ $ npm add @abw/react-context
 $ yarn add @abw/react-context
 
 ## using pnpm
-$ pnpm add @abw/react-context
-`}
+$ pnpm add @abw/react-context`}
     </CodeBlock>
     <p>
       You can then import the modules and start using them.
@@ -45,27 +44,23 @@ $ pnpm add @abw/react-context
       call, passing any state and actions that you want to expose.  Return the
       result of calling that function.
     </p>
-    <h3 className="filename">Counter.js</h3>
-    <CodeBlock language="jsx" source={CounterSrc}/>
+    <CodeBlock language="jsx" source={CounterSrc} caption="Counter.js"/>
 
     <p>
       Then import the component and use the <code>.Provider</code> property
       to define a context provider around the part of your application
       that needs access to the context data.
     </p>
-    <h3 className="filename">App.jsx</h3>
-    <CodeBlock language="jsx" source={AppSrc}/>
+    <CodeBlock language="jsx" source={AppSrc} caption="App.jsx"/>
 
     <p>
       Then any component enclosed within the scope of the provider can access
       the context data.  One way is to use the <code>.Consumer()</code> function
       to wrap the component.  It will be passed all the context data as properties.
     </p>
-    <h3 className="filename">Count.jsx</h3>
-    <CodeBlock language="jsx" source={CountSrc}/>
+    <CodeBlock language="jsx" source={CountSrc} caption="Count.jsx"/>
 
-    <h3 className="filename">Controls.jsx</h3>
-    <CodeBlock language="jsx" source={ControlsSrc}/>
+    <CodeBlock language="jsx" source={ControlsSrc} caption="Controls.jsx"/>
 
     <p>
       The generator also creates a <code>.Use()</code> function to use the
@@ -73,14 +68,12 @@ $ pnpm add @abw/react-context
       expose it with a name like <code>useCounter()</code>
     </p>
 
-    <h3 className="filename">useCounter.jsx</h3>
-    <CodeBlock language="jsx" source={UseCounterSrc}/>
+    <CodeBlock language="jsx" source={UseCounterSrc} caption="UseCounter.jsx"/>
 
     <p>
       Here&apos;s a component using that function to access the context.
     </p>
-    <h3 className="filename">Bignum.jsx</h3>
-    <CodeBlock language="jsx" source={Bignum2Src}/>
+    <CodeBlock language="jsx" source={Bignum2Src} caption="Bignum.jsx"/>
   </div>
 
 export default GettingStarted

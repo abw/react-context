@@ -58,8 +58,10 @@ a {
   font-weight: 500;
   color: $brand-color;
   text-decoration: inherit;
+  transition: all 0.5s;
   &:hover {
-    color: $brand-darkish;
+    transition: all 0.25s;
+    color: hsl($hover-hue, 60%, 60%);
     cursor: pointer;
   }
 }
