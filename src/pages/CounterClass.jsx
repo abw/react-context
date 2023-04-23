@@ -48,12 +48,15 @@ const CounterDemo = () =>
     <div className="box">
       <App initialCount={100} debug={true}/>
     </div>
+
+    <h2>App.jsx</h2>
     <p>
       This is what our application code <code>App.jsx</code> looks like.
       It&apos;s identical to the previous example.
     </p>
     <CodeBlock language="jsx" source={AppSrc} caption="App.jsx"/>
 
+    <h2>Counter.js</h2>
     <p>
       The only thing that has changed is the <code>Counter.js</code> where
       the application state is stored.
@@ -121,6 +124,8 @@ const CounterDemo = () =>
       wrapped by a call to the <code>Generator</code> function,
       also imported from <code>@abw/react-context</code>.
     </p>
+
+    <h2>Other Components</h2>
     <p>
       Using the class is exactly the same as in the previous example, and all
       of the components that access this state remain unchanged.

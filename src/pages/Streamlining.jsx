@@ -19,6 +19,7 @@ const Streamlining = () =>
     </p>
     <App/>
 
+    <h2>Volume.js</h2>
     <p>
       Here&apos;s the code for the context module used by the above
       application.  The interesting part happens between lines 14 and 16.
@@ -34,6 +35,7 @@ const Streamlining = () =>
 
     <CodeBlock language="jsx" source={VolumeSrc} caption="Volume.js"/>
 
+    <h2>App.jsx</h2>
     <p>
       Now our application code can import <code>Provider</code> as a named
       import.
@@ -41,6 +43,7 @@ const Streamlining = () =>
 
     <CodeBlock language="jsx" source={AppSrc} caption="App.jsx"/>
 
+    <h2>Other Components</h2>
     <p>
       Our other components can import <code>Consumer</code> as a named import.
     </p>

@@ -28,6 +28,8 @@ const CounterDemo = () =>
     <div className="box">
       <App initialCount={100} debug={true}/>
     </div>
+
+    <h2>App.jsx</h2>
     <p>
       This is what our application code <code>App.jsx</code> looks like.
     </p>
@@ -40,6 +42,7 @@ const CounterDemo = () =>
       Let&apos;s look at each component in turn.
     </p>
 
+    <h2>Counter.js</h2>
     <p>
       This is the <code>Counter.js</code> where the application state is
       stored.
@@ -102,6 +105,7 @@ const CounterDemo = () =>
       <code>Consumer</code> and <code>Use</code> items can be used.
     </p>
 
+    <h2>Count.jsx</h2>
     <p>
       The <code>Count.jsx</code> shows how the <code>Consumer</code> can be
       used to get access to the context.
@@ -115,6 +119,7 @@ const CounterDemo = () =>
       component) are provided as properties to the component.
     </p>
 
+    <h2>Controls.jsx</h2>
     <p>
       The <code>Controls.jsx</code> component also uses the{' '}
       <code>Counter.Consumer</code> to get access to the{' '}
@@ -122,6 +127,7 @@ const CounterDemo = () =>
     </p>
     <CodeBlock language="jsx" source={ControlsSrc} caption="Controls.jsx"/>
 
+    <h2>Bignum.jsx</h2>
     <p>
       The <code>Bignum.jsx</code> component takes a different approach which
       tends to be preferred these days.
@@ -133,6 +139,7 @@ const CounterDemo = () =>
       function which, provides access to the context state and actions.
     </p>
 
+    <h2>useCounter.js</h2>
     <p>
       The <code>useCounter.js</code> file simply re-exports the{' '}
       <code>Use</code> function for the sake of convention.  It allows us

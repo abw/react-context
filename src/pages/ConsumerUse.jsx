@@ -19,6 +19,8 @@ const ConsumerUse = () =>
       The short answer is that there&apos;s no difference.  They both achieve
       the same end result in slightly different ways.
     </p>
+
+    <h2>Consumer</h2>
     <p>
       I tend to use the <code>Consumer</code> approach if I have a simple
       component that is only returning an HTML element, i.e. it doesn&apos;t
@@ -29,6 +31,7 @@ const ConsumerUse = () =>
 
     <CodeBlock language="jsx" source={SliderSrc} caption="Slider.jsx"/>
 
+    <h2>Use</h2>
     <p>
       The <code>Use</code> approach requires you to call the function from
       within your component.  So you&apos;ll need to put curly braces around
@@ -39,6 +42,7 @@ const ConsumerUse = () =>
 
     <CodeBlock language="jsx" source={DisplaySrc} caption="Display.jsx"/>
 
+    <h2>Multiple Contexts</h2>
     <p>
       If a component needs to access multiple contexts then you can do this
       using the <code>Consumer</code> approach by nesting them.  For example,

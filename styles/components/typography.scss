@@ -7,11 +7,11 @@ h1 {
   font-weight: bold;
 }
 h2 {
-  font-size: $size-larger;
+  font-size: $size-large;
   line-height: 1.2;
   font-weight: bold;
   margin-top: 2rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 h3 {
   font-size: $size-large;
@@ -45,6 +45,9 @@ p code, code.code {
   padding: 0 3px;
   border-radius: 2px;
   font-size: 1em;
+}
+h2 + p {
+  margin-top: 1rem;
 }
 
 ul.menu {

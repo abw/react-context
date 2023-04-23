@@ -22,6 +22,7 @@ const Demo = () =>
     </p>
     <App/>
 
+    <h2>App.jsx</h2>
     <p>
       This is what our <code>App.jsx</code> application code looks like.
     </p>
@@ -34,6 +35,7 @@ const Demo = () =>
       other components.
     </p>
 
+    <h2>Products.js</h2>
     <p>
       The <code>Products.js</code> is where all the fun happens.
     </p>
@@ -102,6 +104,7 @@ const Demo = () =>
       that might be currently selected, and the <code>basket</code>.
     </p>
 
+    <h2>Layout.jsx</h2>
     <p>
       The <code>Layout.jsx</code> component uses the{' '}
       <code>Products.Consumer</code> (on line 13) to subscribe to all those items that
@@ -117,6 +120,7 @@ const Demo = () =>
 
     <CodeBlock language="jsx" source={LayoutSrc} caption="Layout.jsx"/>
 
+    <h2>List.jsx</h2>
     <p>
       The <code>List.jsx</code> component is one of those children.
       It also uses the <code>Products.consumer</code> and receives the
@@ -138,6 +142,7 @@ const Demo = () =>
 
     <CodeBlock language="jsx" source={ListSrc} caption="List.jsx"/>
 
+    <h2>Info.jsx</h2>
     <p>
       The <code>Info.jsx</code> component consumes the context data but it
       is only interested in the currently selected <code>product</code>.
@@ -148,6 +153,7 @@ const Demo = () =>
 
     <CodeBlock language="jsx" source={InfoSrc} caption="Info.jsx"/>
 
+    <h2>Basket.jsx</h2>
     <p>
       The <code>Basket.jsx</code> component also needs access to the context
       data.  To demonstrate the other way of accessing this data, it uses
@@ -167,6 +173,7 @@ const Demo = () =>
 
     <CodeBlock language="jsx" source={BasketSrc} caption="Basket.jsx"/>
 
+    <h2>InBasket.jsx</h2>
     <p>
       The <code>InBasket.jsx</code> component displays a message telling
       the user how many of the currently select product they have in their
@@ -177,6 +184,7 @@ const Demo = () =>
 
     <CodeBlock language="jsx" source={InBasketSrc} caption="InBasket.jsx"/>
 
+    <h2>NotInBasket.jsx</h2>
     <p>
       The <code>NotInBasket.jsx</code> component displays a message telling
       the user that they don&apos;t have any in their basket (line 7) along
@@ -185,6 +193,7 @@ const Demo = () =>
 
     <CodeBlock language="jsx" source={NotInBasketSrc} caption="NotInBasket.jsx"/>
 
+    <h2>useProducts.js</h2>
     <p>
       For completeness, here&apos;s the trivially simple{' '}
       <code>useProducts.jsx</code> component that simply re-exports the{' '}
