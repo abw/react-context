@@ -1,5 +1,5 @@
 import React from 'react'
-import { actionMethods, prepareState } from './Utils.js'
+import { actionMethods, debugFunction, prepareState } from './Utils.js'
 
 export class Context extends React.Component {
   static initialState = { }
@@ -11,14 +11,11 @@ export class Context extends React.Component {
     const statics = this.constructor
 
     // add debug() method if static debug flag or debug prop is set
-    this.debug = (statics.debug || props.debug)
-      ? statics.debugPrefix
-        ? (format, ...args) => console.log(
-            '%c' + statics.debugPrefix + '%c' + format,
-            `color: ${statics.debugColor}`,
-            'color:black', ...args
-          )
-        : console.log.bind(console)
+    this.debug = (props.debug ?? statics.debug)
+      ? debugFunction(
+        props.debugPrefix || statics.debugPrefix,
+        props.debugColor  || statics.debugColor
+      )
       : () => (undefined)
 
     // define initial state
