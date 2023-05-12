@@ -103,7 +103,11 @@ const CounterDemo = () =>
       The <code>debug</code> flag can be set here or as a property to enable
       or disable debugging.  The <code>debugPrefix</code> and{' '}
       <code>debugColor</code> are applied to messages sent to the Javascript
-      console to help make them stand out.
+      console to help make them stand out.  Both <code>debugPrefix</code>{' '}
+      and <code>debugColor</code> can be defined as functions if you want to
+      generate them dynamically.  They will be called by the constructor and
+      passed the context properties as an argument.  They should return the
+      appropriate prefix or color, respectively.
     </p>
     <p>
       When debugging is enabled (i.e. <code>debug</code> is <code>true</code>) any

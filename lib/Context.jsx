@@ -11,12 +11,7 @@ export class Context extends React.Component {
     const statics = this.constructor
 
     // add debug() method if static debug flag or debug prop is set
-    this.debug = (props.debug ?? statics.debug)
-      ? debugFunction(
-        props.debugPrefix || statics.debugPrefix,
-        props.debugColor  || statics.debugColor
-      )
-      : () => (undefined)
+    this.debug = debugFunction(props, statics)
 
     // define initial state
     this.state = prepareState(
