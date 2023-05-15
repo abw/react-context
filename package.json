@@ -15,7 +15,7 @@
     }
   },
   "author": "Andy Wardley",
-  "licence": "ISC",
+  "license": "ISC",
   "keywords": [
     "react",
     "context"
