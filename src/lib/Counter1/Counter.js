@@ -9,7 +9,7 @@ const Counter = ({initialCount=0, render}) => {
   const dec = (n=1) => setCount(count - n)
 
   return render({
-    count, inc, dec
+    count, inc, dec, setCount
   })
 }
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import { isFunction, toArray } from './Utils.js'
 
 export const Generator = (Model, defaultState={}) => {
   const Context = React.createContext(defaultState)
@@ -23,11 +24,20 @@ export const Generator = (Model, defaultState={}) => {
       {context => <Component {...context} {...props}/>}
     </Context.Consumer>
 
+  const Children = ({children}) =>
+    toArray(children).map(
+      (child, n) => isFunction(child)
+        ? <Context.Consumer key={n}>
+            {child}
+          </Context.Consumer>
+        : child
+    )
+
   const Use = () => {
     return React.useContext(Context)
   }
 
-  return { Context, Provider, Consumer, Use }
+  return { Context, Provider, Consumer, Children, Use }
 }
 
 export default Generator

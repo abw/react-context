@@ -11,6 +11,7 @@ const Sidebar = () =>
         <li><Link to="/" end text="Home"/></li>
         <li><Link to="getting-started" text="Getting Started"/></li>
         <li><Link to="simple-counter"  text="Simple Counter"/></li>
+        <li><Link to="flexible-children" text="Flexible Children"/></li>
         <li><Link to="counter-class"   text="Counter Class"/></li>
         <li><Link to="products-demo"   text="Products and Basket"/></li>
         <li><Link to="streamlining"    text="Streamlining Exports"/></li>

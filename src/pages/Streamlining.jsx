@@ -22,15 +22,15 @@ const Streamlining = () =>
     <h2>Volume.js</h2>
     <p>
       Here&apos;s the code for the context module used by the above
-      application.  The interesting part happens between lines 14 and 16.
-      The <code>Generator</code> function is called in line 14 and the
+      application.  The interesting part happens between lines 14 and 21.
+      The <code>Generator</code> function is called on line 14 and the
       object generated is stored in the appropriately named{' '}
-      <code>generated</code> variable.  In line 15 we deconstruct that into
-      separate variables, all of which are exported by name.  This also gives
-      us the opportunity to create an alias for the <code>Use</code> component
-      so that it can be imported as <code>useVolume</code>.  Then in line 16
-      we set the default export to be the <code>generated</code> object as
-      usual.
+      <code>generated</code> variable.  In lines 16 to 19 we deconstruct that
+      into separate variables, all of which are exported by name.  This also
+      gives us the opportunity to create an alias for the <code>Use</code>{' '}
+      component on line 18 so that it can be imported as <code>useVolume</code>.
+      Then on line 21 we set the default export to be the <code>generated</code>{' '}
+      object as usual.
     </p>
 
     <CodeBlock language="jsx" source={VolumeSrc} caption="Volume.js"/>

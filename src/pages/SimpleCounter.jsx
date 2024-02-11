@@ -73,8 +73,8 @@ const CounterDemo = () =>
     <p>
       We pass an object to the <code>render()</code> function containing
       the <code>count</code> state variable and the <code>inc()</code> and{' '}
-      <code>dec()</code> functions.  We could also forward the{' '}
-      <code>setState()</code> function if we wanted to allow other components
+      <code>dec()</code> functions.  We also forward the{' '}
+      <code>setState()</code> function to allow other components
       direct access to modify the <code>count</code> variable.
     </p>
     <p>
@@ -88,7 +88,8 @@ const CounterDemo = () =>
     </p>
     <p>
       The <code>Generator</code> function returns an object containing{' '}
-      <code>{'{'} Context, Provider, Consumer, Use {'}'}</code>.
+      <code>Context</code>, <code>Provider</code>, <code>Consumer</code>,{' '}
+      <code>Children</code>, and <code>Use</code> components.
     </p>
     <p>
       The <code>Context</code> is the React context object.  You probably
