@@ -1,9 +1,11 @@
 import React from 'react'
 import { isFunction, toArray } from './Utils.js'
 
-export const Generator = (Model, defaultState={}) => {
-  const Context = React.createContext(defaultState)
-
+export const Generator = (
+  Model,
+  defaultState = {},
+  Context = React.createContext(defaultState)
+) => {
   // Provider renders the Model component forwarding all props passed to it
   // along with a render prop to render the children inside a context provider
   const Provider = props =>
@@ -33,9 +35,7 @@ export const Generator = (Model, defaultState={}) => {
         : child
     )
 
-  const Use = () => {
-    return React.useContext(Context)
-  }
+  const Use = () => React.useContext(Context)
 
   return { Context, Provider, Consumer, Children, Use }
 }
