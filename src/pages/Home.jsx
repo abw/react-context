@@ -1,7 +1,7 @@
 import React      from 'react'
 import Link       from '../site/Link.jsx'
+import Github     from '../svg/github.svg?react'
 import { imgUrl } from '../site/Utils.jsx'
-import { ReactComponent as Github } from '../svg/github.svg'
 
 const Home = () =>
   <div className="">

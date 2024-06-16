@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from './Link.jsx'
 import { date, version } from './Utils.jsx'
-import { ReactComponent as Abw } from '../svg/abw.svg'
+import Abw from '../svg/abw.svg?react'
 
 const Sidebar = () =>
   <>
@@ -16,6 +16,7 @@ const Sidebar = () =>
         <li><Link to="products-demo"   text="Products and Basket"/></li>
         <li><Link to="streamlining"    text="Streamlining Exports"/></li>
         <li><Link to="consumer-use"    text="Consumer vs Use"/></li>
+        <li><Link to="nested"          text="Nested Contexts"/></li>
       </ul>
     </div>
     <footer>
