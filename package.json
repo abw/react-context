@@ -24,8 +24,8 @@
     "dev": "vite --config vite.docs.js",
     "test": "vitest --ui",
     "build": "vite build",
-    "build:docs": "vite build --outDir docs --config vite.docs.js",
-    "preview": "vite preview --outDir docs --config vite.docs.js",
+    "build:docs": "vite build --config vite.docs.js",
+    "preview": "vite preview --config vite.docs.js",
     "lint": "eslint 'lib/**/*.{js,jsx}' 'lib/**/*.{js,jsx}'"
   },
   "repository": {
