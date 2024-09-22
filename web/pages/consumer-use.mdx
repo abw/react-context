@@ -1,0 +1,64 @@
+import SliderSrc    from '@/lib/Volume/Slider.jsx?raw'
+import DisplaySrc   from '@/lib/Volume/Display.jsx?raw'
+import ConsumerSrc  from '@/lib/MultiContextConsumer.jsx?raw'
+import UseSrc       from '@/lib/MultiContextUse.jsx?raw'
+import { Source, Link } from '@abw/badger-website'
+
+# Consumer or Use?
+
+You may be wondering what the difference is between using the `Consumer`
+function to wrap a component that need access to the context and calling the
+`Use` function from inside the component.
+
+The short answer is that there's no difference. They both achieve the same
+end result in slightly different ways.
+
+## Consumer
+
+I tend to use the `Consumer` approach if I have a simple component that is
+only returning an HTML element, i.e. it doesn't require curly braces around
+the component body. Here's the `Slider.jsx` component from
+our <Link to="/streamlining" text="previous example"/> to demonstrate.
+
+<Source
+  code={SliderSrc}
+  caption="Slider.jsx"
+  expand
+/>
+
+## Use
+
+The `Use` approach requires you to call the function from within your
+component. So you'll need to put curly braces around your component body. If
+you're doing that already then it's no big deal. But if you're not then
+you'll have to explicitly add them.
+
+<Source
+  code={DisplaySrc}
+  caption="Display.jsx"
+  expand
+/>
+
+## Multiple Contexts
+
+If a component needs to access multiple contexts then you can do this using
+the `Consumer` approach by nesting them. For example, if a component needs
+access to the `Auth`, `Products` and `Basket` components then you can do
+this:
+
+<Source
+  code={ConsumerSrc}
+  caption="ExampleComponent.jsx"
+  expand
+/>
+
+It's a bit clunky isn't it? In these cases it's usually cleaner to define
+named `useAuth()`, `useBasket()` and `useProducts()` functions
+(see <Link to="/streamlining" text="Streamlining Exports"/>) and call them
+from within the component.
+
+<Source
+  code={UseSrc}
+  caption="ExampleComponent.jsx"
+  expand
+/>

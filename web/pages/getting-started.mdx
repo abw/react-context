@@ -1,0 +1,96 @@
+import AppSrc         from '@/lib/Counter2/App.jsx?raw'
+import CountSrc       from '@/lib/Counter1/Count.jsx?raw'
+import CounterSrc     from '@/lib/Counter1/Counter.js?raw'
+import ControlsSrc    from '@/lib/Counter1/Controls.jsx?raw'
+import Bignum2Src     from '@/lib/Counter1/Bignum2.jsx?raw'
+import UseCounterSrc  from '@/lib/Counter1/useCounter.jsx?raw'
+import { Snippet, Source } from '@abw/badger-website'
+
+# Getting Started
+
+## Installation
+
+Add the `@abw/react-context` module to your project using your favourite
+package manager.
+
+<Snippet
+  file="install.bash"
+  expand
+/>
+
+You can then import the modules and start using them.
+
+<Snippet
+  file="import.jsx"
+  expand
+/>
+
+## Quick Overview
+
+These examples give a quick overview of how it works.  See the
+example pages linked in the sidebar for a more detailed explanation.
+
+### Generator
+
+Use the `Generator` method to wrap up a component that
+defines some state and action methods that you want to share.  Your
+component will be passed a `render` function which you should
+call, passing any state and actions that you want to expose.  Return the
+result of calling that function.
+
+<Source
+  code={CounterSrc}
+  caption="Counter.js"
+  expand
+/>
+
+### Provider
+
+Then import the component and use the `.Provider` property
+to define a context provider around the part of your application
+that needs access to the context data.
+
+<Source
+  code={AppSrc}
+  caption="App.jsx"
+  expand
+/>
+
+### Consumer
+
+Then any component enclosed within the scope of the provider can access
+the context data.  One way is to use the `.Consumer()` function
+to wrap the component.  It will be passed all the context data as properties.
+
+<div className="grid-1 gap-8">
+  <Source
+    code={CountSrc}
+    caption="Count.jsx"
+    expand
+  />
+  <Source
+    code={ControlsSrc}
+    caption="Controls.jsx"
+    expand
+  />
+</div>
+
+### Use
+
+The generator also creates a `.Use()` function to use the
+context.  You can use it directly, or create a trivial component to
+expose it with a name like `useCounter()`
+
+<Source
+  code={UseCounterSrc}
+  caption="UseCounter.jsx"
+  expand
+/>
+
+Here's a component using that function to access the context.
+
+<Source
+  code={Bignum2Src}
+  caption="Bignum.jsx"
+  expand
+/>

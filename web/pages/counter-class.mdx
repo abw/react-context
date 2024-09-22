@@ -1,0 +1,147 @@
+import App           from '@/lib/Counter2/App.jsx'
+import AppSrc        from '@/lib/Counter2/App.jsx?raw'
+import CountSrc      from '@/lib/Counter2/Count.jsx?raw'
+import CounterSrc    from '@/lib/Counter2/Counter.js?raw'
+import ControlsSrc   from '@/lib/Counter2/Controls.jsx?raw'
+import BignumSrc     from '@/lib/Counter2/Bignum.jsx?raw'
+import UseCounterSrc from '@/lib/Counter2/useCounter.jsx?raw'
+import { Source, Split } from '@abw/badger-website'
+
+# Counter Class Demo
+
+Before `useState` was a thing we used to write classes derived from
+`React.Component` and call `this.setState()` to set state variables.
+
+Although this approach is less relevant nowadays for simple state management
+tasks, it's still perfectly valid and can be useful when you need to define
+more complex state or have lots of functions that might modify the state.
+I find myself reaching for this when I need to share state across an entire
+web site (e.g. for user authentication or a shopping cart) or in a section
+of a web site (e.g. in the behind-the-schemes administration section of a
+site for product management, user management, order processing, etc.)
+
+The good news is that you can re-write your functional state component as an
+object class and nothing else needs to change.  All of the other code is
+identical to the previous example.
+
+Here's the same counter demonstration using this approach.
+
+<Split>
+  <Source
+    code="<App/>"
+    expand
+  />
+  <App/>
+</Split>
+
+Here's the version with the count initially set to 100.  In addition we have
+a `debug` property to enable debugging messages.  Watch the Javascript console
+for messages as you click on the buttons.
+
+<Split>
+  <Source
+    code="<App initialCount={100} debug={true}/>"
+    expand
+  />
+  <App initialCount={100} debug={true}/>
+</Split>
+
+## `App.jsx`
+
+This is what our application code `App.jsx` looks like. It's identical to the
+previous example.
+
+<Source
+  code={AppSrc}
+  caption="App.jsx"
+  expand
+/>
+
+## `Counter.js`
+
+The only thing that has changed is the `Counter.js` where the application
+state is stored.
+
+<Source
+  code={CounterSrc}
+  caption="Counter.js"
+  expand
+/>
+
+We're now defining a `Counter` class to store the state. This extends the
+`Context` class imported from `@abw/react-context` in line 1.  You don't have
+to extend this base class, but it has the benefit of providing methods of
+convenience that your class will inherit.
+
+You can write your own `constructor` method to initialise the object if you
+need to.  For most cases you can define `static` properties, as show here
+between lines 4 and 13, and allow the base class constructor to take care of
+things for you.
+
+The `initialState` defines the initial state of the object, with the `count`
+being set to `0`.
+
+The `initialProps` defines the properties that can be passed to the object to
+set the state.  In this case, the `initialCount` property can be used to set
+the `count` to a value other than `0`, as demonstrated in the second example
+above where we start it off at `100`.
+
+The `actions` is a list of methods that should be exposed as actions in the
+context.  These can be specified as an array of method names, e.g `['inc',
+'dec']`, or using the short-hand form shown here where they're specified using
+a single whitespace delimited string, e.g. `'inc dec'`.
+
+Although it can be a bit tedious having to declare which methods you want to
+expose, I've found that it's usually preferable to be explicit and avoid
+inadvertently exposing any internal methods that aren't for general use.
+
+The remaining three `static` values control debugging. The `debug` flag can
+be set here or as a property to enable or disable debugging.  The
+`debugPrefix` and `debugColor` are applied to messages sent to the Javascript
+console to help make them stand out.
+
+Both `debugPrefix` and `debugColor` can be defined as functions if you want to
+generate them dynamically.  They will be called by the constructor and passed
+the context properties as an argument.  They should return the appropriate
+prefix or color, respectively.
+
+When debugging is enabled (i.e. `debug` is `true`) any calls to `this.debug()`
+will be formatted appropriately and sent to the Javascript console.  Otherwise
+they are ignored. See lines 16 and 20 in the `inc()` and `dec()` methods for
+examples.
+
+The `inc()` and `dec()` methods should be fairly self-explanatory.  They
+update the `count` in the state, respectively adding or subtracting the number
+passed as the argument, `n`, which defaults to `1`.
+
+As in the previous example, the final line is the important bit.  The
+default export on line 25 is where the `Counter` class is wrapped by a call
+to the `Generator` function, also imported from `@abw/react-context`.
+
+## Other Components
+
+Using the class is exactly the same as in the previous example, and all of
+the components that access this state remain unchanged.
+
+<div className="grid-1 gap-8">
+  <Source
+    code={CountSrc}
+    caption="Count.jsx"
+    expand
+  />
+  <Source
+    code={ControlsSrc}
+    caption="Controls.jsx"
+    expand
+  />
+  <Source
+    code={BignumSrc}
+    caption="Bignum.jsx"
+    expand
+  />
+  <Source
+    code={UseCounterSrc}
+    caption="useCounter.jsx"
+    expand
+  />
+</div>

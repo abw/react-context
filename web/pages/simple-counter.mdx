@@ -1,0 +1,155 @@
+import App            from '@/lib/Counter1/App.jsx'
+import AppSrc         from '@/lib/Counter1/App.jsx?raw'
+import CountSrc       from '@/lib/Counter1/Count.jsx?raw'
+import CounterSrc     from '@/lib/Counter1/Counter.js?raw'
+import ControlsSrc    from '@/lib/Counter1/Controls.jsx?raw'
+import BignumSrc      from '@/lib/Counter1/Bignum.jsx?raw'
+import Bignum2Src     from '@/lib/Counter1/Bignum2.jsx?raw'
+import UseCounterSrc  from '@/lib/Counter1/useCounter.jsx?raw'
+import { Source, Split }     from '@abw/badger-website'
+
+# Simple Counter Demo
+
+This is a simple example showing how a context can be defined and used.
+First, let's see it in action.  Click on the buttons to change the
+count.
+
+<Split>
+  <Source code="<App/>" expand/>
+  <App/>
+</Split>
+
+Here's another version with the count initially set to 100.
+
+<Split>
+  <Source code="<App initialCount={100}/>" expand/>
+  <App initialCount={100} debug={true}/>
+</Split>
+
+## `App.jsx`
+
+This is what our application code `App.jsx` looks like.
+
+<Source
+  code={AppSrc}
+  caption="App.jsx"
+  expand
+  highlightLines="8,16"
+/>
+
+Between lines 8 and 16 we define a `Counter.Provider` which
+provides the shared state for any components contained within it.
+
+Let's look at each component in turn.
+
+## `Counter.js`
+
+This is the `Counter.js` where the application state is
+stored.
+
+<Source
+  code={CounterSrc}
+  caption="Counter.js"
+  expand
+/>
+
+In line 5 the `Counter` component uses the `useState` hook to define a `count`
+state variable and `setCount` function to update it.
+
+The `initialCount` property can be passed to the component to set the initial
+value for `count`.  Otherwise it defaults to `0`.
+
+We then define two handler functions `inc` and `dec` on lines 6 and 7 to
+increment and decrement the `count`, respectively.  They can be passed a
+number `n` which defaults to `1`.
+
+So far this is all standard React code.  Where it gets interesting is the
+`return` value from the component between lines 9 and 11. We return the result
+of calling the `render()` function that has been passed to the component as a
+property on line 4.
+
+We pass an object to the `render()` function containing the `count` state
+variable and the `inc` and `dec` functions.  We also forward the `setState`
+function to allow other components direct access to modify the `count`
+variable.
+
+So where does the `render` property come from? The final line is the important
+bit.  The default export on line 14 is the `Counter` component wrapped by a
+call to the `Generator` function, imported from `@abw/react-context` in line
+2.  This turns our simple component that maintains its own state into a
+context object that can be used to share that state with any number of other
+components.
+
+The `Generator` function returns an object containing `Context`, `Provider`,
+`Consumer`, `Children`, and `Use` components.
+
+The `Context` is the React context object.  You probably won't ever need to
+use this, but it's provided just in case you do.
+
+We've already seen the `Provider` in use in our `App.jsx`.  This is how we
+provide access to the context for any components contained within it.
+
+The other components in our application demonstrate how the `Consumer` and
+`Use` items can be used.
+
+## `Count.jsx`
+
+The `Count.jsx` shows how the `Consumer` can be used to get access to the
+context.
+
+<Source
+  code={CountSrc}
+  caption="Count.jsx"
+  expand
+/>
+
+The default export of the `Count` component is wrapped in a call to
+`Counter.Consumer`.  This ensures that all the context state variables (just
+`count` in this example) and any exposed action function (`inc` and `dec`, not
+used in this component) are provided as properties to the component.
+
+## `Controls.jsx`
+
+The `Controls.jsx` component also uses the `Counter.Consumer` to get access
+to the `inc` and `dec` action functions.
+
+<Source
+  code={ControlsSrc}
+  caption="Controls.jsx"
+  expand
+/>
+
+## `Bignum.jsx`
+
+The `Bignum.jsx` component takes a different approach which tends to be
+preferred these days.
+
+<Source
+  code={BignumSrc}
+  caption="Bignum.jsx"
+  expand
+/>
+
+Instead of wrapping the exported component in a call to `Counter.Consumer`,
+it calls the `Counter.Use()` function which, provides access to the context
+state and actions.
+
+## `useCounter.js`
+
+The `useCounter.js` file simply re-exports the `Use` function for the sake of
+convention.  It allows us to use the `useCounter()` function to access the
+context which is a little less clunky than `Counter.Use()`.
+
+<Source
+  code={UseCounterSrc}
+  caption="useCounter.jsx"
+  expand
+/>
+
+The `Bignum.jsx` module could then be written as:
+
+<Source
+  code={Bignum2Src}
+  caption="Bignum.jsx"
+  expand
+/>

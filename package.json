@@ -21,7 +21,7 @@
     "context"
   ],
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --config vite.docs.js",
     "test": "vitest --ui",
     "build": "vite build",
     "build:docs": "vite build --outDir docs --config vite.docs.js",
@@ -42,6 +42,9 @@
   "devDependencies": {
     "@abw/badger-timestamp": "^1.0.6",
     "@abw/badger-utils": "^1.1.0",
+    "@abw/badger-website": "^0.2.5",
+    "@mdx-js/react": "^3.0.1",
+    "@mdx-js/rollup": "^3.0.1",
     "@testing-library/jest-dom": "^6.4.6",
     "@testing-library/react": "^16.0.0",
     "@testing-library/user-event": "^14.5.2",
@@ -54,8 +57,10 @@
     "jsdom": "^24.1.0",
     "react-router-dom": "^6.10.0",
     "react-syntax-highlighter": "^15.5.0",
+    "rehype-mdx-code-props": "^3.0.1",
     "sass": "^1.60.0",
     "vite": "^5.3.1",
+    "vite-jsconfig-paths": "^2.0.1",
     "vite-plugin-svgr": "^4.2.0",
     "vitest": "^1.6.0"
   }
