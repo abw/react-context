@@ -317,50 +317,50 @@ to the `,o.jsx(e.code,{children:"Generator"})," function, also imported from ",o
 `,o.jsx(e.p,{children:`Using the class is exactly the same as in the previous example, and all of
 the components that access this state remain unchanged.`}),`
 `,o.jsxs("div",{className:"grid-1 gap-8",children:[o.jsx(Z,{code:NJ,caption:"Count.jsx",expand:!0}),o.jsx(Z,{code:FJ,caption:"Controls.jsx",expand:!0}),o.jsx(Z,{code:LJ,caption:"Bignum.jsx",expand:!0}),o.jsx(Z,{code:kJ,caption:"useCounter.jsx",expand:!0})]})]})}function GJ(A={}){const{wrapper:e}={...WA(),...A.components};return e?o.jsx(e,{...A,children:o.jsx(HD,{...A})}):HD(A)}const RJ=Object.freeze(Object.defineProperty({__proto__:null,default:GJ},Symbol.toStringTag,{value:"Module"})),xJ=`import React    from 'react'
-import Context  from './Counter.js'
+import Counter  from './Counter.js'
 
 export const App2a = ({
   children,
   ...props
 }) =>
-  <Context.Provider {...props}>
+  <Counter.Provider {...props}>
     {children}
-  </Context.Provider>
+  </Counter.Provider>
 
 export default App2a`,HJ=`import React    from 'react'
-import Context  from './Counter.js'
+import Counter  from './Counter.js'
 
 export const App2b = ({
   children,
   ...props
 }) =>
-  <Context.Provider {...props}>
-    <Context.Children>
+  <Counter.Provider {...props}>
+    <Counter.Children>
       {children}
-    </Context.Children>
-  </Context.Provider>
+    </Counter.Children>
+  </Counter.Provider>
 
-export default App2b`,PJ=({initialCount:A=0,render:e})=>{const[t,B]=h.useState(A);return e({count:t,inc:(n=1)=>B(t+n),dec:(n=1)=>B(t-n),setCount:B})},TB=En(PJ),UJ=({children:A,...e})=>o.jsx(TB.Provider,{...e,children:A}),SJ=({inc:A,dec:e})=>o.jsxs("div",{className:"flex gap-2 brand",children:[o.jsx("button",{onClick:()=>e(10),children:"-10"}),o.jsx("button",{onClick:()=>e(),children:"-1"}),o.jsx("button",{onClick:()=>A(),children:"+1"}),o.jsx("button",{onClick:()=>A(10),children:"+10"})]}),Vs=TB.Consumer(SJ),_f=()=>{const{count:A}=TB.Use();return o.jsx("div",{className:"x2",children:A})},KJ=()=>o.jsx(UJ,{children:o.jsxs("div",{className:"flex space surface border pad-a-4 bdr-1",children:[o.jsx(Vs,{}),o.jsx(_f,{})]})}),YJ=`import React    from 'react'
-import App2a    from './App2a.jsx'
-import Controls from './Controls.jsx'
-import Bignum   from './Bignum.jsx'
+export default App2b`,PJ=({initialCount:A=0,render:e})=>{const[t,B]=h.useState(A);return e({count:t,inc:(n=1)=>B(t+n),dec:(n=1)=>B(t-n),setCount:B})},TB=En(PJ),UJ=({children:A,...e})=>o.jsx(TB.Provider,{...e,children:A}),SJ=({inc:A,dec:e})=>o.jsxs("div",{className:"flex gap-2 brand",children:[o.jsx("button",{onClick:()=>e(10),children:"-10"}),o.jsx("button",{onClick:()=>e(),children:"-1"}),o.jsx("button",{onClick:()=>A(),children:"+1"}),o.jsx("button",{onClick:()=>A(10),children:"+10"})]}),Vs=TB.Consumer(SJ),_f=()=>{const{count:A}=TB.Use();return o.jsx("div",{className:"x2",children:A})},KJ=()=>o.jsx(UJ,{children:o.jsxs("div",{className:"flex space surface border pad-a-4 bdr-1",children:[o.jsx(Vs,{}),o.jsx(_f,{})]})}),YJ=`import React      from 'react'
+import CounterApp from './App2a.jsx'
+import Controls   from './Controls.jsx'
+import Bignum     from './Bignum.jsx'
 
 export const App3a = () =>
-  <App2a>
+  <CounterApp>
     <div className="flex space surface border pad-a-4 bdr-1">
       <Controls/>
       <Bignum/>
     </div>
-  </App2a>
+  </CounterApp>
 
-export default App3a`,$f=({children:A,...e})=>o.jsx(TB.Provider,{...e,children:o.jsx(TB.Children,{children:A})}),vJ=({count:A})=>o.jsxs("p",{children:["The current count is ",A]}),Ll=TB.Consumer(vJ),JJ=A=>o.jsx("div",{className:"surface border pad-a-4 bdr-1",children:o.jsxs($f,{...A,children:[({count:e,setCount:t})=>o.jsxs("div",{className:"flex space",children:[o.jsx("div",{className:`${e==11?"red":"green"} x2 fgc-50`,children:e}),o.jsx("button",{className:"red",onClick:()=>t(11),children:"Go to Eleven"})]}),o.jsx(Ll,{}),o.jsx(Vs,{})]})}),bJ=`import React    from 'react'
-import App2b    from './App2b.jsx'
-import Controls from './Controls.jsx'
-import Count    from './Count.jsx'
+export default App3a`,$f=({children:A,...e})=>o.jsx(TB.Provider,{...e,children:o.jsx(TB.Children,{children:A})}),vJ=({count:A})=>o.jsxs("p",{children:["The current count is ",A]}),Ll=TB.Consumer(vJ),JJ=A=>o.jsx("div",{className:"surface border pad-a-4 bdr-1",children:o.jsxs($f,{...A,children:[({count:e,setCount:t})=>o.jsxs("div",{className:"flex space",children:[o.jsx("div",{className:`${e==11?"red":"green"} x2 fgc-50`,children:e}),o.jsx("button",{className:"red",onClick:()=>t(11),children:"Go to Eleven"})]}),o.jsx(Ll,{}),o.jsx(Vs,{})]})}),bJ=`import React      from 'react'
+import CounterApp from './App2b.jsx'
+import Controls   from './Controls.jsx'
+import Count      from './Count.jsx'
 
 export const App3b = (props) =>
   <div className="surface border pad-a-4 bdr-1">
-    <App2b {...props}>
+    <CounterApp {...props}>
       {
         ({ count, setCount }) =>
           <div className="flex space">
@@ -374,20 +374,20 @@ export const App3b = (props) =>
       }
       <Count/>
       <Controls/>
-    </App2b>
+    </CounterApp>
   </div>
 
-export default App3b`,OJ=A=>o.jsx($f,{...A,children:o.jsxs("div",{className:"surface border pad-a-4 bdr-1",children:[o.jsx("div",{className:"flex space middle",children:o.jsxs(TB.Children,{children:[({count:e})=>o.jsx("div",{className:`${e==11?"red":"green"} x2 fgc-50`,children:e}),({setCount:e})=>o.jsx("button",{className:"red",onClick:()=>e(11),children:"Go to Eleven"})]})}),o.jsx(Ll,{}),o.jsx(Vs,{})]})}),jJ=`import React    from 'react'
-import App2b    from './App2b.jsx'
-import Context  from './Counter.js'
-import Controls from './Controls.jsx'
-import Count    from './Count.jsx'
+export default App3b`,OJ=A=>o.jsx($f,{...A,children:o.jsxs("div",{className:"surface border pad-a-4 bdr-1",children:[o.jsx("div",{className:"flex space middle",children:o.jsxs(TB.Children,{children:[({count:e})=>o.jsx("div",{className:`${e==11?"red":"green"} x2 fgc-50`,children:e}),({setCount:e})=>o.jsx("button",{className:"red",onClick:()=>e(11),children:"Go to Eleven"})]})}),o.jsx(Ll,{}),o.jsx(Vs,{})]})}),jJ=`import React      from 'react'
+import CounterApp from './App2b.jsx'
+import Counter    from './Counter.js'
+import Controls   from './Controls.jsx'
+import Count      from './Count.jsx'
 
 export const App3c = (props) =>
-  <App2b {...props}>
+  <CounterApp {...props}>
     <div className="surface border pad-a-4 bdr-1">
       <div className="flex space middle">
-        <Context.Children>
+        <Counter.Children>
           {
             ({ count }) =>
               <div className={\`\${count == 11 ? 'red' : 'green'} x2 fgc-50\`}>
@@ -400,12 +400,12 @@ export const App3c = (props) =>
                 Go to Eleven
               </button>
           }
-        </Context.Children>
+        </Counter.Children>
       </div>
       <Count/>
       <Controls/>
     </div>
-  </App2b>
+  </CounterApp>
 
 export default App3c`;function PD(A){const e={code:"code",h1:"h1",p:"p",...WA(),...A.components};return o.jsxs(o.Fragment,{children:[o.jsx(e.h1,{children:"Flexible Children"}),`
 `,o.jsx(e.p,{children:`You might want to create an app container that implements the context provider
@@ -1084,7 +1084,7 @@ number `,o.jsx(e.code,{children:"n"})," which defaults to ",o.jsx(e.code,{childr
 of calling the `,o.jsx(e.code,{children:"render()"}),` function that has been passed to the component as a
 property on line 4.`]}),`
 `,o.jsxs(e.p,{children:["We pass an object to the ",o.jsx(e.code,{children:"render()"})," function containing the ",o.jsx(e.code,{children:"count"}),` state
-variable and the `,o.jsx(e.code,{children:"inc"})," and ",o.jsx(e.code,{children:"dec"})," functions.  We also forward the ",o.jsx(e.code,{children:"setState"}),`
+variable and the `,o.jsx(e.code,{children:"inc"})," and ",o.jsx(e.code,{children:"dec"})," functions.  We also forward the ",o.jsx(e.code,{children:"setCount"}),`
 function to allow other components direct access to modify the `,o.jsx(e.code,{children:"count"}),`
 variable.`]}),`
 `,o.jsxs(e.p,{children:["So where does the ",o.jsx(e.code,{children:"render"}),` property come from? The final line is the important
@@ -1202,4 +1202,4 @@ default export to be the `,o.jsx(e.code,{children:"generated"})," object as usua
 `,o.jsxs(e.p,{children:["Our other components can import ",o.jsx(e.code,{children:"Consumer"})," as a named import."]}),`
 `,o.jsxs("div",{className:"grid-1 gap-8",children:[o.jsx(Z,{code:sd,caption:"Slider.jsx",expand:!0}),o.jsx(Z,{code:aO,caption:"Buttons.jsx",expand:!0})]}),`
 `,o.jsxs(e.p,{children:["Or we can access the context using the ",o.jsx(e.code,{children:"useVolume"})," named import."]}),`
-`,o.jsx(Z,{code:id,caption:"Display.jsx",expand:!0})]})}function lO(A={}){const{wrapper:e}={...WA(),...A.components};return e?o.jsx(e,{...A,children:o.jsx(qD,{...A})}):qD(A)}const cO=Object.freeze(Object.defineProperty({__proto__:null,default:lO},Symbol.toStringTag,{value:"Module"})),wO="2.1.0",rM="2024-09-22",TD="2023",tr=rM.match(/^(\d+)/)[1],DO=tr===TD?tr:`${TD} - ${tr}`,uO={title:"React Context",author:"Andy Wardley",authorLink:"https://github.com/abw",repository:"https://github.com/abw/react-context",badgerpower:!0,basename:"/react-context/",copyright:DO,version:wO,date:rM},hO={sections:[{menu:[{to:"/",text:"Home"},{to:"/getting-started",text:"Getting Started"},{to:"/simple-counter",text:"Simple Counter"},{to:"/flexible-children",text:"Flexible Children"},{to:"/counter-class",text:"Counter Class"},{to:"/products-demo",text:"Products and Basket"},{to:"/streamlining",text:"Streamlining Exports"},{to:"/consumer-use",text:"Consumer vs Use"},{to:"/nested",text:"Nested Contexts"}]}]},dO=Object.assign({"./pages/consumer-use.mdx":rJ,"./pages/counter-class.mdx":RJ,"./pages/flexible-children.mdx":TJ,"./pages/getting-started.mdx":XJ,"./pages/index.mdx":zJ,"./pages/nested.mdx":yb,"./pages/products-demo.mdx":zb,"./pages/simple-counter.mdx":eO,"./pages/streamlining.mdx":cO}),pO=Object.assign({"./snippets/import.jsx":()=>ze(()=>import("./import-B4W3olLy.js"),[]).then(A=>A.default),"./snippets/install.bash":()=>ze(()=>import("./install-ADh0fdCf.js"),[]).then(A=>A.default)}),fO=()=>o.jsx(jm,{components:qf,children:o.jsx(sJ,{site:uO,pages:dO,sidebar:hO,snippets:pO,sidebarToc:!0})});Br.createRoot(document.getElementById("root")).render(o.jsx(T.StrictMode,{children:o.jsx(fO,{})}));
+`,o.jsx(Z,{code:id,caption:"Display.jsx",expand:!0})]})}function lO(A={}){const{wrapper:e}={...WA(),...A.components};return e?o.jsx(e,{...A,children:o.jsx(qD,{...A})}):qD(A)}const cO=Object.freeze(Object.defineProperty({__proto__:null,default:lO},Symbol.toStringTag,{value:"Module"})),wO="2.1.0",rM="2024-09-23",TD="2023",tr=rM.match(/^(\d+)/)[1],DO=tr===TD?tr:`${TD} - ${tr}`,uO={title:"React Context",author:"Andy Wardley",authorLink:"https://github.com/abw",repository:"https://github.com/abw/react-context",badgerpower:!0,basename:"/react-context/",copyright:DO,version:wO,date:rM},hO={sections:[{menu:[{to:"/",text:"Home"},{to:"/getting-started",text:"Getting Started"},{to:"/simple-counter",text:"Simple Counter"},{to:"/flexible-children",text:"Flexible Children"},{to:"/counter-class",text:"Counter Class"},{to:"/products-demo",text:"Products and Basket"},{to:"/streamlining",text:"Streamlining Exports"},{to:"/consumer-use",text:"Consumer vs Use"},{to:"/nested",text:"Nested Contexts"}]}]},dO=Object.assign({"./pages/consumer-use.mdx":rJ,"./pages/counter-class.mdx":RJ,"./pages/flexible-children.mdx":TJ,"./pages/getting-started.mdx":XJ,"./pages/index.mdx":zJ,"./pages/nested.mdx":yb,"./pages/products-demo.mdx":zb,"./pages/simple-counter.mdx":eO,"./pages/streamlining.mdx":cO}),pO=Object.assign({"./snippets/import.jsx":()=>ze(()=>import("./import-B4W3olLy.js"),[]).then(A=>A.default),"./snippets/install.bash":()=>ze(()=>import("./install-ADh0fdCf.js"),[]).then(A=>A.default)}),fO=()=>o.jsx(jm,{components:qf,children:o.jsx(sJ,{site:uO,pages:dO,sidebar:hO,snippets:pO,sidebarToc:!0})});Br.createRoot(document.getElementById("root")).render(o.jsx(T.StrictMode,{children:o.jsx(fO,{})}));
