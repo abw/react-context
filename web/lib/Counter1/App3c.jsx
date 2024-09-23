@@ -1,14 +1,14 @@
-import React    from 'react'
-import App2b    from './App2b.jsx'
-import Context  from './Counter.js'
-import Controls from './Controls.jsx'
-import Count    from './Count.jsx'
+import React      from 'react'
+import CounterApp from './App2b.jsx'
+import Counter    from './Counter.js'
+import Controls   from './Controls.jsx'
+import Count      from './Count.jsx'
 
 export const App3c = (props) =>
-  <App2b {...props}>
+  <CounterApp {...props}>
     <div className="surface border pad-a-4 bdr-1">
       <div className="flex space middle">
-        <Context.Children>
+        <Counter.Children>
           {
             ({ count }) =>
               <div className={`${count == 11 ? 'red' : 'green'} x2 fgc-50`}>
@@ -21,11 +21,11 @@ export const App3c = (props) =>
                 Go to Eleven
               </button>
           }
-        </Context.Children>
+        </Counter.Children>
       </div>
       <Count/>
       <Controls/>
     </div>
-  </App2b>
+  </CounterApp>
 
 export default App3c

@@ -1,14 +1,14 @@
 import React    from 'react'
-import Context  from './Counter.js'
+import Counter  from './Counter.js'
 
 export const App2b = ({
   children,
   ...props
 }) =>
-  <Context.Provider {...props}>
-    <Context.Children>
+  <Counter.Provider {...props}>
+    <Counter.Children>
       {children}
-    </Context.Children>
-  </Context.Provider>
+    </Counter.Children>
+  </Counter.Provider>
 
 export default App2b

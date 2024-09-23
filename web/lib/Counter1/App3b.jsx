@@ -1,11 +1,11 @@
-import React    from 'react'
-import App2b    from './App2b.jsx'
-import Controls from './Controls.jsx'
-import Count    from './Count.jsx'
+import React      from 'react'
+import CounterApp from './App2b.jsx'
+import Controls   from './Controls.jsx'
+import Count      from './Count.jsx'
 
 export const App3b = (props) =>
   <div className="surface border pad-a-4 bdr-1">
-    <App2b {...props}>
+    <CounterApp {...props}>
       {
         ({ count, setCount }) =>
           <div className="flex space">
@@ -19,7 +19,7 @@ export const App3b = (props) =>
       }
       <Count/>
       <Controls/>
-    </App2b>
+    </CounterApp>
   </div>
 
 export default App3b

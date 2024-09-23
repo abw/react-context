@@ -1,12 +1,12 @@
 import React    from 'react'
-import Context  from './Counter.js'
+import Counter  from './Counter.js'
 
 export const App2a = ({
   children,
   ...props
 }) =>
-  <Context.Provider {...props}>
+  <Counter.Provider {...props}>
     {children}
-  </Context.Provider>
+  </Counter.Provider>
 
 export default App2a
