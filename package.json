@@ -35,13 +35,13 @@
   "bugs": {
     "url": "https://github.com/abw/react-context/issues"
   },
-  "dependencies": {
+  "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@abw/badger-timestamp": "^1.0.6",
-    "@abw/badger-utils": "^1.1.0",
+    "@abw/badger-timestamp": "^1.1.2",
+    "@abw/badger-utils": "^1.1.4",
     "@abw/badger-website": "^0.2.5",
     "@mdx-js/react": "^3.0.1",
     "@mdx-js/rollup": "^3.0.1",
