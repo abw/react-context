@@ -2,7 +2,7 @@ import React from 'react'
 import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import App from '../../src/lib/Counter2/App.jsx'
+import App from '../../web/lib/Counter2/App.jsx'
 
 describe(
   'Initial state',
