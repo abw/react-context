@@ -1,4 +1,4 @@
-import { Generator } from '../../../lib/index.js'
+import { Generator } from '@/lib/index'
 {/* START */}
 import React from 'react'
 import Context from './Context.js'
@@ -6,7 +6,7 @@ import Context from './Context.js'
 
 const Outer = ({ render }) => {
   const [data, setData] = React.useState({ })
-  const setItem = (key, value) =>setData(
+  const setItem = (key, value) => setData(
     data => ({
       ...data,
       [key]: value

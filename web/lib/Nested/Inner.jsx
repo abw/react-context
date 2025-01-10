@@ -1,4 +1,4 @@
-import { Generator } from '../../../lib/index.js'
+import { Generator } from '@/lib/index'
 {/* START */}
 import React from 'react'
 import Outer from './Outer.jsx'

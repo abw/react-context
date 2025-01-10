@@ -1,4 +1,4 @@
-import { Generator, Context } from '../../../lib/index.js'
+import { Generator, Context } from '@/lib/index'
 {/* START */}
 // PRETEND: import { Context, Generator } from '@abw/react-context'
 import { sleep } from '@abw/badger-utils'

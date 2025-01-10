@@ -1,4 +1,4 @@
-import { Generator } from '../../../lib/index.js'
+import { Generator } from '@/lib/index'
 {/* START */}
 import { useState } from 'react'
 // PRETEND: import { Generator } from '@abw/react-context'

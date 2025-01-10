@@ -2,8 +2,9 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "@/lib/*":    ["./lib/*"],
+      "@/web/*":    ["./web/*"],
       "@/config/*": ["./web/config/*"],
-      "@/lib/*":    ["./web/lib/*"],
       "@/site/*":   ["./web/site/*"],
       "@/svg/*":    ["./web/svg/*"],
     }

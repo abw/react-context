@@ -1,4 +1,4 @@
-import { Context, Generator } from '../../../lib/index.js'
+import { Context, Generator } from '@/lib/index'
 
 {/* START */}
 // PRETEND: import { Context, Generator } from '@abw/react-context'

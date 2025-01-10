@@ -1,14 +1,16 @@
 import React from 'react'
-import { isFunction, toArray } from './Utils.js'
+import { toArray } from './Utils'
+import { isFunction } from '@abw/badger-utils'
+import { ModelType, ProviderType } from './types'
 
-export const Generator = (
-  Model,
-  defaultState = {},
-  Context = React.createContext(defaultState)
+export const Generator = <ModelProps, RenderProps extends object>(
+  Model: ModelType<ModelProps, RenderProps>,
+  defaultState: RenderProps = { } as RenderProps,
+  Context = React.createContext<RenderProps>(defaultState)
 ) => {
   // Provider renders the Model component forwarding all props passed to it
   // along with a render prop to render the children inside a context provider
-  const Provider = props =>
+  const Provider: ProviderType<ModelProps> = props =>
     <Model
       {...props}
       render={
@@ -20,13 +22,14 @@ export const Generator = (
     />
 
   // Consumer renders a component inside a context consumer
-  // eslint-disable-next-line react/display-name
-  const Consumer = Component => props =>
-    <Context.Consumer>
-      {context => <Component {...context} {...props}/>}
-    </Context.Consumer>
+  // XXXeslint-disable-next-line react/display-name
+  const Consumer = (Component: React.FC<RenderProps>) =>
+    (props: Partial<RenderProps>) =>
+      <Context.Consumer>
+        {context => <Component {...context} {...props}/>}
+      </Context.Consumer>
 
-  const Children = ({children}) =>
+  const Children = ({ children }: { children: React.ReactNode }) =>
     toArray(children).map(
       (child, n) => isFunction(child)
         ? <Context.Consumer key={n}>

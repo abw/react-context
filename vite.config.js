@@ -2,10 +2,15 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import define from  './vite.defs.js'
 import svgr from 'vite-plugin-svgr'
+import jsconfigPaths    from 'vite-jsconfig-paths'
 
 export default defineConfig(
   ({ command }) => ({
-    plugins: [react(), svgr()],
+    plugins: [
+      react(),
+      svgr(),
+      jsconfigPaths(),
+    ],
     publicDir: command === 'build' ? false : true,
     define,
     test: {

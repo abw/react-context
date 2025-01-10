@@ -1,5 +1,5 @@
 import React from 'react'
-import { actionMethods, debugFunction, prepareState } from './Utils.js'
+import { actionMethods, debugFunction, prepareState } from './Utils'
 
 export class Context extends React.Component {
   static initialState = { }
