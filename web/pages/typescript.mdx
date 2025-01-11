@@ -49,8 +49,9 @@ current count.
   expand
 />
 
-And here's another one which renders some buttons to increment or decrement
-the count in steps of 1 or 10.
+If you define your function inside the call to `Counter.Consumer` then the
+properties will be typed automatically.  Typescript is smart enough in this
+case to infer the property types.
 
 <Source
   code={ControlsSrc}
@@ -59,8 +60,8 @@ the count in steps of 1 or 10.
   expand
 />
 
-If you're using the `Use` hook to access the context properties then the
-typing is automatic.
+Similarly, if you're using the `Use` hook to access the context properties
+then the typing is automatic.
 
 <Source
   code={BignumSrc}
