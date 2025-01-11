@@ -1,10 +1,10 @@
 import React from 'react'
 import { toArray } from './Utils'
 import { isFunction } from '@abw/badger-utils'
-import { ModelType, ProviderType } from './types'
+import { ContextType, ProviderType } from './types'
 
 export const Generator = <ModelProps, RenderProps extends object>(
-  Model: ModelType<ModelProps, RenderProps>,
+  Model: ContextType<ModelProps, RenderProps>,
   defaultState: RenderProps = { } as RenderProps,
   Context = React.createContext<RenderProps>(defaultState)
 ) => {
@@ -22,11 +22,10 @@ export const Generator = <ModelProps, RenderProps extends object>(
     />
 
   // Consumer renders a component inside a context consumer
-  // XXXeslint-disable-next-line react/display-name
   const Consumer = (Component: React.FC<RenderProps>) =>
     (props: Partial<RenderProps>) =>
       <Context.Consumer>
-        {context => <Component {...context} {...props}/>}
+        { context => <Component {...context} {...props}/> }
       </Context.Consumer>
 
   const Children = ({ children }: { children: React.ReactNode }) =>

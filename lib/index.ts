@@ -1,2 +1,3 @@
 export { Generator } from './Generator'
-export { Context } from './Context.jsx'
+export { Context } from './Context'
+export * from './types'

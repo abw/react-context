@@ -1,5 +1,5 @@
 import { fail, isArray, isFunction, isString, maybeFunction } from '@abw/badger-utils'
-import { DebugOptions } from './types'
+import { ActionMethods, DebugOptions } from './types'
 
 export function prepareState(
   initialState: Record<string, unknown> = { },
@@ -18,7 +18,10 @@ export function prepareState(
   )
 }
 
-export function actionMethods(that: Record<string, unknown>, names=[]) {
+export function actionMethods<T extends Record<string, unknown>>(
+  that: T, names=[]
+):
+  ActionMethods {
   const methods = isString(names)
     ? names.split(/,\s*|\s+/)
     : names
@@ -34,7 +37,7 @@ export function actionMethods(that: Record<string, unknown>, names=[]) {
       }
       return actions
     },
-    { } as Record<string, unknown>
+    { } as ActionMethods
   )
 }
 
@@ -50,28 +53,6 @@ export function debugFunction(props: DebugOptions, statics: DebugOptions) {
     ...args
   )
 }
-
-/*
-export function isArray(value) {
-  return Array.isArray(value)
-}
-
-export function isFunction(fn) {
-  return typeof fn === 'function'
-}
-
-export function maybeFunction(fn, args) {
-  return isFunction(fn)
-    ? fn(args)
-    : fn
-}
-
-export function fail(...msg) {
-  throw new Error(msg.join(''))
-}
-
-
-*/
 
 /**
  * Coerces a non-array value into a single element array.

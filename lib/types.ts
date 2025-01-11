@@ -17,7 +17,7 @@ export type Render<RenderProps> = {
 export type PropsWithRender<Props, RenderProps> = Props & Render<RenderProps>
 
 // The model takes provider props and calls the render function
-export type ModelType<Props, RenderProps> = React.ComponentType<
+export type ContextType<Props, RenderProps> = React.ComponentType<
   PropsWithRender<Props, RenderProps>
 >
 
@@ -26,3 +26,9 @@ export type ProviderProps<Props> = PropsWithChildren<Props>
 
 // The provider has the above properties and returns a JSX Element
 export type ProviderType<Props> = (props: ProviderProps<Props>) => JSX.Element
+
+// export type ContextTypeClass
+
+export type DebugMethod = (...args: unknown[]) => void
+export type ActionMethod = (...args: unknown[]) => unknown
+export type ActionMethods = Record<string, ActionMethod>

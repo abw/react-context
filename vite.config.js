@@ -1,8 +1,10 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import define from  './vite.defs.js'
-import svgr from 'vite-plugin-svgr'
+import define           from  './vite.defs.js'
+import react            from '@vitejs/plugin-react'
+import svgr             from 'vite-plugin-svgr'
 import jsconfigPaths    from 'vite-jsconfig-paths'
+import dts              from 'vite-plugin-dts'
+import { defineConfig } from 'vite'
+
 
 export default defineConfig(
   ({ command }) => ({
@@ -10,6 +12,7 @@ export default defineConfig(
       react(),
       svgr(),
       jsconfigPaths(),
+      dts()
     ],
     publicDir: command === 'build' ? false : true,
     define,
@@ -24,7 +27,7 @@ export default defineConfig(
       minify: true,
       sourcemap: false,
       lib: {
-        entry: 'lib/index.js',
+        entry: 'lib/index.ts',
         name: '@abw/react-context',
         fileName: 'react-context',
       },
