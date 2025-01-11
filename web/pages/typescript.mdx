@@ -1,0 +1,81 @@
+import TypesSrc       from '@/web/lib/Typescript/Types.ts?raw'
+import CountSrc       from '@/web/lib/Typescript/Count.tsx?raw'
+import CounterSrc     from '@/web/lib/Typescript/Counter.ts?raw'
+import ControlsSrc    from '@/web/lib/Typescript/Controls.tsx?raw'
+import BignumSrc      from '@/web/lib/Typescript/Bignum.tsx?raw'
+import App            from '@/web/lib/Typescript/App.tsx'
+import AppSrc         from '@/web/lib/Typescript/App.tsx?raw'
+import { Example, Source } from '@abw/badger-website'
+
+# Typescript
+
+If you're using typescript then you'll need to start by defining two types
+(or interfaces).  The first is for the properties that you can pass into
+your model to initialise it.  In this example we'll call them `CounterProps`
+and it consists of just one optional number property, `initialCount`.
+
+The second type is for the properties that your model will pass to the
+`render()` function.  These will then be available in your consumer
+components, or accessible via the `Use` function.  In this example, they're
+called `CounterRenderProps`.  They include the current `count`, a `setCount`
+function to update the count, and `inc` and `dec` functions to increment and
+decrement the count.
+
+<Source
+  code={TypesSrc}
+  caption="Types.ts"
+  expand
+/>
+
+Now when you create your model function, you should type it using the
+`ContextType` generic type, specifying your `CounterProps` and
+`CounterRenderProps` types as the parameters
+
+<Source
+  code={CounterSrc}
+  caption="Counter.ts"
+  highlightLines="5"
+  expand
+/>
+
+Components that consume the context properties should type their properties
+as the `CounterRenderProps` type.  Here's a component which displays the
+current count.
+
+<Source
+  code={CountSrc}
+  caption="Count.tsx"
+  highlightLines="4"
+  expand
+/>
+
+And here's another one which renders some buttons to increment or decrement
+the count in steps of 1 or 10.
+
+<Source
+  code={ControlsSrc}
+  caption="Controls.tsx"
+  highlightLines="4"
+  expand
+/>
+
+If you're using the `Use` hook to access the context properties then the
+typing is automatic.
+
+<Source
+  code={BignumSrc}
+  caption="Bignum.tsx"
+  highlightLines="4"
+  expand
+/>
+
+Here's a complete example to tie it all together.  Note how we can set the
+`initialCount` property on the `Counter.Provider` on line 7.
+
+<Example
+  Component={App}
+  code={AppSrc}
+  caption="App.tsx"
+  highlightLines="7"
+  expand
+/>

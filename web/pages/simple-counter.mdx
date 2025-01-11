@@ -11,6 +11,10 @@ import { Source, Split } from '@abw/badger-website'
 # Simple Counter Demo
 
 This is a simple example showing how a context can be defined and used.
+If you've already read through the [Overview](overview) page then you'll
+be familiar with this.  We'll go into a little more detail here, but feel
+free to skip ahead
+
 First, let's see it in action.  Click on the buttons to change the
 count.
 
@@ -50,6 +54,7 @@ stored.
 <Source
   code={CounterSrc}
   caption="Counter.js"
+  highlightLines="14"
   expand
 />
 
@@ -100,6 +105,7 @@ context.
 <Source
   code={CountSrc}
   caption="Count.jsx"
+  highlightLines="9"
   expand
 />
 
@@ -116,6 +122,7 @@ to the `inc` and `dec` action functions.
 <Source
   code={ControlsSrc}
   caption="Controls.jsx"
+  highlightLines="12"
   expand
 />
 
@@ -127,6 +134,7 @@ preferred these days.
 <Source
   code={BignumSrc}
   caption="Bignum.jsx"
+  highlightLines="5"
   expand
 />
 
@@ -151,5 +159,6 @@ The `Bignum.jsx` module could then be written as:
 <Source
   code={Bignum2Src}
   caption="Bignum.jsx"
+  highlightLines="2,5"
   expand
 />

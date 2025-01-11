@@ -23,7 +23,7 @@ Here's the code for the context module used by the above application.
 
 The interesting part happens between lines 18 and 25. The `Generator`
 function is called on line 18 and the object generated is stored in the
-appropriately named `generated` variable. In lines 10 to 23 we deconstruct
+appropriately named `generated` variable. In lines 20 to 23 we deconstruct
 that into separate variables, all of which are exported by name. This also
 gives us the opportunity to create an alias for the `Use` component on line
 22 so that it can be imported as `useVolume`. Then on line 25 we set the
@@ -32,6 +32,7 @@ default export to be the `generated` object as usual.
 <Source
   code={VolumeSrc}
   caption="Volume.js"
+  highlightLines="18,20-23,25"
   expand
 />
 
@@ -42,6 +43,7 @@ Now our application code can import `Provider` as a named import.
 <Source
   code={AppSrc}
   caption="App.jsx"
+  highlightLines="5,8,16"
   expand
 />
 
@@ -53,11 +55,13 @@ Our other components can import `Consumer` as a named import.
   <Source
     code={SliderSrc}
     caption="Slider.jsx"
+    highlightLines="2,13"
     expand
   />
   <Source
     code={ButtonsSrc}
     caption="Buttons.jsx"
+    highlightLines="2,10"
     expand
   />
 </div>
@@ -67,6 +71,7 @@ Or we can access the context using the `useVolume` named import.
 <Source
   code={DisplaySrc}
   caption="Display.jsx"
+  highlightLines="2,5"
   expand
 />
 

@@ -1,0 +1,137 @@
+import State          from '@/web/lib/Overview/State.jsx'
+import StateSrc       from '@/web/lib/Overview/State.jsx?raw'
+import PropDrillSrc   from '@/web/lib/Overview/PropDrilling.jsx?raw'
+import AppSrc         from '@/web/lib/Overview/App.jsx?raw'
+import CounterSrc     from '@/web/lib/Overview/Counter.js?raw'
+import CountSrc       from '@/web/lib/Overview/Count.jsx?raw'
+import ControlsSrc    from '@/web/lib/Overview/Controls.jsx?raw'
+import Controls2Src   from '@/web/lib/Overview/Controls2.jsx?raw'
+import UseCounterSrc  from '@/web/lib/Counter1/useCounter.jsx?raw'
+import { Source, Example } from '@abw/badger-website'
+
+# Overview
+
+This page gives a quick high-level overview of how it all works.  The
+[Simple Counter](simple-counter) page goes into more detail if you want
+to dig deeper.
+
+## A Simple Counter
+
+Here's a simple example of a component that maintains some state.  It
+has a `count` state variable, initially set to `0`, a `setCount` function to
+update it, and two functions of convenience: `inc` and `dec` to increment
+and decrement the count respectively.
+
+<Example
+  Component={State}
+  code={StateSrc}
+  expand
+/>
+
+## What's the Problem?
+
+This works well for simple cases, but as our component (or application) gets
+more complicated, we might want to split things up into separate components.
+We have to remember to pass the `count`, `inc` and `dec` properties to the
+relevant components.  As the component structure gets more deeply nested it
+can results in lots of properties being passed down the component tree so
+that child components can access them.
+
+<Source
+  code={PropDrillSrc}
+  caption="Counter.js"
+  highlightLines="12,13"
+  expand
+/>
+
+This problem, known as "prop drilling", is something that is nicely solved by
+use a React context.  The purpose of this `react-context` library is to make
+that process as simple as possible.  It allows you to write your state
+management code as in the first example, but with the added benefits of using
+a React context to avoid prop drilling.
+
+## Generator
+
+Here's how we do it.  We define a component that maintains the state as
+before.  We then use the `Generator` function to create a higher-order
+component from it.  This is what is returned as the default export from the
+file (line 14).  The generator effectively creates a wrapper around the
+component that adds the context functionality for you so that you don't have
+to worry about it.
+
+The component will now be passed a `render` function (line 4).  All you have
+to do is call that function, passing any state variables and functions that
+you want to expose, and return the result (lines 9-11).
+
+<Source
+  code={CounterSrc}
+  caption="Counter.js"
+  highlightLines="2,4,9-11,14"
+  expand
+/>
+
+## Provider
+
+When you import this component from `Counter.js` you actually get an object
+with three properties: `Provider`, `Consumer` and `Use`.
+
+In your app you should use the `.Provider` property to define a context
+provider around the part of your application that needs access to the context
+data.
+
+<Source
+  code={AppSrc}
+  caption="App.jsx"
+  highlightLines="7,10"
+  expand
+/>
+
+## Consumer
+
+Then any component enclosed within the scope of the provider can access
+the context data.  One way is to use the `.Consumer()` function
+to wrap the component.  It will then be passed all the context data as
+properties.
+
+<div className="grid-1 gap-8">
+  <Source
+    code={CountSrc}
+    caption="Count.jsx"
+    highlightLines="9"
+    expand
+  />
+</div>
+
+## Use
+
+The generator also creates a `.Use()` function to access the context.  This
+is the preferred way to access a context in modern React.
+
+<Source
+  code={ControlsSrc}
+  caption="Controls.jsx"
+  highlightLines="5"
+  expand
+/>
+
+If you're used to using React contexts then that might look a little jarring
+to you. By convention, hooks that access a context are typically named
+`useSomething` rather than `Something.Use`.  There's a way to streamline this
+which we'll look at later, but for now let's just create a `useCounter.jsx`
+component to expose it for use.
+
+<Source
+  code={UseCounterSrc}
+  caption="UseCounter.jsx"
+  expand
+/>
+
+Here's the previous component using that function to access the context.
+
+<Source
+  code={Controls2Src}
+  caption="Controls.jsx"
+  highlightLines="2,5"
+  expand
+/>
+
