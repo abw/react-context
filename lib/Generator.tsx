@@ -3,7 +3,10 @@ import { toArray } from './Utils'
 import { isFunction } from '@abw/badger-utils'
 import { ContextType, ProviderType } from './types'
 
-export const Generator = <ModelProps, RenderProps extends object>(
+export const Generator = <
+  ModelProps = { },
+  RenderProps = ModelProps
+>(
   Model: ContextType<ModelProps, RenderProps>,
   defaultState: RenderProps = { } as RenderProps,
   Context = React.createContext<RenderProps>(defaultState)
@@ -22,10 +25,13 @@ export const Generator = <ModelProps, RenderProps extends object>(
     />
 
   // Consumer renders a component inside a context consumer
-  const Consumer = (Component: React.FC<RenderProps>) =>
-    (props: Partial<RenderProps>) =>
+  const Consumer = <Props={}>(Component: React.FC<RenderProps & Props>) =>
+    (props: Props & Partial<RenderProps>) =>
       <Context.Consumer>
-        { context => <Component {...context} {...props}/> }
+        {
+          context =>
+            <Component {...context} {...props}/>
+        }
       </Context.Consumer>
 
   const Children = ({ children }: { children: React.ReactNode }) =>
