@@ -2,7 +2,7 @@ import { PropsWithChildren } from 'react'
 
 export type DebugOptions = {
   debug?: boolean,
-  debugPrefix?: string,
+  debugPrefix?: string,   // TODO: these can be functions
   debugColor?: string,
   [key: string]: unknown
 }
@@ -12,8 +12,8 @@ export type Render<RenderProps> = {
   render: (props: RenderProps) => JSX.Element
 }
 
-// The properties passed to the model include a render() function with Render
-// type.  This type adds the render function to Props.
+// The properties passed to the provider model include a render() function
+// with Render type.  This type adds this render function to Props.
 export type PropsWithRender<Props, RenderProps> = Props & Render<RenderProps>
 
 // The model takes provider props and calls the render function
@@ -30,5 +30,10 @@ export type ProviderType<Props> = (props: ProviderProps<Props>) => JSX.Element
 // export type ContextTypeClass
 
 export type DebugMethod = (...args: unknown[]) => void
+
+// Alias to simplify this ugliness
+export type SetState<T> = React.Dispatch<React.SetStateAction<T>>
+
+// TODO: fix these
 export type ActionMethod = (...args: unknown[]) => unknown
 export type ActionMethods = Record<string, ActionMethod>
