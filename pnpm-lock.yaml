@@ -20,8 +20,8 @@ devDependencies:
     specifier: ^1.2.1
     version: 1.2.1
   '@abw/badger-website':
-    specifier: ^0.3.1
-    version: 0.3.1(@types/react@18.0.33)(react-dom@18.3.1)(react@18.3.1)
+    specifier: ^0.3.2
+    version: 0.3.2(@types/react@18.0.33)(react-dom@18.3.1)(react@18.3.1)
   '@mdx-js/react':
     specifier: ^3.0.1
     version: 3.0.1(@types/react@18.0.33)(react@18.3.1)
@@ -179,8 +179,8 @@ packages:
     resolution: {integrity: sha512-c4LnLATF7uYFQo7J4Pzq/bCPgesgH93/AAR/+BMNopAWLiH1ZbuXoRif8+wP4GM6OoWIPTrB/vgWTOq7r6rspg==}
     dev: true
 
-  /@abw/badger-website@0.3.1(@types/react@18.0.33)(react-dom@18.3.1)(react@18.3.1):
-    resolution: {integrity: sha512-VXExHXyVFevVzlwB5sM9i0244tXyd06PT+S0RErSFNnzYSjKSMfnw4D3ZZiF0sKD2tOpIFiQhlCYJhJRZ+fAJw==}
+  /@abw/badger-website@0.3.2(@types/react@18.0.33)(react-dom@18.3.1)(react@18.3.1):
+    resolution: {integrity: sha512-WKkD6tTuWNRieMQ0X7iMU/EWKa+2PhKA4DRZS8L/xC5RxSg1nTvnf/ZWYOTHn1a+m4xhA8iNLOIlDzEODb4Dig==}
     peerDependencies:
       react: ^18.2.0
       react-dom: ^18.2.0
@@ -190,7 +190,7 @@ packages:
       '@abw/badger-timestamp': 1.2.0
       '@abw/badger-utils': 1.2.1
       '@abw/react-context': 2.1.1(react-dom@18.3.1)(react@18.3.1)
-      '@abw/react-night-and-day': 0.0.6(react-dom@18.3.1)(react@18.3.1)
+      '@abw/react-night-and-day': 1.0.0-alpha-1(react-dom@18.3.1)(react@18.3.1)
       '@mdx-js/react': 3.0.1(@types/react@18.0.33)(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
@@ -225,8 +225,8 @@ packages:
       react-dom: 18.3.1(react@18.3.1)
     dev: true
 
-  /@abw/react-night-and-day@0.0.6(react-dom@18.3.1)(react@18.3.1):
-    resolution: {integrity: sha512-HVvyYuRxs8soPO1c/AFQqylx6uQqe9OHvxdJVVCzOtEtDYRFyM5NGY5Ob9ugUrSkg7o1Ru8p1vDfAJ+7/nyMvQ==}
+  /@abw/react-night-and-day@1.0.0-alpha-1(react-dom@18.3.1)(react@18.3.1):
+    resolution: {integrity: sha512-0MUZTHjD1BM6kV+T1nrvKISGyY7r0JVIXjIvPnVFTx7hPBlI2713ohCy6aE1Or4oZaN6lZiQcVVdB0nStvQgiA==}
     peerDependencies:
       react: ^18.2.0
       react-dom: ^18.2.0
