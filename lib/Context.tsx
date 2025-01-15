@@ -39,7 +39,7 @@ export class Context<
     const statics     = this.constructor//  as T
     const debug       = statics.debug
     const debugPrefix = statics.debugPrefix
-    const debugColor  = statics.debugPrefix
+    const debugColor  = statics.debugColor
 
     // add debug() method if static debug flag or debug prop is set
     this.debug = debugFunction(props, { debug, debugPrefix, debugColor })
