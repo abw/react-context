@@ -3,10 +3,7 @@ import { toArray } from './Utils'
 import { isFunction } from '@abw/badger-utils'
 import { ContextType, ProviderType } from './types'
 
-export const Generator = <
-  ModelProps = { },
-  RenderProps = ModelProps
->(
+export const Generator = <ModelProps = { }, RenderProps = ModelProps>(
   Model: ContextType<ModelProps, RenderProps>,
   defaultState: RenderProps = { } as RenderProps,
   Context = React.createContext<RenderProps>(defaultState)

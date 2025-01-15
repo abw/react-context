@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import React from 'react'
 import userEvent from '@testing-library/user-event'
 import { it, expect } from 'vitest'
