@@ -12,12 +12,11 @@ import { ActionMethods, DebugMethod, PropsWithRender } from './types'
 //export type BaseState = Record<string, unknown>
 
 export class Context<
-  Props = object,
-  State = object,
-  Actions = object
-  // Actions = Record<string, unknown>,
+  Props = { },
+  State = { },
+  RenderProps = Props
 > extends React.Component<
-  PropsWithRender<Props, Props & State & Actions>,
+  PropsWithRender<Props, RenderProps>,
   State
 > {
   static initialState = { }
@@ -56,20 +55,19 @@ export class Context<
     this.actions = actionMethods(this, statics.actions)
   }
 
-  getContext(): Props & State & Actions {
+  getContext(): RenderProps {
     return {
       ...this.props,    // properties passed to the context
       ...this.state,    // internal state
       ...this.actions,  // callable action functions mapped to methods
-    } as Props & State & Actions
+    } as RenderProps
   }
 
-  getRenderProps(): Props & State & Actions {
+  getRenderProps(): RenderProps {
     return this.getContext()
   }
 
   render() {
-    // ZZZ@ts-expect-error  I don't want to play any more.  I want to go home
     return this.props.render(
       this.getRenderProps()
     )

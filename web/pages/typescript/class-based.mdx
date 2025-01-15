@@ -1,10 +1,12 @@
-import TypesSrc       from '@/web/lib/TSClass/Types.ts?raw'
-import CounterSrc     from '@/web/lib/TSClass/Counter.ts?raw'
-import CountSrc       from '@/web/lib/TSClass/Count.tsx?raw'
-import ControlsSrc    from '@/web/lib/TSClass/Controls.tsx?raw'
-import BignumSrc      from '@/web/lib/TSClass/Bignum.tsx?raw'
-import App            from '@/web/lib/TSClass/App.tsx'
-import AppSrc         from '@/web/lib/TSClass/App.tsx?raw'
+import TypesSrc         from '@/web/lib/TSClass/Types.ts?raw'
+import CounterSrc       from '@/web/lib/TSClass/Counter.ts?raw'
+import CountSrc         from '@/web/lib/TSClass/Count.tsx?raw'
+import ControlsSrc      from '@/web/lib/TSClass/Controls.tsx?raw'
+import ControlsStepSrc  from '@/web/lib/TSClass/ControlsStep.tsx?raw'
+import ControlsStep2Src from '@/web/lib/TSClass/ControlsStep2.tsx?raw'
+import BignumSrc        from '@/web/lib/TSClass/Bignum.tsx?raw'
+import App              from '@/web/lib/TSClass/App.tsx'
+import AppSrc           from '@/web/lib/TSClass/App.tsx?raw'
 import { Example, Source } from '@abw/badger-website'
 
 # Typescript and Class Based Components
@@ -14,6 +16,15 @@ Typescript.  This example is the Typescript equivalent of the
 [Counter Class](../counter-class) example which defines a model class which
 extends the `Context` base class.
 
+<Example
+  Component={App}
+  code={AppSrc}
+  caption="App.tsx"
+  expand
+/>
+
+## Types
+
 We need to define three types for this.  The first is the `CounterProps` which
 are the same as in the previous example.  These are the properties which can
 be passed to the provider for initial configuration.
@@ -21,12 +32,8 @@ be passed to the provider for initial configuration.
 The second is `CounterState` which defines the properties that the class can
 store in its internal state.
 
-The third is `CounterActions` which are the class methods that will be
-passed as callable functions to consumers.  These should corresponding to the
-methods named in the static `actions` class member.
-
-The fourth type isn't strictly necessary, but it combines the other three
-into a single type for the properties passed to consumers.
+The third is `CounterRenderProps` which are the properties that will be stored
+in the context and passed to consumers.
 
 <Source
   code={TypesSrc}
@@ -34,8 +41,11 @@ into a single type for the properties passed to consumers.
   expand
 />
 
+## Generator
+
 We then define a class which extends the base class `Context`, passing the
-`CounterProps`, `CounterState` and `CounterAction` types as generic properties.
+`CounterProps`, `CounterState` and `CounterRenderProps` types as generic
+type parameters.
 
 There are three static items that are related to the types.  The `initialState`
 defines the default state for the class.  The `initialProps` indicates that the
@@ -58,8 +68,11 @@ result as the default export.
   expand
 />
 
-Here's the `Count.tsx` component.  This is where we use the
-`CounterRenderProps` composite type that we defined earlier.
+## Consumer
+
+Here's the `Count.tsx` component.  This is provided access to the context
+via the `Consumer()` wrapper function.  The properties should be typed as
+`CounterRenderProps`.
 
 <Source
   code={CountSrc}
@@ -79,8 +92,34 @@ will be able to infer that automatically.
   expand
 />
 
-The same thing applies if you access the context properties via the `Use`
-hook.  Typescript will be able to infer the property types automatically.
+As we saw in the previous [Functional Components](functional) example,
+additional properties can be defined for a component if necessary.
+The properties should by typed with an intersection of `CounterRenderProps`
+and the additional properties as show here.
+
+<Source
+  code={ControlsStepSrc}
+  caption="ControlsStep.tsx"
+  highlightLines="4-6,8"
+  expand
+/>
+
+Or if you define your component inside the call to `Counter.Consumer` then
+you just need to add the type for additional properties as parameter to
+the `Consumer` generic.
+
+<Source
+  code={ControlsStep2Src}
+  caption="ControlsStep.tsx"
+  highlightLines="3-5,7"
+  expand
+/>
+
+
+## Use
+
+If you access the context properties via the `Use` hook then Typescript will
+be able to infer the property types automatically.
 
 <Source
   code={BignumSrc}
@@ -89,13 +128,4 @@ hook.  Typescript will be able to infer the property types automatically.
   expand
 />
 
-Here's a complete example to tie it all together.  Note how we can set the
-`initialCount` property on the `Counter.Provider` on line 7.
 
-<Example
-  Component={App}
-  code={AppSrc}
-  caption="App.tsx"
-  highlightLines="7"
-  expand
-/>

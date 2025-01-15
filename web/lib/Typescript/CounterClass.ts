@@ -1,4 +1,4 @@
-import { Generator, Context } from '@/lib/index'
+import { Generator, Context, SetState } from '@/lib/index'
 
 type CounterProps = {
   initialCount?: number
@@ -6,7 +6,9 @@ type CounterProps = {
 type CounterState = {
   count: number,
 }
-type CounterActions = {
+type CounterRenderProps = {
+  count: number,
+  setCount: SetState<number>
   inc: (n?: number) => void,
   dec: (n?: number) => void,
 }
@@ -14,7 +16,7 @@ type CounterActions = {
 class Counter extends Context<
   CounterProps,
   CounterState,
-  CounterActions
+  CounterRenderProps
 > {
   inc(n=1) {
     this.debug(`inc(${n})`)

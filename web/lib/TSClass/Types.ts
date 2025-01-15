@@ -6,9 +6,9 @@ export type CounterState = {
   count: number
 }
 
-export type CounterActions = {
+export type CounterRenderProps = {
+  count: number,
   inc: (n?: number) => void,
   dec: (n?: number) => void,
 }
 
-export type CounterRenderProps = CounterProps & CounterState & CounterActions

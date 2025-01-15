@@ -1,11 +1,11 @@
 import { Generator, Context } from '@/lib/index'
-import { CounterActions, CounterProps, CounterState } from './Types'
+import { CounterProps, CounterState, CounterRenderProps } from './Types'
 
 export default Generator(
   class Counter extends Context<
     CounterProps,
     CounterState,
-    CounterActions
+    CounterRenderProps
   > {
     static initialState = {
       count: 0,
