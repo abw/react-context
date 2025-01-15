@@ -1,10 +1,12 @@
 import { PropsWithChildren } from 'react'
 
+export type DebugConfigFunction = (...args: unknown[]) => string
+export type DebugConfigOption = undefined | string | DebugConfigFunction
 export type DebugOptions = {
   debug?: boolean,
-  debugPrefix?: string,   // TODO: these can be functions
-  debugColor?: string,
-  [key: string]: unknown
+  debugPrefix?: DebugConfigOption,
+  debugColor?: DebugConfigOption,
+  // [key: string]: unknown
 }
 
 // The render function takes render props and returns a JSX Element
@@ -34,6 +36,6 @@ export type DebugMethod = (...args: unknown[]) => void
 // Alias to simplify this ugliness
 export type SetState<T> = React.Dispatch<React.SetStateAction<T>>
 
-// TODO: fix these
+// Methods that are bound to context as callable functions
 export type ActionMethod = (...args: unknown[]) => unknown
 export type ActionMethods = Record<string, ActionMethod>

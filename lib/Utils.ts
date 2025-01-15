@@ -18,17 +18,16 @@ export function prepareState(
   )
 }
 
-export function actionMethods<
-  T extends Record<string, unknown>,
->(
-  that: T, names=[]
+export function actionMethods(
+  that: React.Component,
+  names: string | string[] = []
 ): ActionMethods {
   const methods = isString(names)
     ? names.split(/,\s*|\s+/)
     : names
   return methods.reduce(
     (actions, name) => {
-      const method = that[name]
+      const method = (that as unknown as Record<string, unknown>)[name]
         || fail(`Cannot expose non-existent action method: ${name}`)
       if (isFunction(method)) {
         actions[name] = method.bind(that)

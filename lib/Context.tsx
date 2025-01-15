@@ -1,19 +1,10 @@
 import React from 'react'
 import { actionMethods, debugFunction, prepareState } from './Utils'
-import { ActionMethods, DebugMethod, PropsWithRender } from './types'
-
-// <ModelProps, RenderProps extends object>(
-//  Props = Record<string, unknown> >
-
-//export type BaseProps = {
-//  render: (props: unknown) =>  JSX.Element
-//}
-//
-//export type BaseState = Record<string, unknown>
+import { ActionMethods, DebugConfigOption, DebugMethod, PropsWithRender } from './types'
 
 export class Context<
-  Props = { },
-  State = { },
+  Props extends object = { },
+  State extends object = { },
   RenderProps = Props
 > extends React.Component<
   PropsWithRender<Props, RenderProps>,
@@ -23,11 +14,11 @@ export class Context<
   static initialProps = { }
   static actions: string | string[] = [ ]
   static debug: boolean = false
-  static debugPrefix: string | undefined = undefined
-  static debugColor: string | undefined   = undefined
+  static debugPrefix: DebugConfigOption = undefined
+  static debugColor: DebugConfigOption  = undefined
 
   debug: DebugMethod
-  actions: ActionMethods    // WRONG
+  actions: ActionMethods
 
   // https://github.com/microsoft/TypeScript/issues/3841#issuecomment-2381594311
   declare ['constructor']: typeof Context
@@ -51,7 +42,6 @@ export class Context<
     ) as State
 
     // expose any methods as callable functions in this.handlers
-    // @ts-expect-error  This is another thing that Just Works™️ in Javascript
     this.actions = actionMethods(this, statics.actions)
   }
 
@@ -63,7 +53,7 @@ export class Context<
     } as RenderProps
   }
 
-  getRenderProps(): RenderProps {
+  getRenderProps() {
     return this.getContext()
   }
 
