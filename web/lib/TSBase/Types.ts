@@ -4,8 +4,10 @@ export type CounterProps = {
 
 export type CounterRenderProps = {
   count: number
-  setCount: React.Dispatch<React.SetStateAction<number>>,
   inc: (n?: number) => void,
   dec: (n?: number) => void,
 }
 
+export type CounterState = {
+  count: number
+}

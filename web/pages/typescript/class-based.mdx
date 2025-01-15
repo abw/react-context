@@ -1,0 +1,101 @@
+import TypesSrc       from '@/web/lib/TSClass/Types.ts?raw'
+import CounterSrc     from '@/web/lib/TSClass/Counter.ts?raw'
+import CountSrc       from '@/web/lib/TSClass/Count.tsx?raw'
+import ControlsSrc    from '@/web/lib/TSClass/Controls.tsx?raw'
+import BignumSrc      from '@/web/lib/TSClass/Bignum.tsx?raw'
+import App            from '@/web/lib/TSClass/App.tsx'
+import AppSrc         from '@/web/lib/TSClass/App.tsx?raw'
+import { Example, Source } from '@abw/badger-website'
+
+# Typescript and Class Based Components
+
+Things get a little bit more complicated when using class components with
+Typescript.  This example is the Typescript equivalent of the
+[Counter Class](../counter-class) example which defines a model class which
+extends the `Context` base class.
+
+We need to define three types for this.  The first is the `CounterProps` which
+are the same as in the previous example.  These are the properties which can
+be passed to the provider for initial configuration.
+
+The second is `CounterState` which defines the properties that the class can
+store in its internal state.
+
+The third is `CounterActions` which are the class methods that will be
+passed as callable functions to consumers.  These should corresponding to the
+methods named in the static `actions` class member.
+
+The fourth type isn't strictly necessary, but it combines the other three
+into a single type for the properties passed to consumers.
+
+<Source
+  code={TypesSrc}
+  caption="Types.ts"
+  expand
+/>
+
+We then define a class which extends the base class `Context`, passing the
+`CounterProps`, `CounterState` and `CounterAction` types as generic properties.
+
+There are three static items that are related to the types.  The `initialState`
+defines the default state for the class.  The `initialProps` indicates that the
+`count` state variable can be set by the `initialCount` property.  The `actions`
+lists the methods that should be converted to callable functions and passed to
+consumers.
+
+The other static items shown here enable debugging and set the debug prefix and
+color.  Check out the Javascript console to see the debugging messages.
+
+Finally we have the definitions for the `inc` and `dec` methods.
+
+The final step is to wrap this in the `Generator()` function and return the
+result as the default export.
+
+<Source
+  code={CounterSrc}
+  caption="Counter.ts"
+  highlightLines="4-8,35"
+  expand
+/>
+
+Here's the `Count.tsx` component.  This is where we use the
+`CounterRenderProps` composite type that we defined earlier.
+
+<Source
+  code={CountSrc}
+  caption="Count.tsx"
+  highlightLines="4"
+  expand
+/>
+
+If you define the function inside the call to `Context.Consumer` then you
+don't need to worry about declaring the types of the properties.  Typescript
+will be able to infer that automatically.
+
+<Source
+  code={ControlsSrc}
+  caption="Controls.tsx"
+  highlightLines="4"
+  expand
+/>
+
+The same thing applies if you access the context properties via the `Use`
+hook.  Typescript will be able to infer the property types automatically.
+
+<Source
+  code={BignumSrc}
+  caption="Bignum.tsx"
+  highlightLines="4"
+  expand
+/>
+
+Here's a complete example to tie it all together.  Note how we can set the
+`initialCount` property on the `Counter.Provider` on line 7.
+
+<Example
+  Component={App}
+  code={AppSrc}
+  caption="App.tsx"
+  highlightLines="7"
+  expand
+/>

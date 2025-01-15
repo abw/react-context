@@ -25,10 +25,16 @@ const sidebar = {
       ]
     },
     {
+      title: 'Typescript',
+      menu: [
+        { to: '/typescript/functional',   text: 'Functional Components' },
+        { to: '/typescript/class-based',  text: 'Class Based Components' },
+      ]
+    },
+    {
       title: 'Advanced Topics',
       menu: [
         { to: '/nested',            text: 'Nested Contexts' },
-        { to: '/typescript',        text: 'Typescript' },
       ]
     },
     /*

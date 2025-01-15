@@ -1,25 +1,30 @@
 import TypesSrc       from '@/web/lib/Typescript/Types.ts?raw'
 import CountSrc       from '@/web/lib/Typescript/Count.tsx?raw'
 import CounterSrc     from '@/web/lib/Typescript/Counter.ts?raw'
+import CounterAltSrc  from '@/web/lib/Typescript/Counter-alt.ts?raw'
 import ControlsSrc    from '@/web/lib/Typescript/Controls.tsx?raw'
 import BignumSrc      from '@/web/lib/Typescript/Bignum.tsx?raw'
 import App            from '@/web/lib/Typescript/App.tsx'
 import AppSrc         from '@/web/lib/Typescript/App.tsx?raw'
 import { Example, Source } from '@abw/badger-website'
 
-# Typescript
+# Typescript and Functional Components
 
-If you're using typescript then you'll need to start by defining two types
-(or interfaces).  The first is for the properties that you can pass into
-your model to initialise it.  In this example we'll call them `CounterProps`
-and it consists of just one optional number property, `initialCount`.
+Let's look at the Typescript equivalent of the [Simple Counter](../simple-counter)
+example.
 
-The second type is for the properties that your model will pass to the
-`render()` function.  These will then be available in your consumer
-components, or accessible via the `Use` function.  In this example, they're
-called `CounterRenderProps`.  They include the current `count`, a `setCount`
-function to update the count, and `inc` and `dec` functions to increment and
-decrement the count.
+There are two types that need to be defined.  The first (`CounterProps` in this
+example) is for the properties that can be passed into the context provider to
+configure it.  In this case, we have just one: an optional `initialCount` to
+set the initial value for the `count` state variable.
+
+The second (`CounterRenderProps`) is for the properties that will be passed to
+context consumers.  This includes the `count` state variable and the `setCount()`
+function used to update it.  Both of these are provided by calling React's
+`useState()` hook.
+
+We then have two additional functions: `inc` and `dec` as shortcuts to
+increment and decrement the count, respectively
 
 <Source
   code={TypesSrc}
@@ -27,14 +32,27 @@ decrement the count.
   expand
 />
 
-Now when you create your model function, you should type it using the
-`ContextType` generic type, specifying your `CounterProps` and
-`CounterRenderProps` types as the parameters
+When we create the model function, we type it using the `ContextType` generic
+type, specifying the `CounterProps` and `CounterRenderProps` types as the
+parameters.  We then wrap it using the `Generator` function and return the
+result as the default export.
 
 <Source
   code={CounterSrc}
   caption="Counter.ts"
-  highlightLines="5"
+  highlightLines="5,20"
+  expand
+/>
+
+Alternately, you can combine the two and define the model function inline
+in the call to `Generator`.  In this case you don't need the `ContextType`
+and can pass the `CounterProps` and `CounterRenderProps` as generic type
+parameters on `Generator`.
+
+<Source
+  code={CounterAltSrc}
+  caption="Counter.ts"
+  highlightLines="5,20"
   expand
 />
 

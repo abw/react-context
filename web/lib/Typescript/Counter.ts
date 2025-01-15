@@ -1,8 +1,8 @@
 import { Generator, ContextType } from '@/lib/index'
 {/* START */}
 import { useState } from 'react'
+// PRETEND: import { Generator, ContextType } from '@abw/react-context'
 import { CounterProps, CounterRenderProps } from './Types'
-// PRETEND: import { Generator, ModelType } from '@abw/react-context'
 
 const Counter: ContextType<CounterProps, CounterRenderProps> = (
   {
