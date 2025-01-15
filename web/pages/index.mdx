@@ -5,7 +5,7 @@ import { Link, Hero, PeopleWhoShare } from '@abw/badger-website'
   logo={<Logo className="rc-logo"/>}
   title="React Context"
   tagline="Built by Badgers"
-  overview="React Context` is a React library providing some useful functionality for working with React contexts."
+  overview="A React library providing some useful functionality for working with React contexts."
   underview={
     <>
       It is simple and small (around 2kB compressed).  It has no
@@ -23,10 +23,14 @@ import { Link, Hero, PeopleWhoShare } from '@abw/badger-website'
   using it.
 </div>
 
+## Getting Started
+
 <div className="link">
   See the <Link to="/installation">Installation</Link> page and then the
   <Link to="/overview">Overview</Link> page for a high-level example of use.
 </div>
+
+## Functional Components
 
 These days <a href="https://react.dev/reference/react/useState">useState</a>
 is the preferred way to define stateful variables in React.  This module
@@ -39,6 +43,22 @@ the state and a `Consumer` can consume it.
   See the <Link to="/simple-counter">Simple Counter</Link> page for a
   demonstration and detailed explanation of the code
 </div>
+
+There are some tips on how to streamline your exports.
+
+<div className="link">
+  See the <Link to="streamlining">Streamlining Exports</Link> page for
+  enlightenment
+</div>
+
+And if you're wonder about the different between using `Consumer` and `Use`
+then wonder no more.
+
+<div className="link">
+  See the <Link to="consumer-use">Consumer vs Use</Link> page for advice
+</div>
+
+## Class Based Components
 
 It wasn't that long ago when we had to write classes derived from
 `React.Component` to maintain state, and call
@@ -66,16 +86,25 @@ product catalogue and a basket that a user can add products to.
   more complex example
 </div>
 
-There are some tips on how to streamline your exports.
+## Typescript
+
+If you're using Typescript then there are some more hoops you have to jump
+through to make everything type safe.  But you wouldn't be using Typescript
+if you didn't like jumping through hoops now, would you?
 
 <div className="link">
-  See the <Link to="streamlining">Streamlining Exports</Link> page for
-  enlightenment
+  See the <Link to="typescript/functional">Functional Components</Link> page
+  for examples of using Typescript with functional components.
 </div>
 
-And if you're wonder about the different between using `Consumer` and `Use`
-then wonder no more.
+<div className="link mar-t-4">
+  See the <Link to="typescript/class-based">Class Based Components</Link> page
+  for examples of using Typescript with class based components.
+</div>
 
-<div className="link">
-  See the <Link to="consumer-use">Consumer vs Use</Link> page for advice
+## Advanced Topics
+
+<div className="link mar-t-4">
+  See the <Link to="nested">Nested Contexts</Link> page
+  for an example of sharing an underling context object between wrappers
 </div>

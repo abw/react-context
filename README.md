@@ -39,7 +39,7 @@ import { Context, Generator } from '@abw/react-context'
 
 ## Documentation
 
-Visit the [documentation](https://abw.github.io/react-context/) web site
+Visit the [documentation](https://badgerpower.com/react-context/) web site
 for detailed documentation.
 
 ## Quick Example
