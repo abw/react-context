@@ -20,6 +20,12 @@ web site (e.g. for user authentication or a shopping cart) or in a section
 of a web site (e.g. in the behind-the-schemes administration section of a
 site for product management, user management, order processing, etc.)
 
+Another benefit of this "traditional" object-oriented approach is that your
+class can extend an existing base class that implements some common
+functionality.  The `@abw/badger-context` library includes a `Context`
+class for just that purpose.  It implements some of the boilerplate code
+that I find useful when I'm writing a context model class.
+
 The good news is that you can re-write your functional state component as an
 object class and nothing else needs to change.  All of the other code is
 identical to the previous example.

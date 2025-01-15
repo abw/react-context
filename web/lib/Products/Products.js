@@ -18,7 +18,7 @@ class Products extends Context {
   }
   static debug       = false
   static debugPrefix = 'Products > '
-  static debugColor  = 'rebeccapurple'
+  static debugColor  = 'orangered'
   static actions     = [
     'selectProduct',
     'addProductToBasket',

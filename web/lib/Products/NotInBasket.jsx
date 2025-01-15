@@ -1,7 +1,7 @@
 import React    from 'react'
 import Products from './Products.js'
 
-const NotInBasket = ({Products, product}) =>
+const NotInBasket = ({ Products, product }) =>
   <div>
     <p>
       You don&apos;t have any in your basket.

@@ -1,7 +1,7 @@
 import React    from 'react'
 import Products from './Products.js'
 
-const InBasket = ({Products, product, quantity}) =>
+const InBasket = ({ Products, product, quantity }) =>
   <div>
     <p>
       You have {quantity} in your basket.

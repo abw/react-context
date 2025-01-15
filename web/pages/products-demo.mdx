@@ -8,7 +8,7 @@ import BasketSrc      from '@/web/lib/Products/Basket.jsx?raw'
 import InBasketSrc    from '@/web/lib/Products/InBasket.jsx?raw'
 import NotInBasketSrc from '@/web/lib/Products/NotInBasket.jsx?raw'
 import UseSrc         from '@/web/lib/Products/useProducts.jsx?raw'
-import { Source }     from '@abw/badger-website'
+import { Source, Snippet } from '@abw/badger-website'
 
 # Products Demo
 
@@ -42,48 +42,124 @@ The `Products.js` is where all the fun happens.
   expand
 />
 
-In line 11 we define an `initialState` which includes the `ready` flag which
-is initially set `false`. We also have an empty list of `products` and an
+There's a lot to take in here.  Let's start by just showing the outline.
+We're defining a `Product` class which extends the `Context` imported from
+`@abw/badger-context`.  The default export wraps this in a call to `Generator`.
+
+<Snippet
+  file="Products/Products.js"
+  lineNumbers={false}
+/>
+
+Inside the class we first define a number of static items.
+
+<Snippet
+  file="Products/Statics.js"
+  lineNumbers={false}
+  undent={2}
+  expand
+/>
+
+The `initialState` is, as the name suggests, the initial state that the
+class will create.  The `ready` flag is initially set `false`, as is a
+`loading` flag which we'll use to indicate when we're loading product data
+from a (simulated) API call. We also have an empty list of `products` and an
 empty `basket`.
 
-We use the `componentDidMount()` method on line 28 to call the
-`loadProducts()` method starting on line 32.  In a real world application this
-might be making an API call to load product details, but in this example we're
-simulating it with a delay before setting the state to include the sample
-products defined at the top of the file.
+We've then got some debugging options.  The `debug` flag is set to `false`,
+but you can enable debugging by passing the `debug` property to the provider.
+When it is enabled, the `debugPrefix` and `debugColor` help to make our debug
+messages stand out in the Javascript console.
 
-As well as defining the array of `products` in the state we also build a
-`productById` index so we can quickly find a product by its `id`.  We also
-clear the `loading` flag and set `ready` to be `true`.
+The `actions` defines the lists of methods that we want to convert to callable
+functions and add to the context data for child components to call.
 
-The `selectProduct()` method on line 53 is exposed as an action (see the
-`static actions` declaration on line 20).  When called with a product `id`
-it fetches the product from the `productById` index and stores it in the
-state as `product`.
+We then have a `componentDidMount()` method which calls a `loadProducts()`
+method.
 
-The `addProductToBasket()` method / action on line 60 takes a product `id`,
+<Snippet
+  file="Products/Load.js"
+  lineNumbers={false}
+  undent={2}
+  expand
+/>
+
+The `loadProducts()` method simulates an API call which would go and fetch
+our product catalogue from the server.  Before we do that we set the
+`loading` flag to true.  This allows us to visually indicate to the user that
+the app is loading some data.
+
+The `sleep()` function imported from `@abw/badger-utils` waits for a second
+(to simulate a network delay) before updating the state.  It sets the `ready`
+flag to true, the `loading` flag back to `false`, and stores our dummy data
+in `sampleProducts` into the state as `products`.  In a real world example,
+this would be the data by the server.  We also create a `productById` lookup
+table so we can access the data for a particular product using its id.
+
+The `selectProduct()` method is exposed to consumers as a callable function
+(see the `static actions` declaration on line 20).  When called with a
+product `id` it fetches the product from the `productById` index and stores
+it in the state as `product`.
+
+<Snippet
+  file="Products/Select.js"
+  lineNumbers={false}
+  undent={2}
+  expand
+/>
+
+The next few methods deal with updating the user's basket.  All these methods
+are also added to the context model as callable functions.
+
+<Snippet
+  file="Products/Basket.js"
+  lineNumbers={false}
+  undent={2}
+  expand
+/>
+
+
+The `addProductToBasket()` method takes a product `id`,
 fetches the details from the `productById` index and adds it to the basket.
 If the item is already in the basket we increment the `count`, otherwise we
 set it to `1`.
 
-The `removeProductFromBasket()` method / action on line 75 removes the product
+The `removeProductFromBasket()` method removes the product
 from the basket.
 
-The `emptyBasket()` method / action on line 82 empties the basket.
+The `emptyBasket()` method empties the basket.
 
-The `quantityInBasket()` method / action on line 87 returns the basket count
+The `quantityInBasket()` method returns the basket count
 for a particular product `id`, or 0 if it's not in the basket.
 
-The `getRenderProps()` method on line 97 allows us to tailor what we expose
-in the context.  By default, everything in the `context` returned by the
-`getContext()` method would be exposed as separate items.  This returns the
-current state, any methods exposed as `actions` and any properties passed
-to the context object (e.g. the `debug` flag).
+The final method allows us to customise the shape of the data that is added
+to the context.
 
-You can expose them all as separate items, but here we're imposing a bit more
-structure and bundling them all up as a single `Products` group.  For
-convenience we also expose the list of `products`, any `product` that might
-be currently selected, and the `basket`.
+<Snippet
+  file="Products/Render.js"
+  lineNumbers={false}
+  undent={2}
+  expand
+/>
+
+The `getRenderProps()` method is called by the base class `render()` method.
+The default implementation simply forwards the data returned by `getContext()`.
+This method returns a single object containing all the state variables (`ready`,
+`loading`, `products`, `productById`) and any methods that have been exposed
+as callable "action" functions, by virtue of being listed in the static
+`actions` (`selectProduct`, `addProductToBasket`,
+`removeProductFromBasket`, `quantityInBasket` and `emptyBasket`).
+
+In simple cases this approach works fine.  But in a large application where
+you might have multiple contexts in use, it's sensible to impose a little more
+structure.
+
+In this example we're keeping all of those items in a single object which
+we'll call `Products` (it's sensible but not mandatory to give this the same
+name as your context object to avoid confusion).  However, to save consumers
+from having to drill down into `Products` to access other commonly used items,
+we'll also expose the list of `products`, the currently selected `product`
+and the `basket` as separate items.
 
 ## `Layout.jsx`
 
@@ -105,20 +181,25 @@ its child component.  Otherwise it displays a "Loading..." message.
 
 ## `List.jsx`
 
-The `List.jsx` component is one of those children. It also uses the
-`Products.consumer` and receives the context data as the `Products` property,
-as well as the separate list of `products` and any currently selected
-`product`.  Note that we chose to expose these items separately as a
-convenience, but they are also accessible as `Products.products` and
-`Products.product`.
+The `List.jsx` component is one of those children of the layout component. It
+also uses the `Products.consumer` and receives the context data as the
+`Products` property, as well as the separate list of `products` and any
+currently selected `product`.  Note that we chose to expose these items
+separately as a convenience, but they are also accessible as `Products.products`
+and `Products.product`.
 
 It renders the products as a list of buttons.  Each one has an `onClick`
 handler which calls the `Products.selectProduct()` method to select the
-product. We compare each one to the currently selected `product` and set the
-button colour depending on it being selected or not.
+product.
 
-We also add the current count of each product in the basket by calling the
-`Products.quantityInBasket()` method.
+The button color is determined by setting the `className` to `blue` or `grey`.
+If the product that we're rendering the button for (in the `products.map`
+variable `p`) is the same as the currently selected `product` then we make it
+blue.  Otherwise it's set to `grey`.
+
+The text for the button comes from `p.name`.  We also display the quantity
+of that product in the basket by calling the `Products.quantityInBasket()`
+method.
 
 <Source
   code={ListSrc}
@@ -143,7 +224,8 @@ it prompts the user to select a product.
 
 The `Basket.jsx` component also needs access to the context data. To
 demonstrate the other way of accessing this data, it uses the `useProducts()`
-function, imported on line 2 and used on line 7.
+function, imported on line 2 and used on line 7 (see below for the source
+of this trivial component - it's just an alias for `Products.Use`)
 
 If the currently selected product is in the basket then it renders the
 `InBasket` component on line 12. Otherwise it renders the `NotInBasket`
@@ -184,7 +266,7 @@ it to the basket (lines 10 to 15).
   expand
 />
 
-## `useProducts.js`
+## `useProducts.jsx`
 
 For completeness, here's the trivially simple `useProducts.jsx` component
 that simply re-exports the `Products.Use` function.

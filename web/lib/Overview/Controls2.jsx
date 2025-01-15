@@ -1,7 +1,7 @@
 import React from 'react'
 import useCounter from './useCounter.js'
 
-const Controls = ({inc, dec}) => {
+const Controls = () => {
   const { inc, dec } = useCounter()
   return (
     <div className="flex gap-2 brand">

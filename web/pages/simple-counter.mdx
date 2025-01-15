@@ -43,12 +43,15 @@ This is what our application code `App.jsx` looks like.
 
 Between lines 8 and 16 we define a `Counter.Provider` which
 provides the shared state for any components contained within it.
+Notice how the props that are passed to the `App` in line 7 are forwarded
+onto `Counter.Provider` in line 8.  This is what allows us to set the
+`initialCount` on the `App` to customise the initial value for `count`.
 
 Let's look at each component in turn.
 
 ## `Counter.js`
 
-This is the `Counter.js` where the application state is
+This is the `Counter.js` model component where the application state is
 stored.
 
 <Source
@@ -64,7 +67,7 @@ state variable and `setCount` function to update it.
 The `initialCount` property can be passed to the component to set the initial
 value for `count`.  Otherwise it defaults to `0`.
 
-We then define two handler functions `inc` and `dec` on lines 6 and 7 to
+We then define two utility functions `inc` and `dec` on lines 6 and 7 to
 increment and decrement the `count`, respectively.  They can be passed a
 number `n` which defaults to `1`.
 
@@ -75,7 +78,7 @@ property on line 4.
 
 We pass an object to the `render()` function containing the `count` state
 variable and the `inc` and `dec` functions.  We also forward the `setCount`
-function to allow other components direct access to modify the `count`
+function in case any child components need direct access to modify the `count`
 variable.
 
 So where does the `render` property come from? The final line is the important
@@ -110,14 +113,15 @@ context.
 />
 
 The default export of the `Count` component is wrapped in a call to
-`Counter.Consumer`.  This ensures that all the context state variables (just
-`count` in this example) and any exposed action function (`inc` and `dec`, not
-used in this component) are provided as properties to the component.
+`Counter.Consumer`.  This ensures that all the context model data (`count`,
+`setCount`, `inc` and `dec`) is passed to the component as properties.
+This component is only using `count` to display the current count, but the
+other items are there in case you should need them.
 
 ## `Controls.jsx`
 
 The `Controls.jsx` component also uses the `Counter.Consumer` to get access
-to the `inc` and `dec` action functions.
+to the `inc` and `dec` functions.
 
 <Source
   code={ControlsSrc}

@@ -1,11 +1,15 @@
-import TypesSrc       from '@/web/lib/Typescript/Types.ts?raw'
-import CountSrc       from '@/web/lib/Typescript/Count.tsx?raw'
-import CounterSrc     from '@/web/lib/Typescript/Counter.ts?raw'
-import CounterAltSrc  from '@/web/lib/Typescript/Counter-alt.ts?raw'
-import ControlsSrc    from '@/web/lib/Typescript/Controls.tsx?raw'
-import BignumSrc      from '@/web/lib/Typescript/Bignum.tsx?raw'
-import App            from '@/web/lib/Typescript/App.tsx'
-import AppSrc         from '@/web/lib/Typescript/App.tsx?raw'
+import TypesSrc        from '@/web/lib/Typescript/Types.ts?raw'
+import Types2Src       from '@/web/lib/Typescript/Types2.ts?raw'
+import CountSrc        from '@/web/lib/Typescript/Count.tsx?raw'
+import CountNameSrc    from '@/web/lib/Typescript/CountName.tsx?raw'
+import CounterSrc      from '@/web/lib/Typescript/Counter.ts?raw'
+import CounterAltSrc   from '@/web/lib/Typescript/Counter-alt.ts?raw'
+import ControlsSrc     from '@/web/lib/Typescript/Controls.tsx?raw'
+import ControlsStepSrc from '@/web/lib/Typescript/ControlsStep.tsx?raw'
+import BignumSrc       from '@/web/lib/Typescript/Bignum.tsx?raw'
+import BignumSizeSrc   from '@/web/lib/Typescript/BignumSize.tsx?raw'
+import App             from '@/web/lib/Typescript/App.tsx'
+import AppSrc          from '@/web/lib/Typescript/App.tsx?raw'
 import { Example, Source } from '@abw/badger-website'
 
 # Typescript and Functional Components
@@ -13,7 +17,25 @@ import { Example, Source } from '@abw/badger-website'
 Let's look at the Typescript equivalent of the [Simple Counter](../simple-counter)
 example.
 
-There are two types that need to be defined.  The first (`CounterProps` in this
+<Example
+  Component={App}
+  code={AppSrc}
+  caption="App.tsx"
+  expand
+/>
+
+## Types
+
+There are two types that need to be defined.  One for the provider and one
+for consumers.
+
+<Source
+  code={TypesSrc}
+  caption="Types.ts"
+  expand
+/>
+
+The first (`CounterProps` in this
 example) is for the properties that can be passed into the context provider to
 configure it.  In this case, we have just one: an optional `initialCount` to
 set the initial value for the `count` state variable.
@@ -26,16 +48,24 @@ function used to update it.  Both of these are provided by calling React's
 We then have two additional functions: `inc` and `dec` as shortcuts to
 increment and decrement the count, respectively
 
+Note the delightfully cryptic type of `setCount`:
+`React.Dispatch<React.SetStateAction<number>>`.  As someone who appreciates
+simple, readable code, this makes me want to scratch my eyes out.  You
+can import the `SetState` type alias and use that instead if you prefer.
+
 <Source
-  code={TypesSrc}
+  code={Types2Src}
   caption="Types.ts"
   expand
 />
 
+
+## Generator
+
 When we create the model function, we type it using the `ContextType` generic
 type, specifying the `CounterProps` and `CounterRenderProps` types as the
-parameters.  We then wrap it using the `Generator` function and return the
-result as the default export.
+generic type parameters.  We then wrap it using the `Generator` function and
+return the result as the default export.
 
 <Source
   code={CounterSrc}
@@ -46,8 +76,8 @@ result as the default export.
 
 Alternately, you can combine the two and define the model function inline
 in the call to `Generator`.  In this case you don't need the `ContextType`
-and can pass the `CounterProps` and `CounterRenderProps` as generic type
-parameters on `Generator`.
+generic type and can specify `CounterProps` and `CounterRenderProps` as
+generic type parameters on `Generator`.
 
 <Source
   code={CounterAltSrc}
@@ -56,8 +86,10 @@ parameters on `Generator`.
   expand
 />
 
+## Consume
+
 Components that consume the context properties should type their properties
-as the `CounterRenderProps` type.  Here's a component which displays the
+with the `CounterRenderProps` type.  Here's a component which displays the
 current count.
 
 <Source
@@ -66,6 +98,22 @@ current count.
   highlightLines="4"
   expand
 />
+
+If you want your consumer components to accept other properties then you
+should define a type for them.  For example, you might want the `Count`
+component to accept an optional `name` property which defaults to `count`,
+but allows you to set a different value.  The properties should be typed
+as a intersection of the generic `CounterRenderProps` that all consumers
+receive and your specific type for this component which is `CountProps` in
+this example.
+
+<Source
+  code={CountNameSrc}
+  caption="Count.tsx"
+  highlightLines="4-6,8"
+  expand
+/>
+
 
 If you define your function inside the call to `Counter.Consumer` then the
 properties will be typed automatically.  Typescript is smart enough in this
@@ -78,8 +126,22 @@ case to infer the property types.
   expand
 />
 
-Similarly, if you're using the `Use` hook to access the context properties
-then the typing is automatic.
+
+If you have additional properties that you want the component to accept then
+you should define a type for them and pass it to `Consumer` as a generic
+type parameter.
+
+<Source
+  code={ControlsStepSrc}
+  caption="Controls.tsx"
+  highlightLines="4"
+  expand
+/>
+
+## Use
+
+If you're using the `Use` hook to access the context properties then the values
+returned will automatically be typed.
 
 <Source
   code={BignumSrc}
@@ -88,13 +150,13 @@ then the typing is automatic.
   expand
 />
 
-Here's a complete example to tie it all together.  Note how we can set the
-`initialCount` property on the `Counter.Provider` on line 7.
+In this example we don't need to define any additional types as the `size`
+property has a default `string` type which Typescript can infer automatically.
 
-<Example
-  Component={App}
-  code={AppSrc}
-  caption="App.tsx"
-  highlightLines="7"
+<Source
+  code={BignumSizeSrc}
+  caption="Bignum.tsx"
+  highlightLines="4"
   expand
 />
+

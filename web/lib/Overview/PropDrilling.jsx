@@ -12,9 +12,10 @@ const Counter = ({ initialCount=0 }) => {
     <>
       <Count count={count}/>
       <Controls inc={inc} dec={dec}/>
-      {/* This component might be get complicated so we better pass
-        * everything to it, in case it's required by the component,
-        * one of its children, grand-children, etc.
+      {/* We don't know how complicated this component might be.
+        * We better pass everything to it in case it requires any
+        * of the properties or it needs to pass them on to its
+        * child components, grand-children, etc.
         */}
       <SomeOtherComponent
         count={count}

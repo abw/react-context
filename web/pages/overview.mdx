@@ -32,36 +32,54 @@ and decrement the count respectively.
 
 This works well for simple cases, but as our component (or application) gets
 more complicated, we might want to split things up into separate components.
-We have to remember to pass the `count`, `inc` and `dec` properties to the
-relevant components.  As the component structure gets more deeply nested it
-can results in lots of properties being passed down the component tree so
-that child components can access them.
+
+We don't know (and ideally, shouldn't care) what these child components are
+doing.  But that means that we can't tell (without looking at the code) which
+of the `count`, `setCount`, `inc` or `dec` items they might need.
+
+As the component structure gets more deeply nested it can results in lots of
+properties being passed down the component tree so they can use them or pass
+them on to their children, grand-children, and so on.
 
 <Source
   code={PropDrillSrc}
   caption="Counter.js"
-  highlightLines="12,13"
+  highlightLines="13,14,19-24"
   expand
 />
 
 This problem, known as "prop drilling", is something that is nicely solved by
-use a React context.  The purpose of this `react-context` library is to make
-that process as simple as possible.  It allows you to write your state
-management code as in the first example, but with the added benefits of using
-a React context to avoid prop drilling.
+use a React context.  The idea is that you define them in a context and provide
+a way for the the child components to fetch them when they need them.
+
+If you're not already familiar with React Context then now would be a good
+time to go and read up on it:
+[Passing Data Deeply with Context](https://react.dev/learn/passing-data-deeply-with-context).
+
+The purpose of this `react-context` library is to make the process of using a
+context as simple as possible.  It doesn't add any core functionality that
+isn't already provided by React Context.  It just makes it easier to use.
 
 ## Generator
 
-Here's how we do it.  We define a component that maintains the state as
-before.  We then use the `Generator` function to create a higher-order
-component from it.  This is what is returned as the default export from the
-file (line 14).  The generator effectively creates a wrapper around the
-component that adds the context functionality for you so that you don't have
-to worry about it.
+Here's how it works.  We define a component that maintains the state as
+before.  We call this a *model* component because it implements the data
+model.
 
-The component will now be passed a `render` function (line 4).  All you have
-to do is call that function, passing any state variables and functions that
-you want to expose, and return the result (lines 9-11).
+Crucially, this component is only responsible for maintaining the
+state and does not deal with rendering any content.  Instead it delegates
+that task to a `render()` function that is passed into it.
+
+We use the `Generator` function to create a higher-order component from the
+model component.  This is what is returned as the default export from the
+file (line 14).  The generator effectively creates a wrapper around the
+model component that adds the context functionality for you so that you
+don't have to worry about it.
+
+The component will now be passed the `render` function (line 4).  All the
+model component has to do it call that function and return the result
+(lines 9-11).  Any properties passed to the `render` function will be stored
+in the context and available to child components.
 
 <Source
   code={CounterSrc}
@@ -72,8 +90,8 @@ you want to expose, and return the result (lines 9-11).
 
 ## Provider
 
-When you import this component from `Counter.js` you actually get an object
-with three properties: `Provider`, `Consumer` and `Use`.
+When you import this component from `Counter.js` you  get an object with
+three properties: `Provider`, `Consumer` and `Use`.
 
 In your app you should use the `.Provider` property to define a context
 provider around the part of your application that needs access to the context
@@ -88,10 +106,12 @@ data.
 
 ## Consumer
 
-Then any component enclosed within the scope of the provider can access
+Then any components enclosed within the scope of the provider can access
 the context data.  One way is to use the `.Consumer()` function
-to wrap the component.  It will then be passed all the context data as
-properties.
+to wrap the component.  It will then be passed all the context model data
+as properties (`count`, `setCount`, `inc` and `dec` in this example).
+This component only uses `count`, but the other properties are there if you
+need them.
 
 <div className="grid-1 gap-8">
   <Source
@@ -105,7 +125,10 @@ properties.
 ## Use
 
 The generator also creates a `.Use()` function to access the context.  This
-is the preferred way to access a context in modern React.
+is the preferred way to access a context in modern React.  As with the
+`.Consumer()`, this returns all the context data.  In this example we're
+only using `inc` and `dec` but the other properties (`count` and `setCount`)
+are there if you need them.
 
 <Source
   code={ControlsSrc}
@@ -114,8 +137,8 @@ is the preferred way to access a context in modern React.
   expand
 />
 
-If you're used to using React contexts then that might look a little jarring
-to you. By convention, hooks that access a context are typically named
+If you're familiar withe React context and other hooks then that might look a
+little jarring to you. By convention, hook functions are typically named
 `useSomething` rather than `Something.Use`.  There's a way to streamline this
 which we'll look at later, but for now let's just create a `useCounter.jsx`
 component to expose it for use.
