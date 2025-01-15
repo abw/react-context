@@ -18,10 +18,11 @@ export function prepareState(
   )
 }
 
-export function actionMethods<T extends Record<string, unknown>>(
+export function actionMethods<
+  T extends Record<string, unknown>,
+>(
   that: T, names=[]
-):
-  ActionMethods {
+): ActionMethods {
   const methods = isString(names)
     ? names.split(/,\s*|\s+/)
     : names
