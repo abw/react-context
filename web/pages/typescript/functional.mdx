@@ -64,8 +64,8 @@ can import the `SetState` type alias and use that instead if you prefer.
 
 When we create the model function, we type it using the `ContextType` generic
 type, specifying the `CounterProps` and `CounterRenderProps` types as the
-generic type parameters.  We then wrap it using the `Generator` function and
-return the result as the default export.
+generic type parameters.  We then wrap the component using the `Generator`
+function and return the result as the default export.
 
 <Source
   code={CounterSrc}
@@ -150,8 +150,9 @@ returned will automatically be typed.
   expand
 />
 
-In this example we don't need to define any additional types as the `size`
-property has a default `string` type which Typescript can infer automatically.
+You can define any additional properties to the component in the usual way.
+In this example we don't need to define a type for the properties as `size`
+has a default `string` type which Typescript can infer automatically.
 
 <Source
   code={BignumSizeSrc}
