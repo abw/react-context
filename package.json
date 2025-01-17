@@ -8,10 +8,14 @@
   ],
   "main": "./dist/react-context.umd.cjs",
   "module": "./dist/react-context.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/react-context.js",
-      "require": "./dist/react-context.umd.cjs"
+      "require": "./dist/react-context.umd.cjs",
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/react-context.js"
+      }
     }
   },
   "author": "Andy Wardley",
@@ -24,7 +28,7 @@
     "dev": "vite --config vite.docs.js",
     "test": "vitest --ui",
     "build": "$npm_execpath build:lib && $npm_execpath build:docs",
-    "build:lib": "vite build",
+    "build:lib": "tsc && vite build",
     "build:docs": "vite build --config vite.docs.js",
     "preview": "vite preview --config vite.docs.js",
     "lint": "eslint"

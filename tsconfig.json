@@ -3,7 +3,7 @@
     "paths": {
       "@/lib/*":    ["./lib/*"],
       "@/config/*": ["./web/config/*"],
-      "@/weblib/*":    ["./web/lib/*"],
+      "@/weblib/*": ["./web/lib/*"],
       "@/site/*":   ["./web/site/*"],
       "@/svg/*":    ["./web/svg/*"],
     },
@@ -29,5 +29,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["lib/**/*", "web/**/*"]
+  "include": ["lib/**/*"]
 }
