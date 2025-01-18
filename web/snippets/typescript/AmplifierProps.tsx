@@ -1,0 +1,3 @@
+type AmplifierProps {
+  initialVolume: number
+}
