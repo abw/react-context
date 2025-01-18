@@ -3,11 +3,14 @@ import { toArray } from './Utils'
 import { isFunction } from '@abw/badger-utils'
 import { ContextType, ProviderType } from './types'
 
-export const Generator = <ModelProps = { }, RenderProps = ModelProps>(
-  Model: ContextType<ModelProps, RenderProps>,
-  defaultState: RenderProps = { } as RenderProps,
-  Context = React.createContext<RenderProps>(defaultState)
-) => {
+export const Generator = <
+  ModelProps = { },
+  RenderProps = ModelProps
+>(
+    Model: ContextType<ModelProps, RenderProps>,
+    defaultState: RenderProps = { } as RenderProps,
+    Context = React.createContext<RenderProps>(defaultState)
+  ) => {
   // Provider renders the Model component forwarding all props passed to it
   // along with a render prop to render the children inside a context provider
   const Provider: ProviderType<ModelProps> = props =>
