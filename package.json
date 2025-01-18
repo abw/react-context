@@ -1,6 +1,6 @@
 {
   "name": "@abw/react-context",
-  "version": "2.2.0-alpha2",
+  "version": "2.2.0-alpha3",
   "description": "Utilities for working with React contexts",
   "type": "module",
   "files": [
