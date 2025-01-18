@@ -5,7 +5,7 @@ import { ActionMethods, DebugConfigOption, DebugMethod, PropsWithRender } from '
 export class Context<
   Props extends object = { },
   State extends object = { },
-  RenderProps = Props
+  RenderProps = Props & State
 > extends React.Component<
   PropsWithRender<Props, RenderProps>,
   State
