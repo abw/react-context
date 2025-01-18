@@ -1,4 +1,4 @@
-type WithRequired<T, K extends keyof T> = T & Required<Pick<T, K>>
+import { Context, WithRequired } from '@abw/react-context'
 
 const defaultProps = {
   initialVolume: 11,

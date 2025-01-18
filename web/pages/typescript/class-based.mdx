@@ -225,8 +225,8 @@ from the new set of `props` (lines 29-33).
 ### Workaround 3
 
 If you find that all to be a bit messy then another approach is to define a
-single type for your props and use a utility type to selectively convert the
-relevant values from optional to required.
+single type for your props and use the `WithRequired` utility type to
+selectively convert the relevant values from optional to required.
 
 <Snippet
   file="typescript/AmplifierWorkaround3.tsx"
@@ -234,9 +234,9 @@ relevant values from optional to required.
   expand
 />
 
-The `WithRequired` utility type on line 1 is used to convert the
-two optional properties `initialVolume` and `initialColour` in the
-`AmplifierProps` on lines 8-12 into required properties for `this.config`
+The `WithRequired` utility type is used to convert the
+two optional properties, `initialVolume` and `initialColour` in the
+`AmplifierProps` on lines 8-12, into required properties for `this.config`
 on line 23.
 
 Once again, you can then safely use the values in `this.config` on lines
@@ -245,3 +245,18 @@ note in the previous workaround about the possible need to add a
 `componentDidUpdate()` method.  It's not included in this example for the
 sake of brevity.
 
+### Workaround 4
+
+If you've got a lot of default properties then it can be a bit tedious
+(and potentially error prone) to explicitly list all the keys in the
+`defaultProps` when you call `WithRequired`.
+
+A better approach in this case is to use the `WithRequiredFrom` utility
+type that allows you to pass the `typeof defaultProps` as the second
+argument and it will extract all the relevant keys.
+
+<Snippet
+  file="typescript/AmplifierWorkaround4.tsx"
+  highlightLines="1,9"
+  expand
+/>
