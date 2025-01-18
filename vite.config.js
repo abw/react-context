@@ -19,9 +19,9 @@ export default defineConfig(
     test: {
       environment: 'jsdom',
       globals: true,
-      setupFiles: './test/setup.js',
+      setupFiles: './test/setup.ts',
       include: ['test/**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
-      exclude: ['test/setup.js', 'test/lib']
+      exclude: ['test/setup.ts', 'test/lib']
     },
     build: {
       minify: true,

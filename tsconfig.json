@@ -30,4 +30,5 @@
     "noUncheckedSideEffectImports": true
   },
   "include": ["lib/**/*"]
+  // "include": ["lib/**/*", "test/**/*"]
 }
