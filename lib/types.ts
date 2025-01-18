@@ -39,3 +39,9 @@ export type SetState<T> = React.Dispatch<React.SetStateAction<T>>
 // Methods that are bound to context as callable functions
 export type ActionMethod = (...args: unknown[]) => unknown
 export type ActionMethods = Record<string, ActionMethod>
+
+export type WithRequired<T, K extends keyof T> =
+  T & Required<Pick<T, K>>
+
+export type WithRequiredFrom<T extends Partial<D>, D> =
+  T & Required<Pick<T, keyof D>>
