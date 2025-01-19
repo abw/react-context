@@ -10,7 +10,30 @@ import { Source } from '@abw/badger-website'
 # Nested Contexts
 
 It's possible to reuse the same React Context object in different generated
-contexts. Here's a demo showing how you can do that.
+contexts.
+
+Why might you want to do that?
+
+When a component accesses a React context, either as a consumer or via a
+`use` hook, it will attach to the closest context provider.  If you have
+nested contexts that share the same underlying React context object then it
+will attach to the innermost one that contains the component.
+
+That means it's possible to "mask" an outer context provider with an inner
+one.
+
+Why would you want to do that?
+
+Well, I honestly can't remember.  I wish I could tell you more about this
+example, how it works and why I wrote it.  I remember I wanted to do this for
+a project, but I forget which one.  I might even have found another way to
+work around the issue.
+
+The point is to demonstrate that you can pass an existing `Context` object
+as an option to `Generator` as `Generator(..., { context: Context })`.
+Then it will reuse that React context instead of creating a new one.
+
+Here's a demo showing how you can do that.
 
 <App/>
 
@@ -41,13 +64,14 @@ The outer context maintains a `data` object using `React.useState` and
 implements a `setItem` function to set the value of an item in that `data`
 object.
 
-The call to `Generator` on line 18 passes the `Context` object that we import
-from `Context.js` as the third argument. The second argument is the
-`defaultState` which we can set to an empty object.
+The options that we pass as the second argument to `Generator` on line 18
+includes the `Context` object that we imported from `Context.js` as the
+`context` option.
 
 <Source
   code={OuterSrc}
   caption="Outer.jsx"
+  highlightLines="18"
   expand
 />
 
@@ -57,15 +81,16 @@ from `Context.js` as the third argument. The second argument is the
   function expected the `Context` to be passed as the third argument (following
   the default context state passed as the second).
 
-  If you have existing version 2 code written as `Generator(Outer, { }, Context)`
-  then you should change it to match the last line in the example above.
+  If you have existing code written as `Generator(..., { }, Context)` then you
+  should change it to `Generator(..., { context: Context })`.
+
 </div>
 
 ## `Inner.jsx`
 
 The inner context works much the same with a couple of differences. One line
 8 it accesses the `setItem()` function provided by the `Outer` context by
-making a call to `Outer.Use()`. It aliases that to `setOuterItem`. Then in
+making a call to `useOuter()`. It aliases that to `setOuterItem`. Then in
 its own `setItem()` function it updates its own `data` object and
 additionally calls the `setOuterItem()` function to set a data item in the
 outer context using the `name` defined as a property.
@@ -76,6 +101,7 @@ the `name` set to `one` and the second being `two`.
 <Source
   code={InnerSrc}
   caption="Inner.jsx"
+  highlightLines="9"
   expand
 />
 
@@ -85,8 +111,8 @@ the `name` set to `one` and the second being `two`.
   function expected the `Context` to be passed as the third argument (following
   the default context state passed as the second).
 
-  If you have existing code written as `Generator(Inner, { }, Context)` then you
-  should change it to match the last line in the example above.
+  If you have existing code written as `Generator(..., { }, Context)` then you
+  should change it to `Generator(..., { context: Context })`.
 </div>
 
 ## `Data.jsx`

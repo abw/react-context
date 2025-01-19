@@ -6,6 +6,7 @@ const sidebar = {
       menu: [
         { to: '/installation',   text: 'Installation' },
         { to: '/overview',       text: 'Overview' },
+        { to: '/generator',      text: 'Generator' },
       ]
     },
     {
@@ -52,7 +53,8 @@ const sidebar = {
         { to: '/version2/products-demo',     text: 'Products and Basket' },
         { to: '/version2/streamlining',      text: 'Streamlining Exports' },
         { to: '/version2/consumer-use',      text: 'Consumer vs Use' },
-        { to: '/version2/nested',            text: 'Nested Contexts' },
+        // Can't demo this in version 2 style because our code is now v3
+        // { to: '/version2/nested',            text: 'Nested Contexts' },
       ]
     },
 
