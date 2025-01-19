@@ -12,7 +12,12 @@ export default defineConfig(
       react(),
       svgr(),
       jsconfigPaths(),
-      dts()
+      dts({
+        exclude: [
+          'test',
+          'web'
+        ],
+      })
     ],
     publicDir: command === 'build' ? false : true,
     define,
