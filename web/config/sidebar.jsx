@@ -39,6 +39,23 @@ const sidebar = {
         { to: '/nested',            text: 'Nested Contexts' },
       ]
     },
+    {
+      title: 'Version 2',
+      revealable: true,
+      openPath: '/version2/',
+      menu: [
+        { to: '/version2/introduction',      text: 'Introduction' },
+        { to: '/version2/getting-started',   text: 'Getting Started' },
+        { to: '/version2/simple-counter',    text: 'Simple Counter' },
+        { to: '/version2/flexible-children', text: 'Flexible Children' },
+        { to: '/version2/counter-class',     text: 'Counter Class' },
+        { to: '/version2/products-demo',     text: 'Products and Basket' },
+        { to: '/version2/streamlining',      text: 'Streamlining Exports' },
+        { to: '/version2/consumer-use',      text: 'Consumer vs Use' },
+        { to: '/version2/nested',            text: 'Nested Contexts' },
+      ]
+    },
+
     /*
     {
       title: 'Typescript',

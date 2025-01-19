@@ -1,7 +1,7 @@
-import SliderSrc    from '@/lib/Volume/Slider.jsx?raw'
-import DisplaySrc   from '@/lib/Volume/Display.jsx?raw'
-import ConsumerSrc  from '@/lib/MultiContextConsumer.jsx?raw'
-import UseSrc       from '@/lib/MultiContextUse.jsx?raw'
+import SliderSrc    from '@/web/lib/Volume/Slider.jsx?raw'
+import DisplaySrc   from '@/web/lib/Volume/Display.jsx?raw'
+import ConsumerSrc  from '@/web/lib/MultiContextConsumer.jsx?raw'
+import UseSrc       from '@/web/lib/MultiContextUse.jsx?raw'
 import { Source, Link } from '@abw/badger-website'
 
 # Consumer or Use?
@@ -18,7 +18,7 @@ end result in slightly different ways.
 I tend to use the `Consumer` approach if I have a simple component that is
 only returning an HTML element, i.e. it doesn't require curly braces around
 the component body. Here's the `Slider.jsx` component from
-our <Link to="/streamlining" text="previous example"/> to demonstrate.
+our <Link to="/version2/streamlining" text="previous example"/> to demonstrate.
 
 <Source
   code={SliderSrc}
@@ -54,7 +54,7 @@ this:
 
 It's a bit clunky isn't it? In these cases it's usually cleaner to define
 named `useAuth()`, `useBasket()` and `useProducts()` functions
-(see <Link to="/streamlining" text="Streamlining Exports"/>) and call them
+(see <Link to="/version2/streamlining" text="Streamlining Exports"/>) and call them
 from within the component.
 
 <Source

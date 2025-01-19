@@ -23,6 +23,20 @@ import { Link, Hero, PeopleWhoShare } from '@abw/badger-website'
   using it.
 </div>
 
+<div className="success alert border">
+  <h3>Version 3</h3>
+  This documentation is for **version 3** of `@abw/react-context` which is now
+  written in Typescript for added type safety goodness.
+
+  There is one breaking change between the versions: The `generator()` method
+  now takes an `options` object as the second optional argument.  In version 2
+  it takes two optional arguments: the default context state and a Context
+  object.  If you're not using this (barely documented) feature then it should
+  be safe to upgrade to version 3.
+
+  The documentation for **version 2** is [here](version2/introduction).
+</div>
+
 ## Getting Started
 
 <div className="link">

@@ -51,6 +51,16 @@ from `Context.js` as the third argument. The second argument is the
   expand
 />
 
+<div className="warning alert border mar-t-4">
+  <h3>Breaking Change in Version 3!</h3>
+  Note that this usage has changed in version 3.  In version 2 the `Generator`
+  function expected the `Context` to be passed as the third argument (following
+  the default context state passed as the second).
+
+  If you have existing version 2 code written as `Generator(Outer, { }, Context)`
+  then you should change it to match the last line in the example above.
+</div>
+
 ## `Inner.jsx`
 
 The inner context works much the same with a couple of differences. One line
@@ -68,6 +78,16 @@ the `name` set to `one` and the second being `two`.
   caption="Inner.jsx"
   expand
 />
+
+<div className="warning alert border mar-t-4">
+  <h3>Breaking Change in Version 3!</h3>
+  Note that this usage has changed in version 3.  In version 2 the `Generator`
+  function expected the `Context` to be passed as the third argument (following
+  the default context state passed as the second).
+
+  If you have existing code written as `Generator(Inner, { }, Context)` then you
+  should change it to match the last line in the example above.
+</div>
 
 ## `Data.jsx`
 

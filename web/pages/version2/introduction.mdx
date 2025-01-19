@@ -23,10 +23,29 @@ import { Link, Hero, PeopleWhoShare } from '@abw/badger-website'
   using it.
 </div>
 
+<div className="warning alert border">
+  <h3>Version 2</h3>
+  This documentation is for version 2 of `@abw/react-context` which has now
+  been superceded by version 3 which is written in Typescript for added type
+  safety goodness.
+
+  There is one breaking change between the versions: The `generator()` method
+  now takes an `options` object as the second optional argument.  In version 2
+  it takes two optional arguments: the default context state and a Context
+  object.  If you're not using this (barely documented) feature then it should
+  be safe to upgrade to version 3.
+
+  The documentation for version 3 is [here](../).
+</div>
+
+## Getting Started
+
 <div className="link">
-  See the <Link to="/getting-started">Getting Started</Link> page for
+  See the <Link to="/version2/getting-started">Getting Started</Link> page for
   instructions on how to install it and start using it
 </div>
+
+## Functional Components
 
 These days <a href="https://react.dev/reference/react/useState">useState</a>
 is the preferred way to define stateful variables in React.  This module
@@ -36,9 +55,11 @@ possible to easily share that state.  A `Provider` shares
 the state and a `Consumer` can consume it.
 
 <div className="link">
-  See the <Link to="/simple-counter">Simple Counter</Link> page for a
+  See the <Link to="/version2/simple-counter">Simple Counter</Link> page for a
   demonstration and detailed explanation of the code
 </div>
+
+## Class Based Components
 
 It wasn't that long ago when we had to write classes derived from
 `React.Component` to maintain state, and call
@@ -54,7 +75,7 @@ classes.  It provides various methods of convenience to reduce the amount of
 code you need to write.
 
 <div className="link">
-  See the <Link to="/counter-class">Counter Class</Link> page for a
+  See the <Link to="/version2/counter-class">Counter Class</Link> page for a
   demonstration and explanation of context classes
 </div>
 
@@ -62,14 +83,16 @@ The third example shows a slightly more complex case where we have a
 product catalogue and a basket that a user can add products to.
 
 <div className="link">
-  See the <Link to="/products-demo">Products and Basket</Link> page for the
+  See the <Link to="/version2/products-demo">Products and Basket</Link> page for the
   more complex example
 </div>
+
+## Further Information
 
 There are some tips on how to streamline your exports.
 
 <div className="link">
-  See the <Link to="streamlining">Streamlining Exports</Link> page for
+  See the <Link to="/version2/streamlining">Streamlining Exports</Link> page for
   enlightenment
 </div>
 
@@ -77,5 +100,6 @@ And if you're wonder about the different between using `Consumer` and `Use`
 then wonder no more.
 
 <div className="link">
-  See the <Link to="consumer-use">Consumer vs Use</Link> page for advice
+  See the <Link to="/version2/consumer-use">Consumer vs Use</Link> page for advice
 </div>
+
