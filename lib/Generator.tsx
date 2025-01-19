@@ -1,16 +1,19 @@
 import React from 'react'
 import { toArray } from './Utils'
 import { isFunction } from '@abw/badger-utils'
-import { ContextType, ProviderType } from './types'
+import { ContextType, GeneratorOptions, ProviderType } from './types'
 
 export const Generator = <
   ModelProps = { },
   RenderProps = ModelProps
 >(
     Model: ContextType<ModelProps, RenderProps>,
-    defaultState: RenderProps = { } as RenderProps,
-    Context = React.createContext<RenderProps>(defaultState)
+    options: GeneratorOptions<RenderProps> = { }
   ) => {
+  const defaultState = options.defaultState || { } as RenderProps
+  // const Context = options.context || React.createContext<RenderProps>(defaultState)
+  const Context = options.context || React.createContext<RenderProps>(defaultState)
+
   // Provider renders the Model component forwarding all props passed to it
   // along with a render prop to render the children inside a context provider
   const Provider: ProviderType<ModelProps> = props =>
@@ -34,6 +37,7 @@ export const Generator = <
         }
       </Context.Consumer>
 
+  // Children renders all children inside a context consumer
   const Children = ({ children }: { children: React.ReactNode }) =>
     toArray(children).map(
       (child, n) => isFunction(child)
@@ -43,9 +47,16 @@ export const Generator = <
         : child
     )
 
+  // Use allow a caller to use the context
   const Use = () => React.useContext(Context)
 
-  return { Context, Provider, Consumer, Children, Use }
+  return {
+    Context,
+    Provider,
+    Consumer,
+    Children,
+    Use
+  }
 }
 
 export default Generator

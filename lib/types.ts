@@ -9,6 +9,11 @@ export type DebugOptions = {
   // [key: string]: unknown
 }
 
+export type GeneratorOptions<RenderProps> = {
+  defaultState?: RenderProps
+  context?: React.Context<RenderProps>
+}
+
 // The render function takes render props and returns a JSX Element
 export type Render<RenderProps> = {
   render: (props: RenderProps) => JSX.Element
