@@ -1,0 +1,196 @@
+import App            from '@/lib/Products/App.jsx'
+import AppSrc         from '@/lib/Products/App.jsx?raw'
+import ProductsSrc    from '@/lib/Products/Products.js?raw'
+import LayoutSrc      from '@/lib/Products/Layout.jsx?raw'
+import ListSrc        from '@/lib/Products/List.jsx?raw'
+import InfoSrc        from '@/lib/Products/Info.jsx?raw'
+import BasketSrc      from '@/lib/Products/Basket.jsx?raw'
+import InBasketSrc    from '@/lib/Products/InBasket.jsx?raw'
+import NotInBasketSrc from '@/lib/Products/NotInBasket.jsx?raw'
+import UseSrc         from '@/lib/Products/useProducts.jsx?raw'
+import { Source }     from '@abw/badger-website'
+
+# Products Demo
+
+This is a more complex example showing how a context might be defined to
+manage a product catalogue and allow a user to add items to a basket.
+Debugging is enabled for this example so watch the Javascript console for
+messages as you click on the buttons.
+
+<App/>
+
+## `App.jsx`
+
+This is what our `App.jsx` application code looks like.
+
+<Source
+  code={AppSrc}
+  caption="App.jsx"
+  expand
+/>
+
+We're defining a context in `Products.js` and setting up the
+`Products.Provider` around a number of other components.
+
+## `Products.js`
+
+The `Products.js` is where all the fun happens.
+
+<Source
+  code={ProductsSrc}
+  caption="Products.js"
+  expand
+/>
+
+In line 11 we define an `initialState` which includes the `ready` flag which
+is initially set `false`. We also have an empty list of `products` and an
+empty `basket`.
+
+We use the `componentDidMount()` method on line 28 to call the
+`loadProducts()` method starting on line 32.  In a real world application this
+might be making an API call to load product details, but in this example we're
+simulating it with a delay before setting the state to include the sample
+products defined at the top of the file.
+
+As well as defining the array of `products` in the state we also build a
+`productById` index so we can quickly find a product by its `id`.  We also
+clear the `loading` flag and set `ready` to be `true`.
+
+The `selectProduct()` method on line 53 is exposed as an action (see the
+`static actions` declaration on line 20).  When called with a product `id`
+it fetches the product from the `productById` index and stores it in the
+state as `product`.
+
+The `addProductToBasket()` method / action on line 60 takes a product `id`,
+fetches the details from the `productById` index and adds it to the basket.
+If the item is already in the basket we increment the `count`, otherwise we
+set it to `1`.
+
+The `removeProductFromBasket()` method / action on line 75 removes the product
+from the basket.
+
+The `emptyBasket()` method / action on line 82 empties the basket.
+
+The `quantityInBasket()` method / action on line 87 returns the basket count
+for a particular product `id`, or 0 if it's not in the basket.
+
+The `getRenderProps()` method on line 97 allows us to tailor what we expose
+in the context.  By default, everything in the `context` returned by the
+`getContext()` method would be exposed as separate items.  This returns the
+current state, any methods exposed as `actions` and any properties passed
+to the context object (e.g. the `debug` flag).
+
+You can expose them all as separate items, but here we're imposing a bit more
+structure and bundling them all up as a single `Products` group.  For
+convenience we also expose the list of `products`, any `product` that might
+be currently selected, and the `basket`.
+
+## `Layout.jsx`
+
+The `Layout.jsx` component uses the `Products.Consumer` (on line 13) to
+subscribe to all those items that the `Products` context exports.  It's not
+interested in the `products`, `product` or `basket` but it does need to
+inspect the `ready` flag which is accessible via the `Products` passed as a
+property (line 4).
+
+The component checks the state of the `Products.ready` flag on line 7.  If
+the flag is set (i.e. the products have been loaded) then it renders all of
+its child component.  Otherwise it displays a "Loading..." message.
+
+<Source
+  code={LayoutSrc}
+  caption="Layout.jsx"
+  expand
+/>
+
+## `List.jsx`
+
+The `List.jsx` component is one of those children. It also uses the
+`Products.consumer` and receives the context data as the `Products` property,
+as well as the separate list of `products` and any currently selected
+`product`.  Note that we chose to expose these items separately as a
+convenience, but they are also accessible as `Products.products` and
+`Products.product`.
+
+It renders the products as a list of buttons.  Each one has an `onClick`
+handler which calls the `Products.selectProduct()` method to select the
+product. We compare each one to the currently selected `product` and set the
+button colour depending on it being selected or not.
+
+We also add the current count of each product in the basket by calling the
+`Products.quantityInBasket()` method.
+
+<Source
+  code={ListSrc}
+  caption="List.jsx"
+  expand
+/>
+
+## `Info.jsx`
+
+The `Info.jsx` component consumes the context data but it is only interested
+in the currently selected `product`. If there is one then it displays some
+information about the product and renders the `Basket` component. Otherwise
+it prompts the user to select a product.
+
+<Source
+  code={InfoSrc}
+  caption="Info.jsx"
+  expand
+/>
+
+## `Basket.jsx`
+
+The `Basket.jsx` component also needs access to the context data. To
+demonstrate the other way of accessing this data, it uses the `useProducts()`
+function, imported on line 2 and used on line 7.
+
+If the currently selected product is in the basket then it renders the
+`InBasket` component on line 12. Otherwise it renders the `NotInBasket`
+component on line 13.
+
+If the basket contains any items then it also renders a button to empty the
+basket (lines 16 to 21). Otherwise it displays a message saying that the
+basket is empty, on line 22.
+
+<Source
+  code={BasketSrc}
+  caption="Basket.jsx"
+  expand
+/>
+
+## `InBasket.jsx`
+
+The `InBasket.jsx` component displays a message telling the user how many of
+the currently select product they have in their basket on line 7. It also
+displays buttons to add another one to the basket (lines 10 to 15) or to
+remove it from the basket altogether (lines 16 to 21).
+
+<Source
+  code={InBasketSrc}
+  caption="InBasket.jsx"
+  expand
+/>
+
+## `NotInBasket.jsx`
+
+The `NotInBasket.jsx` component displays a message telling the user that they
+don't have any in their basket (line 7) along with a button for them to add
+it to the basket (lines 10 to 15).
+
+<Source
+  code={NotInBasketSrc}
+  caption="NotInBasket.jsx"
+  expand
+/>
+
+## `useProducts.js`
+
+For completeness, here's the trivially simple `useProducts.jsx` component
+that simply re-exports the `Products.Use` function.
+
+<Source
+  code={UseSrc}
+  caption="useProducts.jsx"
+  expand
+/>

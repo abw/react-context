@@ -1,0 +1,101 @@
+import App        from '@/lib/Nested/App.jsx'
+import AppSrc     from '@/lib/Nested/App.jsx?raw'
+import ContextSrc from '@/lib/Nested/Context.js?raw'
+import OuterSrc   from '@/lib/Nested/Outer.jsx?raw'
+import InnerSrc   from '@/lib/Nested/Inner.jsx?raw'
+import DataSrc    from '@/lib/Nested/Data.jsx?raw'
+import SetterSrc  from '@/lib/Nested/Setter.jsx?raw'
+import { Source } from '@abw/badger-website'
+
+# Nested Contexts
+
+It's possible to reuse the same React Context object in different generated
+contexts. Here's a demo showing how you can do that.
+
+<App/>
+
+## `App.jsx`
+
+This is what our application code `App.jsx` looks like.
+
+<Source
+  code={AppSrc}
+  caption="App.jsx"
+  expand
+/>
+
+## `Context.js`
+
+The first thing we have to do is create a React Context object that we can
+share.
+
+<Source
+  code={ContextSrc}
+  caption="Context.js"
+  expand
+/>
+
+## `Outer.jsx`
+
+The outer context maintains a `data` object using `React.useState` and
+implements a `setItem` function to set the value of an item in that `data`
+object.
+
+The call to `Generator` on line 18 passes the `Context` object that we import
+from `Context.js` as the third argument. The second argument is the
+`defaultState` which we can set to an empty object.
+
+<Source
+  code={OuterSrc}
+  caption="Outer.jsx"
+  expand
+/>
+
+## `Inner.jsx`
+
+The inner context works much the same with a couple of differences. One line
+8 it accesses the `setItem()` function provided by the `Outer` context by
+making a call to `Outer.Use()`. It aliases that to `setOuterItem`. Then in
+its own `setItem()` function it updates its own `data` object and
+additionally calls the `setOuterItem()` function to set a data item in the
+outer context using the `name` defined as a property.
+
+In the example above we create two nested `Inner` contexts, the first having
+the `name` set to `one` and the second being `two`.
+
+<Source
+  code={InnerSrc}
+  caption="Inner.jsx"
+  expand
+/>
+
+## `Data.jsx`
+
+The `Data` component simply displays the stringified data in the context.
+
+<Source
+  code={DataSrc}
+  caption="Data.jsx"
+  expand
+/>
+
+## `Setter.jsx`
+
+The `Setter` component implements some buttons that call the `setItem()`
+function when clicked.
+
+<Source
+  code={SetterSrc}
+  caption="Setter.jsx"
+  expand
+/>
+
+
+Both the `Data` and `Setter` components are consumers of the `Outer` context
+(line 10 of `Data.jsx` and line 12 of `Setter.jsx`).
+
+However, both the `Outer` and `Inner` contexts share the same underlying
+React Context object that we created in the `Context.js`. This means that the
+`Data` and `Setter` components will attach to the closest parent context,
+either provided by `Outer` or by `Inner`.
+
