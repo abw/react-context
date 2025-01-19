@@ -29,6 +29,6 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["lib/**/*"]
-  // "include": ["lib/**/*", "test/**/*"]
+  // "include": ["lib/**/*"]
+  "include": ["lib/**/*", "test/**/*", "web/**/*"]
 }
