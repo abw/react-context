@@ -1,7 +1,7 @@
 import React from 'react'
 import { toArray } from './Utils'
 import { isFunction } from '@abw/badger-utils'
-import { ContextType, GeneratorOptions, ProviderType } from './types'
+import { ContextType, GeneratorOptions, ProviderType, RenderChild } from './types'
 
 export const Generator = <
   ModelProps = { },
@@ -42,7 +42,7 @@ export const Generator = <
     toArray(children).map(
       (child, n) => isFunction(child)
         ? <Context.Consumer key={n}>
-            {child}
+            { child as RenderChild<RenderProps> }
           </Context.Consumer>
         : child
     )
