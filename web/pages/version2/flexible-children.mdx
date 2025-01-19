@@ -1,0 +1,73 @@
+import App2aSrc   from '@/lib/Counter1/App2a.jsx?raw'
+import App2bSrc   from '@/lib/Counter1/App2b.jsx?raw'
+import App3a      from '@/lib/Counter1/App3a.jsx'
+import App3aSrc   from '@/lib/Counter1/App3a.jsx?raw'
+import App3b      from '@/lib/Counter1/App3b.jsx'
+import App3bSrc   from '@/lib/Counter1/App3b.jsx?raw'
+import App3c      from '@/lib/Counter1/App3c.jsx'
+import App3cSrc   from '@/lib/Counter1/App3c.jsx?raw'
+import { Source, Split } from '@abw/badger-website'
+
+# Flexible Children
+
+You might want to create an app container that implements the context provider
+and renders any contained children.  The usual approach would be like this.
+
+<Source
+  code={App2aSrc}
+  caption="App2a.jsx"
+  expand
+/>
+
+Now we can use this generic `App2a.jsx` component to build a component which
+has some custom content.
+
+<Split>
+  <Source
+    code={App3aSrc}
+    caption="App3a.jsx"
+    expand
+  />
+  <App3a/>
+</Split>
+
+For a bit more flexibility you can wrap the `children` elements in the
+`Children` component returned by the context generator.
+
+<Source
+  code={App2bSrc}
+  caption="App2b.jsx"
+  expand
+/>
+
+Everything works the same as before, with one useful addition.  If you
+define a function as an immediate child element then it will be called
+with all the context values.  This can be particularly useful for
+debugging, for example, where you want to access the context but may
+not want to write a dedicated component to do so.
+
+<Split>
+  <Source
+    code={App3bSrc}
+    caption="App3b.jsx"
+    expand
+    highlightLines="10"
+  />
+  <App3b/>
+</Split>
+
+Note that this only works if a function is an <i>immediate</i> child
+of the app container.  If you want to include functions nested within
+other elements then you should enclose them in the `Children`{' '}
+component.
+
+<Split>
+  <Source
+    code={App3cSrc}
+    caption="App3c.jsx"
+    expand
+    highlightLines="11,24"
+  />
+  <App3c/>
+</Split>
+
