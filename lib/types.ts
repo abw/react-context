@@ -45,3 +45,4 @@ export type WithRequired<T, K extends keyof T> =
 
 export type WithRequiredFrom<T extends Partial<D>, D> =
   T & Required<Pick<T, keyof D>>
+
