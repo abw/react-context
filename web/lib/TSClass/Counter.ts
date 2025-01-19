@@ -1,12 +1,14 @@
 import { Generator, Context } from '@/lib/index'
-import { CounterProps, CounterState, CounterRenderProps } from './Types'
+/* START */
+// PRETEND: import { Generator, Context } from '@abw/react-context'
+import { CounterProps, CounterState, CounterActions } from './Types'
 
 class Counter extends Context<
   CounterProps,
   CounterState,
-  CounterRenderProps
+  CounterActions
 > {
-  // Corresponds to CounterProps
+  // Corresponds to CounterState
   static initialState = {
     count: 0,
   }

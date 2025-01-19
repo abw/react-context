@@ -59,7 +59,6 @@ can import the `SetState` type alias and use that instead if you prefer.
   expand
 />
 
-
 ## Generator
 
 When we create the model function, we type it using the `ContextType` generic
@@ -141,12 +140,14 @@ type parameter.
 ## Use
 
 If you're using the `Use` hook to access the context properties then the values
-returned will automatically be typed.
+returned will automatically be typed.  As discussed in previous examples, hooks
+like this should be of the form `useSomething`.  To keep things simple for
+this example, we'll define an alias on line 3 and then use it on line 6.
 
 <Source
   code={BignumSrc}
   caption="Bignum.tsx"
-  highlightLines="4"
+  highlightLines="3,6"
   expand
 />
 
@@ -157,7 +158,7 @@ has a default `string` type which Typescript can infer automatically.
 <Source
   code={BignumSizeSrc}
   caption="Bignum.tsx"
-  highlightLines="4"
+  highlightLines="5"
   expand
 />
 

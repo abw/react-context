@@ -124,11 +124,16 @@ need them.
 
 ## Use
 
-The generator also creates a `.Use()` function to access the context.  This
-is the preferred way to access a context in modern React.  As with the
-`.Consumer()`, this returns all the context data.  In this example we're
-only using `inc` and `dec` but the other properties (`count` and `setCount`)
-are there if you need them.
+The generator also creates a `.Use()` function to access the context.  Calling
+a `use` hook is the preferred way to access a context in modern React.  However,
+calling it this way (as `Counter.Use()`) isn't considered best practice.  It
+should be named something like `useCounter()`.  We'll address that next, but
+for now it's useful to understand that the `Use()` function is there in the
+`Counter` object and that it works the same way.
+
+As with the `.Consumer()`, this returns all the context data.  In this example
+we're only using `inc` and `dec` but the other properties (`count` and
+`setCount`) are there if you need them.
 
 <Source
   code={ControlsSrc}

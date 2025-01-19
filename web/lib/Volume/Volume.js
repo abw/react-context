@@ -20,7 +20,7 @@ const Volume = ({initialVolume=0, maxVolume=11, render}) => {
 const generated = Generator(Volume)
 
 export const {
-  Context, Provider, Consumer, Children,
+  Provider, Consumer,
   Use: useVolume
 } = generated
 

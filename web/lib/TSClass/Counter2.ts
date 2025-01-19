@@ -1,11 +1,13 @@
 import { Generator, Context } from '@/lib/index'
-import { CounterProps, CounterState, CounterRenderProps } from './Types'
+/* START */
+// PRETEND: import { Generator, Context } from '@abw/react-context'
+import { CounterProps, CounterState, CounterActions } from './Types'
 
 export default Generator(
   class Counter extends Context<
     CounterProps,
     CounterState,
-    CounterRenderProps
+    CounterActions
   > {
     static initialState = {
       count: 0,
@@ -14,6 +16,7 @@ export default Generator(
       count: 'initialCount'
     }
     static actions = 'inc dec'
+
     inc(n=1) {
       this.debug(`inc(${n})`)
       this.setState({ count: this.state.count + n })
@@ -24,4 +27,3 @@ export default Generator(
     }
   }
 )
-// export default Generator(Counter)

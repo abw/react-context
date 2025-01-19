@@ -1,0 +1,82 @@
+import App         from '@/web/lib/Actions/App.tsx'
+import AppSrc      from '@/web/lib/Actions/App.tsx?raw'
+import ContextSrc  from '@/web/lib/Actions/Context.ts?raw'
+import ControlsSrc from '@/web/lib/Actions/Controls.tsx?raw'
+import VolumeSrc   from '@/web/lib/Actions/Volume.tsx?raw'
+import { Example, Source, Snippet } from '@abw/badger-website'
+
+# Class Component Actions
+
+One of the nice things about the base class `Context` is that it provides
+shortcut functionality to make life easier.  For example, if you define a
+static `actions` member then it will automatically bind all the methods
+it lists as callable functions.  These are stored in `this.actions` and
+automatically added to the context data passed to consumers.
+
+We saw an example of this in [the previous example](class-based#generator)
+where we defined `actions` to be `inc dec` to automatically expose the
+`inc` and `dec` methods to consumers.
+
+The problem with this is that it relies on Javascript's dynamic nature and
+maps those methods at runtime.  This is bad because it means those methods
+aren't typed.
+
+In this section we'll look at how to fix that.  But first, let's look at
+what we're going to build.
+
+<App/>
+
+And this is what the source code looks like.
+
+<Source
+  code={AppSrc}
+  caption="App.tsx"
+  expand
+/>
+
+## Context Model
+
+Here's the code for our context model.
+
+It's similar to previous examples with a few differences.  We now define an
+`AmplifierActions` type in lines 13 to 18.  Then we override the base class
+`initActions()` method in lines 37-44 and manually bind the relevant methods.
+There's no shortcut alternative to this, as far as I know.  The benefit of
+this more long-winded approach is that Typescript can correctly infer the
+types of the bound methods and check that the object we return matches the
+`AmplifierActions` type.
+
+<Source
+  code={ContextSrc}
+  caption="Context.ts"
+  highlightLines="13-18,37-44"
+  expand
+/>
+
+## Controls Component
+
+We can now consume these action functions in our components and they will
+be type checked.  This is the code for the `Controls` component which renders
+the buttons to change the volume.  If you try and pass a string to
+`setVolume()`, for example, you'll get a Typescript error telling you that it
+expects a number, not a string.
+
+<Source
+  code={ControlsSrc}
+  caption="Controls.tsx"
+  highlightLines="4"
+  expand
+/>
+
+## Volume Component
+
+There's not much to say about the `Volume` component, but here it is for
+completeness.
+
+<Source
+  code={VolumeSrc}
+  caption="Volume.tsx"
+  highlightLines="4"
+  expand
+/>
+

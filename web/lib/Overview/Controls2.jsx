@@ -2,7 +2,7 @@ import React from 'react'
 import useCounter from './useCounter.js'
 
 const Controls = () => {
-  const { inc, dec } = useCounter()
+  const { inc, dec } = useCounter()   // much better
   return (
     <div className="flex gap-2 brand">
       <button onClick={() => dec(10)}>-10</button>

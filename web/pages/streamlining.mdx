@@ -1,6 +1,7 @@
 import App        from '../lib/Volume/App.jsx'
 import AppSrc     from '../lib/Volume/App.jsx?raw'
 import VolumeSrc  from '../lib/Volume/Volume.js?raw'
+import Volume2Src from '../lib/Volume/Volume2.js?raw'
 import ButtonsSrc from '../lib/Volume/Buttons.jsx?raw'
 import SliderSrc  from '../lib/Volume/Slider.jsx?raw'
 import DisplaySrc from '../lib/Volume/Display.jsx?raw'
@@ -8,12 +9,20 @@ import { Source } from '@abw/badger-website'
 
 # Streamlining Exports
 
-You may find it a bit cumbersome writing things like `Products.Provider` and
-`Products.Consumer`. I know I do.
+You may find it a bit cumbersome writing things like `Counter.Provider` and
+`Counter.Consumer`. I know I do.  Furthermore, the use of `Counter.Use` is
+considered bad practice and should be avoided.  In the previous example we
+created a simple `useCounter` wrapper around it so that our code could
+conform to convention.
+
+But we can do better.
 
 If you need that little extra push over the cliff you can streamline the
 exports from your context module to allow the different components to be
 imported by name.  It's one louder.
+
+Before we start, let's look at the application we're going to be demonstrating
+in this section.  Drag the slider or click on the buttons to change the volume.
 
 <App/>
 
@@ -33,6 +42,16 @@ default export to be the `generated` object as usual.
   code={VolumeSrc}
   caption="Volume.js"
   highlightLines="18,20-23,25"
+  expand
+/>
+
+You don't have to stop there.  You can always give more meaningful names
+to your `Provider` and `Consumer` as well if you want to.
+
+<Source
+  code={Volume2Src}
+  caption="Volume.js"
+  highlightLines="5,6"
   expand
 />
 

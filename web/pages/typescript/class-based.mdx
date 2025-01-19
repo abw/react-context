@@ -7,14 +7,25 @@ import ControlsStep2Src from '@/web/lib/TSClass/ControlsStep2.tsx?raw'
 import BignumSrc        from '@/web/lib/TSClass/Bignum.tsx?raw'
 import App              from '@/web/lib/TSClass/App.tsx'
 import AppSrc           from '@/web/lib/TSClass/App.tsx?raw'
-import { Example, Source, Snippet } from '@abw/badger-website'
+import { Example, Source } from '@abw/badger-website'
 
 # Typescript and Class Based Components
 
 Things get a little bit more complicated when using class components with
-Typescript.  This example is the Typescript equivalent of the
+Typescript.  If you're writing a new context from scratch then writing it as
+a [functional component](functional) might be the best bet.
+
+That said, there are still some benefits to be had from using class based
+components.  If you've got an existing class based component that you don't
+want to rewrite then migrating it to Typescript isn't *too* difficult. But
+there are a few things you need to be aware of if you want to maintain full
+type safety.
+
+This example is the Typescript equivalent of the
 [Counter Class](../counter-class) example which defines a model class which
-extends the `Context` base class.
+extends the `Context` base class.  We'll start off by making it "Just Work"
+and then we'll look at some of the deeper issues relating to full type
+safety.
 
 <Example
   Component={App}
@@ -32,8 +43,15 @@ be passed to the provider for initial configuration.
 The second is `CounterState` which defines the properties that the class can
 store in its internal state.
 
-The third is `CounterRenderProps` which are the properties that will be stored
-in the context and passed to consumers.
+The third is `CounterActions` which defines the methods that will be bound as
+callable functions and passed to consumers.  This is controlled by the
+`actions` state item.  In this example there's an element of type unsafety
+which we will look at improving in the next section.
+
+The final type is `CounterRenderProps` which is the intersection of the
+previous three.  This usually isn't required as it's generated automatically,
+but we've included it here because some of the following code snippets depend
+on it.
 
 <Source
   code={TypesSrc}
@@ -44,14 +62,29 @@ in the context and passed to consumers.
 ## Generator
 
 We then define a class which extends the base class `Context`, passing the
-`CounterProps`, `CounterState` and `CounterRenderProps` types as generic
-type parameters.
+`CounterProps`, `CounterState` and `CounterActions` types as generic
+type parameters.  Each of these types are optional.  The fourth implicit
+type, not shown here, is equivalent to `CounterRenderProps`.  The default
+value is an intersection of the first three.  If you want to pass additional
+properties to your consumers then you'll need to add them to your definition
+of `CounterRenderProps` and pass that as the fourth generic type parameter.
 
 There are three static items that are related to the types.  The `initialState`
-defines the default state for the class.  The `initialProps` indicates that the
-`count` state variable can be set by the `initialCount` property.  The `actions`
-lists the methods that should be converted to callable functions and passed to
-consumers.
+on line 10 defines the default state for the class.  This should have the same
+type as `CounterState`.
+
+The `initialProps` on line 14 is used to set the state from the props.  In this
+example the `count` state variable can be set by the `initialCount` property.
+The keys should be properties in your `CounterState` and the values should be
+in `CounterProps`.
+
+The `actions` on line 18 lists the methods that should be converted to callable
+functions and passed to consumers.  These correspond to the `CounterActions`
+type.
+
+Note that these items are where we start to lose type safety.  There's some
+funky magic going on in the base class which takes advantage of Javascript's
+dynamic nature.
 
 The other static items shown here enable debugging and set the debug prefix and
 color.  Check out the Javascript console to see the debugging messages.
@@ -64,7 +97,7 @@ result as the default export.
 <Source
   code={CounterSrc}
   caption="Counter.ts"
-  highlightLines="4-8,35"
+  highlightLines="4-8,10,14,18,35"
   expand
 />
 
@@ -83,7 +116,8 @@ via the `Consumer()` wrapper function.  The properties should be typed as
 
 If you define the function inside the call to `Context.Consumer` then you
 don't need to worry about declaring the types of the properties.  Typescript
-will be able to infer that automatically.
+will be able to infer that automatically.  If you make use of this then you
+generally don't need to define `CounterRenderProps` explicitly.
 
 <Source
   code={ControlsSrc}
@@ -124,139 +158,7 @@ be able to infer the property types automatically.
 <Source
   code={BignumSrc}
   caption="Bignum.tsx"
-  highlightLines="4"
+  highlightLines="6"
   expand
 />
 
-## defaultProps
-
-If your class component uses `defaultProps` to provide default values for
-your properties then you've got a problem.
-
-Typescript [has supported the use of `defaultProps`](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-0.html#support-for-defaultprops-in-jsx)
-since version 3, but it only really works inside the class component.  It
-also requires you to mark your properties as being required, even though
-they're not.
-
-Consider this example which works correctly but confuses Typescript.
-The `initialVolume` property is marked as being optional because a default
-value is provided by `defaultProps`.  However typescript will complain when
-you try to use `this.props.initialVolume` to set the `volume` state variable
-on line 19. It thinks it might be undefined because it's an optional property,
-even though we can clearly see that it will always be defined by virtue of the
-`defaultProps`.
-
-<Snippet file="typescript/Amplifier1.tsx" expand/>
-
-To "fix" this problem, the Typescript documentation says we should remove the
-optional marker (`?`) from the property type.
-
-<Snippet file="typescript/AmplifierProps.tsx" expand/>
-
-It works inside the context class and the previous Typescript error is silenced.
-But it's just created another problem.  When you try to use your context
-provider you'll get a Typescript error telling you that you forgot to include
-the `initialVolume` property.  This is because the provider is using the
-`AmplifierProps` to type check the `Provider` and according to that, the
-`initialVolume` property is mandatory.
-
-<Snippet file="typescript/UseAmplifier.tsx" expand/>
-
-
-<div class="flex gap-8 mar-t-8">
-  ![frustration](../frustration.gif)
-  <div>
-    <h1 className="mar-v-none">Typescript is not the messiah.</h1>
-    <h2 className="mar-t">It's a very naughty boy.</h2>
-  </div>
-</div>
-
-There are no simple solutions that I can find or come up with, despite many
-hours wasted randomly mashing away at the keyboard like a demented monkey.
-
-The best I could come up with were a number of sub-optimal workarounds.
-If anyone has any better solutions than these then I'd love to hear them.
-
-### Workaround 1
-
-The first option is to move `defaultProps` out of the class into a regular
-constant object (lines 1-3 below).  Set the type for those properties to be
-optional (line 6) and defensively code around any places where you access
-those properties to fall back on your `defaultProps` (line 19).
-
-<Snippet
-  file="typescript/AmplifierWorkaround1.tsx"
-  highlightLines="1-3,6,19"
-  expand
-/>
-
-### Workaround 2
-
-Another option is to do a little extra work up front and define something
-like `this.config` that contains a combination of the `defaultProps` and
-`props`.  This is shown in the example below.
-
-<Snippet
-  file="typescript/AmplifierWorkaround2.tsx"
-  highlightLines="5-11,14,17,21-24,26,29-33"
-  expand
-/>
-
-To be able to type it properly you'll need to split your props
-type into two separate types: one for all the properties that are in
-`defaultProps` (`AmplifierDefaultProps` on lines 5-7) and one for those that
-aren't (`AmplifierRegularProps` on lines 8-10).  Combine them into a single
-type (`AmplifierProps` on line 11) to use for the Context props.
-
-Then inside your class object you can type `config` as the intersection of
-the regular property type (`AmplifierRegularProps`) and a `Required` version
-of the type for the default props (`AmplifierDefaultProps`), as shown on line
-17.
-
-Then you can define `this.config` to be a combined spread of `defaultProps`
-and `props` (lines 21-24).  Now you can safely access `this.config.initialVolume`
-on line 26 and Typescript will be able to tell that this value is always
-defined as a number.
-
-One thing to bear in mind: if your properties are likely to change then you
-should implement a `componentDidUpdate()` method to re-generate `this.config`
-from the new set of `props` (lines 29-33).
-
-### Workaround 3
-
-If you find that all to be a bit messy then another approach is to define a
-single type for your props and use the `WithRequired` utility type to
-selectively convert the relevant values from optional to required.
-
-<Snippet
-  file="typescript/AmplifierWorkaround3.tsx"
-  highlightLines="1,8-12,23,32,33"
-  expand
-/>
-
-The `WithRequired` utility type is used to convert the
-two optional properties, `initialVolume` and `initialColour` in the
-`AmplifierProps` on lines 8-12, into required properties for `this.config`
-on line 23.
-
-Once again, you can then safely use the values in `this.config` on lines
-32 and 33 without fear of Typescript getting all up in your shit.  See the
-note in the previous workaround about the possible need to add a
-`componentDidUpdate()` method.  It's not included in this example for the
-sake of brevity.
-
-### Workaround 4
-
-If you've got a lot of default properties then it can be a bit tedious
-(and potentially error prone) to explicitly list all the keys in the
-`defaultProps` when you call `WithRequired`.
-
-A better approach in this case is to use the `WithRequiredFrom` utility
-type that allows you to pass the `typeof defaultProps` as the second
-argument and it will extract all the relevant keys.
-
-<Snippet
-  file="typescript/AmplifierWorkaround4.tsx"
-  highlightLines="1,9"
-  expand
-/>

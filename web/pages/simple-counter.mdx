@@ -133,7 +133,8 @@ to the `inc` and `dec` functions.
 ## `Bignum.jsx`
 
 The `Bignum.jsx` component takes a different approach which tends to be
-preferred these days.
+preferred these days: calling a "use" hook inside a component to access the
+context values.
 
 <Source
   code={BignumSrc}
@@ -146,11 +147,20 @@ Instead of wrapping the exported component in a call to `Counter.Consumer`,
 it calls the `Counter.Use()` function which, provides access to the context
 state and actions.
 
+While this works in theory, it's a bad idea to call it like this in practice.
+The convention for React is that hooks should be of the form `useSomething()`.
+This is not only good to help other developers understand what's going on, but
+it also provides necessary clues to static code analysing tools (e.g. eslint).
+
 ## `useCounter.js`
+
+To be good React developers, we should to define a `useCounter()` function as
+a wrapper around `Counter.User()`.
 
 The `useCounter.js` file simply re-exports the `Use` function for the sake of
 convention.  It allows us to use the `useCounter()` function to access the
-context which is a little less clunky than `Counter.Use()`.
+context which is a little less clunky (and goodlier practice) than the
+non-standard `Counter.Use()`.
 
 <Source
   code={UseCounterSrc}

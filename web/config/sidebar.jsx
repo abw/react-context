@@ -12,9 +12,9 @@ const sidebar = {
       title: 'Functional Components',
       menu: [
         { to: '/simple-counter',    text: 'Simple Counter' },
-        { to: '/flexible-children', text: 'Flexible Children' },
         { to: '/streamlining',      text: 'Streamlining Exports' },
         { to: '/consumer-use',      text: 'Consumer vs Use' },
+        { to: '/flexible-children', text: 'Flexible Children' },
       ]
     },
     {
@@ -29,6 +29,8 @@ const sidebar = {
       menu: [
         { to: '/typescript/functional',   text: 'Functional Components' },
         { to: '/typescript/class-based',  text: 'Class Based Components' },
+        { to: '/typescript/default-props', text: 'defaultProps' },
+        { to: '/typescript/class-actions', text: 'Actions' },
       ]
     },
     {
