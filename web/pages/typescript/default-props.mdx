@@ -131,3 +131,22 @@ argument and it will extract all the relevant keys.
   highlightLines="1,9"
   expand
 />
+
+### Caveat
+
+If you use one of the workarounds shown above then be warned that moving the
+`defaultProps` out of the class means that they won't automatically be
+forwarded to your consumers.
+
+If you're only using the `defaultProps` inside the class then that's probably
+not a problem.  But if you're defining default values that your consumers will
+rely on then you need to add a custom `getRenderProps` function which exposes
+them.
+
+Something like this:
+
+<Snippet
+  file="typescript/AmplifierWorkaround5.tsx"
+  highlightLines="11-15"
+  expand
+/>
