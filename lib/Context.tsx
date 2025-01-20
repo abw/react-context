@@ -1,9 +1,9 @@
 import React from 'react'
 import { actionMethods, debugFunction, prepareState } from './Utils'
-import { DebugConfigOption, DebugMethod, PropsWithRender } from './types'
+import { DebugConfigOption, DebugMethod, DebugOptions, PropsWithRender } from './types'
 
 export class Context<
-  Props extends Record<string, unknown> = { },
+  Props extends DebugOptions = { },
   State extends Record<string, unknown> = { },
   Actions extends Record<string, unknown> = { },
   RenderProps = Props & State & Actions
@@ -24,10 +24,9 @@ export class Context<
   // https://github.com/microsoft/TypeScript/issues/3841#issuecomment-2381594311
   declare ['constructor']: typeof Context
 
-  // @ts-expect-error  This is too painful with Typescript
-  constructor(props) {
+  constructor(props: PropsWithRender<Props, RenderProps>) {
     super(props)
-    const statics     = this.constructor//  as T
+    const statics     = this.constructor
     const debug       = statics.debug
     const debugPrefix = statics.debugPrefix
     const debugColor  = statics.debugColor
