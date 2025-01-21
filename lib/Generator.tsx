@@ -1,7 +1,9 @@
 import React from 'react'
 import { toArray } from './Utils'
 import { isFunction } from '@abw/badger-utils'
-import { ContextType, GeneratorOptions, ProviderType, RenderChild } from './types'
+import {
+  ContextType, GeneratorOptions, ProviderType, RenderChild, RenderChildren
+} from './types'
 
 export const Generator = <
   ModelProps = { },
@@ -38,13 +40,13 @@ export const Generator = <
       </Context.Consumer>
 
   // Children renders all children inside a context consumer
-  const Children = ({ children }: { children: React.ReactNode }) =>
+  const Children = ({ children }: RenderChildren<RenderProps>) =>
     toArray(children).map(
       (child, n) => isFunction(child)
         ? <Context.Consumer key={n}>
             { child as RenderChild<RenderProps> }
           </Context.Consumer>
-        : child
+        : child as React.ReactNode
     )
 
   // Use allow a caller to use the context
