@@ -20,6 +20,8 @@ export default tseslint.config(
     rules: {
       ...reactHooks.configs.recommended.rules,
       "@typescript-eslint/no-empty-object-type": "off",
+      "react/jsx-uses-react": "off",
+      "react/react-in-jsx-scope": "off",
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },
