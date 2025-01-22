@@ -72,16 +72,21 @@ it(
 const App2 = (props: CounterProps) =>
   <Counter.Provider {...props}>
     <Counter.Children>
-      Hello
-      <div>foo</div>
       {
-        ({ count, inc, dec }) =>
+        ({ count }) =>
+          <div data-testid="count">{count}</div>
+      }
+    </Counter.Children>
+    <Counter.Children>
+      <div>before</div>
+      {
+        ({ inc, dec }) =>
           <div>
-            <div data-testid="count">{count}</div>
             <button data-testid="inc" onClick={() => inc()}>Inc</button>
             <button data-testid="dec" onClick={() => dec()}>Dec</button>
           </div>
       }
+      <div>after</div>
     </Counter.Children>
   </Counter.Provider>
 

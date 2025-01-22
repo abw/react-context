@@ -24,7 +24,8 @@ export type Render<RenderProps> = {
 export type RenderChild<RenderProps> = (value: RenderProps) => React.ReactNode
 
 export type RenderChildren<RenderProps> = {
-  children: Array<React.ReactNode | RenderChild<RenderProps>>
+  children:
+    RenderChild<RenderProps> | Array< React.ReactNode | RenderChild<RenderProps> >
 }
 
 
