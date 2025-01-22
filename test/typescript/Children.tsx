@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import userEvent from '@testing-library/user-event'
-import { Generator, SetState } from '@/lib/index'
+import { Generator, RenderChildren, SetState } from '@/lib/index'
 import { ReactNode, useState } from 'react'
 import { it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
@@ -88,7 +88,43 @@ const App2 = (props: CounterProps) =>
       }
       <div>after</div>
     </Counter.Children>
+    <MoreChildren/>
+    <NoChildren/>
   </Counter.Provider>
+
+type CounterChildren = RenderChildren<CounterRenderProps>
+
+const MaybeChildren = Counter.Consumer<
+  CounterChildren
+>(
+  ({
+    children
+  }) =>
+    <div>
+      { children
+        ? <Counter.Children>
+            {children}
+          </Counter.Children>
+        : <div>No Children</div>
+      }
+    </div>
+)
+
+const MoreChildren = () =>
+  <MaybeChildren>
+    {
+      ({ inc, dec }) =>
+        <div>
+          <button data-testid="inc10" onClick={() => inc(10)}>Inc 10</button>
+          <button data-testid="dec10" onClick={() => dec(10)}>Dec 10</button>
+        </div>
+    }
+  </MaybeChildren>
+
+const NoChildren = () =>
+  <MaybeChildren>
+    <div data-testid="message">Hello World</div>
+  </MaybeChildren>
 
 it(
   'children',
@@ -105,5 +141,16 @@ it(
     expect(count).toHaveTextContent('2')
     await userEvent.click(dec)
     expect(count).toHaveTextContent('1')
+
+    const inc10 = screen.getByTestId('inc10')
+    const dec10 = screen.getByTestId('dec10')
+    await userEvent.click(inc10)
+    expect(count).toHaveTextContent('11')
+    await userEvent.click(dec10)
+    expect(count).toHaveTextContent('1')
+
+    const message = screen.getByTestId('message')
+    expect(message).toHaveTextContent('Hello World')
   }
 )
+

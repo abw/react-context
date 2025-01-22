@@ -25,9 +25,10 @@ export type RenderChild<RenderProps> = (value: RenderProps) => React.ReactNode
 
 export type RenderChildren<RenderProps> = {
   children:
-    RenderChild<RenderProps> | Array< React.ReactNode | RenderChild<RenderProps> >
+    React.ReactNode |
+    RenderChild<RenderProps> |
+    Array< React.ReactNode | RenderChild<RenderProps> >
 }
-
 
 // The properties passed to the provider model include a render() function
 // with Render type.  This type adds this render function to Props.
