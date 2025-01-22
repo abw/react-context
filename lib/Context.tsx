@@ -1,9 +1,9 @@
 import React from 'react'
 import { actionMethods, debugFunction, prepareState } from './Utils'
-import { DebugConfigOption, DebugMethod, DebugOptions, PropsWithRender } from './types'
+import { ContextDebugConfigOption, ContextDebugOptions, DebugMethod, PropsWithRender } from './types'
 
 export class Context<
-  Props extends DebugOptions = { },
+  Props extends ContextDebugOptions = ContextDebugOptions,
   State extends Record<string, unknown> = { },
   Actions extends Record<string, unknown> = { },
   RenderProps = Props & State & Actions
@@ -15,8 +15,8 @@ export class Context<
   static initialProps = { }
   static actions: string | string[] = [ ]
   static debug: boolean = false
-  static debugPrefix: DebugConfigOption = undefined
-  static debugColor: DebugConfigOption  = undefined
+  static debugPrefix: ContextDebugConfigOption = undefined
+  static debugColor:  ContextDebugConfigOption = undefined
 
   debug: DebugMethod
   actions: Actions
@@ -32,7 +32,10 @@ export class Context<
     const debugColor  = statics.debugColor
 
     // add debug() method if static debug flag or debug prop is set
-    this.debug = debugFunction(props, { debug, debugPrefix, debugColor })
+    this.debug = debugFunction(
+      props,
+      { debug, debugPrefix, debugColor }
+    )
 
     // define initial state
     this.state = prepareState(

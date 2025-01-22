@@ -1,13 +1,15 @@
 import { PropsWithChildren } from 'react'
 
-export type DebugConfigFunction = (...args: unknown[]) => string
-export type DebugConfigOption = undefined | string | DebugConfigFunction
-export type DebugOptions = {
+export type ContextDebugConfigFunction = (...args: unknown[]) => string
+export type ContextDebugConfigOption = undefined | string | ContextDebugConfigFunction
+export type ContextDebugOptions = {
   debug?: boolean,
-  debugPrefix?: DebugConfigOption,
-  debugColor?: DebugConfigOption,
-  // [key: string]: unknown
+  debugPrefix?: ContextDebugConfigOption,
+  debugColor?:  ContextDebugConfigOption,
 }
+
+export type ContextProps<T> = ContextDebugOptions & T
+export type ContextConstructorProps<P={},S={},A={}> = PropsWithRender<P, P & S & A>
 
 export type GeneratorOptions<RenderProps> = {
   defaultState?: RenderProps
@@ -24,6 +26,7 @@ export type RenderChild<RenderProps> = (value: RenderProps) => React.ReactNode
 export type RenderChildren<RenderProps> = {
   children: Array<React.ReactNode | RenderChild<RenderProps>>
 }
+
 
 // The properties passed to the provider model include a render() function
 // with Render type.  This type adds this render function to Props.

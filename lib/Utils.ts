@@ -1,5 +1,5 @@
 import { fail, isArray, isFunction, isString, maybeFunction } from '@abw/badger-utils'
-import { ActionMethods, DebugOptions } from './types'
+import { ActionMethods, ContextDebugOptions } from './types'
 
 export function prepareState(
   initialState: Record<string, unknown> = { },
@@ -41,7 +41,7 @@ export function actionMethods(
   )
 }
 
-export function debugFunction(props: DebugOptions, statics: DebugOptions) {
+export function debugFunction(props: ContextDebugOptions, statics: ContextDebugOptions) {
   const debug  = props.debug ?? statics.debug
   const prefix = maybeFunction(props.debugPrefix ?? statics.debugPrefix, props)
   const color  = maybeFunction(props.debugColor  ?? statics.debugColor, props)
