@@ -47,7 +47,7 @@
   "devDependencies": {
     "@abw/badger-timestamp": "^1.2.0",
     "@abw/badger-utils": "^1.2.2",
-    "@abw/badger-website": "^0.3.2",
+    "@abw/badger-website": "^0.3.3",
     "@mdx-js/react": "^3.0.1",
     "@mdx-js/rollup": "^3.0.1",
     "@testing-library/jest-dom": "^6.4.6",

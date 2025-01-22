@@ -20,8 +20,8 @@ devDependencies:
     specifier: ^1.2.2
     version: 1.2.2
   '@abw/badger-website':
-    specifier: ^0.3.2
-    version: 0.3.2(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
+    specifier: ^0.3.3
+    version: 0.3.3(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
   '@mdx-js/react':
     specifier: ^3.0.1
     version: 3.0.1(@types/react@18.3.18)(react@18.3.1)
@@ -179,8 +179,8 @@ packages:
     resolution: {integrity: sha512-ISEoqVhRfWXAa+bDbmm/qG+Osd33yCUKxnn+jV2FflDNeM1ieZggSahVLMex2d771pVtylBd6SKH2MrS2lGFdA==}
     dev: true
 
-  /@abw/badger-website@0.3.2(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1):
-    resolution: {integrity: sha512-WKkD6tTuWNRieMQ0X7iMU/EWKa+2PhKA4DRZS8L/xC5RxSg1nTvnf/ZWYOTHn1a+m4xhA8iNLOIlDzEODb4Dig==}
+  /@abw/badger-website@0.3.3(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1):
+    resolution: {integrity: sha512-vpAatQ2OoPTIGP8+y/+Z1VoN6IM/emXqZt+Sor8vo2J8Cp+Xdge9Ayu87qI77GVXHOIcm9vPubagv/wUs0p+QQ==}
     peerDependencies:
       react: ^18.2.0
       react-dom: ^18.2.0
