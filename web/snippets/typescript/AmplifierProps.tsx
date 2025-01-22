@@ -1,3 +1,3 @@
-type AmplifierProps {
+type AmplifierProps = ContextProps<{
   initialVolume: number
-}
+}>

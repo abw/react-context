@@ -1,8 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
-import React from 'react'
 import userEvent from '@testing-library/user-event'
 import { Generator, SetState } from '@/lib/index'
-import { useState } from 'react'
+import { ReactNode, useState } from 'react'
 import { it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
 
@@ -28,7 +27,7 @@ const Counter = Generator<CounterProps, CounterRenderProps>(
   }
 )
 
-const App = ({ children, ...props }) =>
+const App = ({ children, ...props }: { children: ReactNode }) =>
   <Counter.Provider {...props}>
     {children}
   </Counter.Provider>
@@ -70,7 +69,7 @@ it(
   }
 )
 
-const App2 = (props) =>
+const App2 = (props: CounterProps) =>
   <Counter.Provider {...props}>
     <Counter.Children>
       Hello

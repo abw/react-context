@@ -1,18 +1,18 @@
 /* eslint-disable react-refresh/only-export-components */
 import { it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
-import { Context, Generator, WithRequired } from '@/lib/index'
+import { Context, ContextConstructorProps, ContextProps, Generator, WithRequired } from '@/lib/index'
 
 const defaultProps = {
   initialVolume: 11,
   initialColour: 'black'
 }
 
-type AmplifierProps = {
+type AmplifierProps = ContextProps<{
   name: string
   initialVolume?: number
   initialColour?: string
-}
+}>
 
 type AmplifierState = {
   volume: number
@@ -25,7 +25,7 @@ class Amplifier extends Context<
 > {
   config: WithRequired<AmplifierProps, 'initialVolume' | 'initialColour'>
 
-  constructor(props: AmplifierProps) {
+  constructor(props: ContextConstructorProps<AmplifierProps, AmplifierState>) {
     super(props)
     this.config = {
       ...defaultProps,

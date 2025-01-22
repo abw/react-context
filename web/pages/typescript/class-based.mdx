@@ -1,4 +1,5 @@
 import TypesSrc         from '@/web/lib/TSClass/Types.ts?raw'
+import TypesDebugSrc    from '@/web/lib/TSClass/TypesDebug.ts?raw'
 import CounterSrc       from '@/web/lib/TSClass/Counter.ts?raw'
 import CountSrc         from '@/web/lib/TSClass/Count.tsx?raw'
 import ControlsSrc      from '@/web/lib/TSClass/Controls.tsx?raw'
@@ -36,9 +37,27 @@ safety.
 
 ## Types
 
-We need to define three types for this.  The first is the `CounterProps` which
-are the same as in the previous example.  These are the properties which can
-be passed to the provider for initial configuration.
+We need to define three types for this.
+
+<Source
+  code={TypesSrc}
+  caption="Types.ts"
+  expand
+/>
+
+The first is the `CounterProps` which are the same as in the previous example.
+These are the properties which can be passed to the provider for initial
+configuration.  We're using the `ContextProps` utility type to wrap the
+properties.  This creates an intersection with `ContextDebugOptions` which
+define the debugging options that the base class `Context` accepts.
+
+If you prefer you can write it like this:
+
+<Source
+  code={TypesDebugSrc}
+  caption="Types.ts"
+  expand
+/>
 
 The second is `CounterState` which defines the properties that the class can
 store in its internal state.
@@ -53,11 +72,6 @@ previous three.  This usually isn't required as it's generated automatically,
 but we've included it here because some of the following code snippets depend
 on it.
 
-<Source
-  code={TypesSrc}
-  caption="Types.ts"
-  expand
-/>
 
 ## Generator
 

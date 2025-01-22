@@ -1,6 +1,10 @@
-export type CounterProps = {
+import { ContextProps } from '@/lib/index'
+/* START */
+// PRETEND: import { ContextProps } from '@abw/react-context'
+
+export type CounterProps = ContextProps<{
   initialCount?: number
-}
+}>
 
 export type CounterState = {
   count: number

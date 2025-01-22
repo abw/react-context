@@ -1,14 +1,14 @@
-import { Context, Generator, WithRequiredFrom } from '@/lib/index'
+import { Context, ContextConstructorProps, ContextProps, Generator, WithRequiredFrom } from '@/lib/index'
 /* START */
-// PRETEND: import { Context, Generator, WithRequiredFrom } from '@abw/react-context'
+// PRETEND: import { Context,ContextConstructorProps, ContextProps, Generator, WithRequiredFrom } from '@abw/react-context'
 
 const defaultProps = {
   initialVolume: 10,
 }
 
-type AmplifierProps = {
+type AmplifierProps = ContextProps<{
   initialVolume?: number
-}
+}>
 type AmplifierState = {
   volume: number
 }
@@ -26,7 +26,7 @@ class Amplifier extends Context<
 > {
   config: WithRequiredFrom<AmplifierProps, typeof defaultProps>
 
-  constructor(props: AmplifierProps) {
+  constructor(props: ContextConstructorProps<AmplifierProps, AmplifierState, AmplifierActions>) {
     super(props)
     this.config = {
       ...defaultProps,

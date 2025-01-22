@@ -2,15 +2,15 @@
 import userEvent from '@testing-library/user-event'
 import { it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
-import { Context, Generator, WithRequiredFrom } from '@/lib/index'
+import { Context, ContextConstructorProps, ContextProps, Generator, WithRequiredFrom } from '@/lib/index'
 
 const defaultProps = {
   initialVolume: 10,
 }
 
-type AmplifierProps = {
+type AmplifierProps = ContextProps<{
   initialVolume?: number
-}
+}>
 type AmplifierState = {
   volume: number
 }
@@ -28,7 +28,7 @@ class Amplifier extends Context<
 > {
   config: WithRequiredFrom<AmplifierProps, typeof defaultProps>
 
-  constructor(props: AmplifierProps) {
+  constructor(props: ContextConstructorProps<AmplifierProps, AmplifierState, AmplifierActions>) {
     super(props)
     this.config = {
       ...defaultProps,

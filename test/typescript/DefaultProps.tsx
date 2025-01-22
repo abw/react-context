@@ -1,13 +1,13 @@
 /* eslint-disable react-refresh/only-export-components */
 import { it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
-import { Context, Generator } from '@/lib/index'
+import { Context, ContextConstructorProps, ContextDebugOptions, Generator } from '@/lib/index'
 
 const defaultProps = {
   initialVolume: 11
 }
 
-type AmplifierProps = {
+type AmplifierProps = ContextDebugOptions & {
   initialVolume?: number
 }
 type AmplifierState = {
@@ -18,7 +18,7 @@ class Amplifier extends Context<
   AmplifierProps,
   AmplifierState
 > {
-  constructor(props: AmplifierProps) {
+  constructor(props: ContextConstructorProps<AmplifierProps, AmplifierState>) {
     super(props)
     this.state = {
       volume: this.props.initialVolume || defaultProps.initialVolume

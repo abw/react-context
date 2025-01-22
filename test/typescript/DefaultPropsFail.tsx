@@ -1,20 +1,11 @@
 /* eslint-disable react-refresh/only-export-components */
 import { it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
-import { Context, ContextConstructorProps, ContextProps, Generator } from '@/lib/index'
+import { Context, ContextConstructorProps, ContextDebugOptions, Generator } from '@/lib/index'
 
-const defaultProps = {
-  initialVolume: 11
-}
-
-type AmplifierRequiredProps = {
-  name: string
-}
-type AmplifierOptionalProps = {
+type AmplifierProps = ContextDebugOptions & {
   initialVolume?: number
 }
-type AmplifierProps = ContextProps<AmplifierRequiredProps & AmplifierOptionalProps>
-
 type AmplifierState = {
   volume: number
 }
@@ -23,16 +14,15 @@ class Amplifier extends Context<
   AmplifierProps,
   AmplifierState
 > {
-  config: AmplifierRequiredProps & Required<AmplifierOptionalProps>
-
+  static defaultProps = {
+    initialVolume: 11
+  }
   constructor(props: ContextConstructorProps<AmplifierProps, AmplifierState>) {
     super(props)
-    this.config = {
-      ...defaultProps,
-      ...props
-    }
     this.state = {
-      volume: this.config.initialVolume
+      // @ts-expect-error - state.volume can't be undefined but AmplifierProps
+      // has it has optional
+      volume: this.props.initialVolume
     }
   }
 }
@@ -40,15 +30,13 @@ class Amplifier extends Context<
 const AmplifierContext = Generator(Amplifier)
 
 const Volume = AmplifierContext.Consumer(
-  ({ name, volume }) =>
-    <div data-testid="volume">
-      {name}'s amplifier goes up to {volume}
-    </div>
+  ({ volume }) =>
+    <div data-testid="volume">This goes up to {volume}</div>
 )
 
 const OnStage = () =>
   <div>
-    <AmplifierContext.Provider name="Nigel" debug debugColor="red">
+    <AmplifierContext.Provider>
       <Volume/>
     </AmplifierContext.Provider>
   </div>
@@ -58,6 +46,6 @@ it(
   async () => {
     render(<OnStage/>)
     const volume = screen.getByTestId('volume')
-    expect(volume).toHaveTextContent("Nigel's amplifier goes up to 11")
+    expect(volume).toHaveTextContent('This goes up to 11')
   }
 )
