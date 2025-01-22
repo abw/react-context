@@ -1,0 +1,20 @@
+import ConstructorSrc   from '@/web/lib/TSClass/Constructor.ts?raw'
+import { Example, Source } from '@abw/badger-website'
+
+# Class Components and `constructor`
+
+If your class component has a `constructor` method then you'll need to type
+the `props` that are passed to it.  The type for the properties is an
+intersection of your component's props, state and actions, along with a
+generated `render` prop.
+
+The `ContextConstructorProps` utility can be used to take care of it for you.
+Specify the props, state and actions as type parameter and it'll construct the
+correct composite type.
+
+<Source
+  code={ConstructorSrc}
+  caption="ClassWithConstructor.ts"
+  highlightLines="22-26"
+  expand
+/>

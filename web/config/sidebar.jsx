@@ -30,7 +30,8 @@ const sidebar = {
       menu: [
         { to: '/typescript/functional',   text: 'Functional Components' },
         { to: '/typescript/class-based',  text: 'Class Based Components' },
-        { to: '/typescript/default-props', text: 'defaultProps' },
+        { to: '/typescript/constructor',  text: 'Constructor' },
+        { to: '/typescript/default-props', text: 'Default Props' },
         { to: '/typescript/class-actions', text: 'Actions' },
       ]
     },
