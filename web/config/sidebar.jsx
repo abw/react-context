@@ -5,10 +5,12 @@ const sidebar = {
       title: 'Getting Started',
       menu: [
         { to: '/installation',   text: 'Installation' },
+        { to: '/model',          text: 'Model' },
         { to: '/overview',       text: 'Overview' },
         { to: '/generator',      text: 'Generator' },
       ]
     },
+    { title: 'Generator' },
     {
       title: 'Functional Components',
       menu: [

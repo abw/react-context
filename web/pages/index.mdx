@@ -28,7 +28,12 @@ import { Link, Hero, PeopleWhoShare } from '@abw/badger-website'
   This documentation is for **version 3** of `@abw/react-context` which is now
   written in Typescript for added type safety goodness.
 
-  There is one breaking change between the versions: The `generator()` method
+  The [Model](model) is new to version 3 and provides a simpler, cleaner way
+  to do what the `Generator()` function did in version 2.  However, it only
+  works with functional components.  You can continue to use the `Generator()`
+  function in existing code, especially if you're using class based components.
+
+  There is one breaking change between the versions: The `Generator()` function
   now takes an `options` object as the second optional argument.  In version 2
   it takes two optional arguments: the default context state and a Context
   object.  If you're not using this (barely documented) feature then it should
