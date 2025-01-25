@@ -10,7 +10,7 @@ export const Controls = (
   const { inc, dec } = useCounter()
 
   return (
-    <div className={`flex gap-2 mar-t-4 ${color}`}>
+    <div className={`flex gap-2 mar-t-2 ${color}`}>
       <button onClick={() => dec()}>
         Dec
       </button>

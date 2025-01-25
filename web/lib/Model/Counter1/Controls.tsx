@@ -6,7 +6,7 @@ type ControlsProps = {
 
 export const Controls = Consumer<ControlsProps>(
   ({ inc, dec, color }) =>
-    <div className={`flex gap-2 mar-t-4 ${color}`}>
+    <div className={`flex gap-2 mar-t-2 ${color}`}>
       <button onClick={() => dec()}>
         Dec
       </button>
