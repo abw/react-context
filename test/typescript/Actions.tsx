@@ -109,7 +109,7 @@ it(
     const eleven = screen.getByTestId('eleven')
     const reset = screen.getByTestId('reset')
 
-    screen.debug()
+    // screen.debug()
     await userEvent.click(louder)
     expect(volume).toHaveTextContent('Volume: 11')
     await userEvent.click(reset)
