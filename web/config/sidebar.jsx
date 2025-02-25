@@ -8,7 +8,6 @@ const sidebar = {
         { to: '/overview',       text: 'Overview' },
       ]
     },
-    { title: 'Generator' },
     {
       title: 'Functional Components',
       menu: [
