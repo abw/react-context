@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react'
+import { PropsWithChildren, JSX } from 'react'
 
 export type ContextDebugConfigFunction = (...args: unknown[]) => string
 export type ContextDebugConfigOption = undefined | string | ContextDebugConfigFunction
