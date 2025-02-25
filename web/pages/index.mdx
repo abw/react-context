@@ -1,4 +1,5 @@
 import Logo from '@/svg/react-context.svg?react'
+import { ReactModelLink } from '@/site/Links'
 import { Link, Hero, PeopleWhoShare } from '@abw/badger-website'
 
 <Hero
@@ -8,7 +9,7 @@ import { Link, Hero, PeopleWhoShare } from '@abw/badger-website'
   overview="A React library providing some useful functionality for working with React contexts."
   underview={
     <>
-      It is simple and small (around 2kB compressed).  It has no
+      It is simple and small (around 1.4kB compressed).  It has no
       dependencies and introduces very little overhead to a project.
     </>
   }
@@ -28,11 +29,6 @@ import { Link, Hero, PeopleWhoShare } from '@abw/badger-website'
   This documentation is for **version 3** of `@abw/react-context` which is now
   written in Typescript for added type safety goodness.
 
-  The [Model](model) is new to version 3 and provides a simpler, cleaner way
-  to do what the `Generator()` function did in version 2.  However, it only
-  works with functional components.  You can continue to use the `Generator()`
-  function in existing code, especially if you're using class based components.
-
   There is one breaking change between the versions: The `Generator()` function
   now takes an `options` object as the second optional argument.  In version 2
   it takes two optional arguments: the default context state and a Context
@@ -40,6 +36,13 @@ import { Link, Hero, PeopleWhoShare } from '@abw/badger-website'
   be safe to upgrade to version 3.
 
   The documentation for **version 2** is [here](version2/introduction).
+
+  There's also a new kid in town: <ReactModelLink/> is a smaller, simpler
+  and more Typescript friendly alternative to React Context.  However,
+  it only works with functional components.  If you're starting out anew and
+  planning to use functional components then that might be a good place to
+  start.  Otherwise you can continue to use React Context in existing code,
+  especially if you're using class based components.
 </div>
 
 ## Getting Started

@@ -10,4 +10,6 @@ const ExtLinker = (href, text=href) => (props={}) =>
     targetBlank
   />
 
+
 export const BadgerCSSLink = ExtLinker('https://badgerpower.com/badger-css/',   'Badger CSS')
+export const ReactModelLink = ExtLinker('https://badgerpower.com/react-model/', 'React Model')
